@@ -14,7 +14,12 @@ protocol IShowPictureDelegate: AnyObject {
 	func showImageScene(model: SPResponse)
 }
 
-final class GenerateImageCoordinator: ICoordinator {
+protocol IBackShowPictureDelegate: AnyObject {
+	/// Выход из текущей сцены.
+	func backToScene()
+}
+
+final class GenerateImageCoordinator: NSObject, ICoordinator {
 
 	// MARK: - Public properties
 	var childCoordinators: [ICoordinator] = []
@@ -32,8 +37,6 @@ final class GenerateImageCoordinator: ICoordinator {
 	// MARK: - Public methods
 	func start() {
 		showMainGenerateImageScene()
-		// let URL = URL(string: "fsdfsd")!
-		// showImageScene(model: SPResponse.success(.init(url: URL)))
 	}
 
 	/// Отображение главной сцены текущего потока.
@@ -47,8 +50,15 @@ final class GenerateImageCoordinator: ICoordinator {
 extension GenerateImageCoordinator: IShowPictureDelegate {
 	func showImageScene(model: SPResponse) {
 		let assembler = ShowPictureAssembler()
-		let showPictureVC = assembler.configurator(model: model)
-		navigateController.pushViewController(showPictureVC, animated: true)
+		let showPictureVC = assembler.configurator(model: model, backSceneDelegate: self)
+		showPictureVC.modalPresentationStyle = .fullScreen
+		navigateController.present(showPictureVC, animated: true)
+	}
+}
+
+extension GenerateImageCoordinator: IBackShowPictureDelegate {
+	func backToScene() {
+		navigateController.dismiss(animated: true)
 	}
 }
 

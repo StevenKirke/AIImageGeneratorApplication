@@ -16,6 +16,8 @@ protocol IGenerateImageWorker: AnyObject {
 	func getData<T: Decodable>(
 		prompt: MainSearchViewModel.Response.ImageData, modelDTO: T.Type, request: @escaping (Result<T, Error>) -> Void
 	)
+
+	func getImageData(url: URL, requestImage: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class GenerateImageWorker {
@@ -25,20 +27,24 @@ final class GenerateImageWorker {
 	let assemblerURL: IAssemblerURLService?
 	let networkManager: INetworkManager?
 	let decodeJSONManager: IDecodeJsonManager?
+	let networkKingfisherManager: INetworkKingfisherManager?
 
 	// MARK: - Initializator
 	init(
 		assemblerURL: IAssemblerURLService?,
 		networkManager: INetworkManager?,
-		decodeJSONManager: IDecodeJsonManager?
+		decodeJSONManager: IDecodeJsonManager?,
+		networkKingfisherManager: INetworkKingfisherManager?
 	) {
 		self.assemblerURL = assemblerURL
 		self.networkManager = networkManager
 		self.decodeJSONManager = decodeJSONManager
+		self.networkKingfisherManager = networkKingfisherManager
 	}
 }
 
 extension GenerateImageWorker: IGenerateImageWorker {
+	// Запрос на генерацию изображения.
 	func getData<T: Decodable>(
 		prompt: MainSearchViewModel.Response.ImageData, modelDTO: T.Type, request: @escaping (Result<T, Error>) -> Void
 	) {
@@ -47,8 +53,20 @@ extension GenerateImageWorker: IGenerateImageWorker {
 			case .success(let jsonDTO):
 				request(.success(jsonDTO))
 			case .failure(let error):
-				print("Ошибка запроса или декодирования JSON!")
+				print("☠️ Ошибка запроса или декодирования JSON!")
 				request(.failure(error))
+			}
+		}
+	}
+	// Запрос на загрузку картинки.
+	func getImageData(url: URL, requestImage: @escaping (Result<Data, Error>) -> Void) {
+		networkKingfisherManager?.getImage(url: url) { request in
+			switch request {
+			case .success(let data):
+				requestImage(.success(data))
+			case .failure(let error):
+				print("☠️ Ошибка запроса на получение изображения или конвертации в DATA!")
+				requestImage(.failure(error))
 			}
 		}
 	}
@@ -74,7 +92,7 @@ private extension GenerateImageWorker {
 				}
 			case .failure(let error):
 				// Какая либо ошибка с сетевого запроса.
-				print("Ошибка сетевого запроса!")
+				print("☠️ Ошибка сетевого запроса!")
 				request(.failure(error))
 			}
 		})

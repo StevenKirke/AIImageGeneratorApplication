@@ -29,33 +29,33 @@ enum MainSearchViewModel {
 	}
 	/// Сущность ответа.
 	enum Request {
-		case success(Image)
+		case success(ImageData)
 		case failure(Error)
 
-		struct Image {
-			let url: URL
+		struct ImageData {
+			let data: Data
 		}
 	}
 	/// Сущность для отображения.
 	enum ViewModel {
-		case success(ImageURL)
+		case success(ImageData)
 		case failure(String)
 
-		struct ImageURL {
-			let url: URL
+		struct ImageData {
+			let data: Data
 		}
 	}
 }
 // swiftlint:enable nesting
 
-extension MainSearchViewModel.Request.Image {
-	init(from: URL) {
-		self.init(url: from)
+extension MainSearchViewModel.Request.ImageData {
+	init(from: Data) {
+		self.init(data: from)
 	}
 }
 
-extension MainSearchViewModel.ViewModel.ImageURL {
-	init(from: MainSearchViewModel.Request.Image) {
-		self.init(url: from.url)
+extension MainSearchViewModel.ViewModel.ImageData {
+	init(from: MainSearchViewModel.Request.ImageData) {
+		self.init(data: from.data)
 	}
 }

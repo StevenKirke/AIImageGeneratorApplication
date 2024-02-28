@@ -10,7 +10,7 @@ import SnapKit
 import Lottie
 
 protocol IGenerateImageLogic: AnyObject {
-	func renderImage(viewControllerText: String)
+	func handlerLogic()
 }
 
 final class GenerateImageViewController: UIViewController {
@@ -25,7 +25,7 @@ final class GenerateImageViewController: UIViewController {
 	private lazy var gradient = createGradient()
 	private lazy var textField = createTextField()
 	private lazy var buttonGetImage = createButton()
-	private var animationView: LottieAnimationView?
+	private lazy var animationView = createAnimationView()
 
 	// MARK: - Initializator
 	init() {
@@ -41,6 +41,21 @@ final class GenerateImageViewController: UIViewController {
 		super.viewDidLoad()
 		setupConfiguration()
 		addUIView()
+		observeKeyboard()
+	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		navigationController?.setNavigationBarHidden(true, animated: false)
+		setupLayout()
+		// Определяем размеры gradient для заднего фона.
+		gradient.frame = view.bounds
+	}
+}
+
+// MARK: - NotificationCenter
+private extension GenerateImageViewController {
+	func observeKeyboard() {
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(keyboardShow),
@@ -55,22 +70,6 @@ final class GenerateImageViewController: UIViewController {
 			object: nil
 		)
 	}
-
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
-		setupLayout()
-		gradient.frame = view.bounds
-
-		animationView = .init(name: "AnimationClock")
-		animationView?.frame = CGRect(x: 30, y: 30, width: 200, height: 200)
-		animationView?.loopMode = .loop
-		animationView?.animationSpeed = 0.5
-		view.addSubview(animationView!)
-		animationView?.play()
-	}
-
-	// MARK: - Public methods
-	func reloadData() { }
 }
 
 // MARK: - Add UIView.
@@ -90,10 +89,16 @@ private extension GenerateImageViewController {
 private extension GenerateImageViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
+		// Настройка бекграунда.
 		viewBackground.backgroundColor = UIColor.green
 		viewBackground.layer.insertSublayer(gradient, at: 0)
 
-		buttonGetImage.addTarget(self, action: #selector(hendlerTextField), for: .touchUpInside)
+		textField.backgroundColor = UIColor.black
+		// Определяем Z позицию для элементов, что бы спрятать блок анимации за textField.
+		textField.layer.zPosition = viewBackground.layer.zPosition + 1
+		buttonGetImage.layer.zPosition = textField.layer.zPosition + 1
+
+		buttonGetImage.addTarget(self, action: #selector(handlerTextField), for: .touchUpInside)
 	}
 }
 
@@ -114,6 +119,7 @@ private extension GenerateImageViewController {
 		buttonGetImage.snp.makeConstraints { button in
 			button.centerY.equalTo(textField)
 			button.right.equalTo(textField.snp.right).inset(10)
+			button.width.height.equalTo(36)
 		}
 	}
 }
@@ -127,19 +133,32 @@ private extension GenerateImageViewController {
 	}
 
 	func createButton() -> UIButton {
-		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-		let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
+		let button = UIButton()
+		let configuration = UIImage.SymbolConfiguration(textStyle: .title3)
 		let image = UIImage(systemName: "arrow.up", withConfiguration: configuration)
 		button.setImage(image, for: .normal)
 		button.backgroundColor = UIColor(hex: "#370258")
 		button.tintColor = UIColor.white
 		button.layer.borderWidth = 3
 		button.layer.borderColor = UIColor.white.cgColor
-		button.layer.cornerRadius = 15
-		button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+		button.layer.cornerRadius = 18
 		button.translatesAutoresizingMaskIntoConstraints = false
 
 		return button
+	}
+
+	func createAnimationView() -> LottieAnimationView {
+		var animationView = LottieAnimationView()
+		animationView = .init(name: "AnimationClock")
+		animationView.frame = CGRect(
+			x: view.center.x - (view.bounds.width - 60) / 2,
+			y: view.bounds.height,
+			width: view.bounds.width - 60,
+			height: view.bounds.width - 60
+		)
+		animationView.loopMode = .loop
+		animationView.animationSpeed = 0.5
+		return animationView
 	}
 
 	func createGradient() -> CAGradientLayer {
@@ -185,30 +204,79 @@ private extension GenerateImageViewController {
 	}
 
 	/// Обрабатываем UITextField.
-	@objc func hendlerTextField() {
+	@objc func handlerTextField() {
 		// Скрываем клавиатуру.
 		UIApplication.shared.endEditing()
 		// Проверка текстового поля на пустоту и другие операции с ним.
-		if let text = textField.text {
+		guard let text = textField.text else { return }
+		if !text.isEmpty {
+			showAnimationView()
+			// Запрос на генерацию картинки.
 			getData(text: text)
-			textField.text = ""
+			// Блокируем кнопку запроса.
+			buttonGetImage.isEnabled = false
 		}
+	}
+}
+// MARK: - Animation.
+private extension GenerateImageViewController {
+	// Запускаем и показываем animationView.
+	func showAnimationView() {
+		view.addSubview(animationView)
+		 startAnimation()
+		animationView.play()
+	}
+	// Отключаем анимацию и прячем animationView.
+	func hideAnimationView() {
+		stopAnimation()
+		animationView.stop()
+		view.willRemoveSubview(animationView)
+	}
+
+	func startAnimation() {
+		let viewFrame = self.view.frame
+		let centerX = self.view.bounds.midX - (self.view.bounds.width) / 2
+		let centerY = self.view.bounds.midY + (self.animationView.frame.height)
+		UIView.animate(
+			withDuration: 1,
+			delay: 0,
+			options: [.curveEaseOut],
+			animations: {
+				self.animationView.transform = CGAffineTransform(translationX: centerX, y: -centerY)
+			})
+	}
+
+	func stopAnimation() {
+		let centerX = view.center.x - (view.bounds.width - 60) / 2
+		let centerY = view.bounds.height
+		UIView.animate(
+			withDuration: 1,
+			delay: 0,
+			options: [.curveEaseOut],
+			animations: {
+				self.animationView.transform = CGAffineTransform(translationX: centerX, y: centerY)
+			})
 	}
 }
 // MARK: - Iterator.
 private extension GenerateImageViewController {
-	// Запрос в Iterator.
+	/// Методы для работы с Iterator.
 	func getData(text: String) {
 		let size = CGSize(width: view.frame.width, height: view.frame.height)
 		let prompt = MainSearchViewModel.Response.ImageData(prompt: text, size: size)
-		animationView?.stop()
-		// iterator?.fetch(responsePrompt: .success(prompt))
+		/// Запрос в Iterator.
+		iterator?.fetch(responsePrompt: .success(prompt))
 	}
 }
 
 // MARK: - Render logic.
 extension GenerateImageViewController: IGenerateImageLogic {
-	func renderImage(viewControllerText: String) {
-		print(viewControllerText)
+	func handlerLogic() {
+		// Очищаем поле ввода.
+		textField.text = ""
+		// Разблокируем кнопку запроса.
+		buttonGetImage.isEnabled = true
+		// Прячем анимацию загрузки.
+		hideAnimationView()
 	}
 }

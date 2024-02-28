@@ -32,12 +32,14 @@ final class GenerateImagePresenter {
 extension GenerateImagePresenter: IGenerateImagePresenter {
 	func present(present: MSRequest) {
 		switch present {
-		case .success(let imageURL):
-			// Конвертируем модель для следующей сцены.
-			let convertModel = ShowPictureModel.Response.ImageURL(url: imageURL.url)
-			showPictureDelegate?.showImageScene(model: .success(convertModel))
+		case .success(let imageData):
+			// Конвертируем модель для следующего VIP цикла.
+			let modelResponse = ShowPictureModel.Response.ImageData(from: imageData)
+			viewController?.handlerLogic()
+			showPictureDelegate?.showImageScene(model: .success(modelResponse))
 		case .failure(let error):
 			print("Error \(error)")
+			viewController?.handlerLogic()
 		}
 	}
 }

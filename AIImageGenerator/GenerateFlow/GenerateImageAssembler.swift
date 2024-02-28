@@ -11,17 +11,22 @@ final class GenerateImageAssembler {
 	func configurator(showPictureDelegate: IShowPictureDelegate) -> UIViewController {
 		// Подключение сервисов.
 		let assemblerURL = AssemblerURLService()
-		// Подключение менеджеры.
+
+		// Подключение менеджеров.
 		let networkManager = NetworkManager()
 		let decodeJSONManager = DecodeJsonManager()
+		let networkKingfisherManager = NetworkKingfisherManager()
 		// Подключение конверторов.
 		let converterDTO = ConvertGenerateImageDTO()
+
 		// Подключение Worker, запросы к данным, декодирование.
 		let worker = GenerateImageWorker(
 			assemblerURL: assemblerURL,
 			networkManager: networkManager,
-			decodeJSONManager: decodeJSONManager
+			decodeJSONManager: decodeJSONManager,
+			networkKingfisherManager: networkKingfisherManager
 		)
+
 		// Подключение VIP цикла.
 		let viewController = GenerateImageViewController()
 		let presenter = GenerateImagePresenter(

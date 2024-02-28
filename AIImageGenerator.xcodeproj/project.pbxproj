@@ -37,6 +37,9 @@
 		324CA2F92B8E3E8100F423C3 /* ShowPicturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2F82B8E3E8100F423C3 /* ShowPicturePresenter.swift */; };
 		324CA2FB2B8E496900F423C3 /* ShowPictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2FA2B8E496900F423C3 /* ShowPictureModel.swift */; };
 		324CA2FD2B8E841B00F423C3 /* AnimationClock.json in Resources */ = {isa = PBXBuildFile; fileRef = 324CA2FC2B8E841A00F423C3 /* AnimationClock.json */; };
+		324CA3012B8F2F9800F423C3 /* NetworkKingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */; };
+		324CA3032B8F48B100F423C3 /* SavePhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */; };
+		324CA3052B8F99AF00F423C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 324CA3042B8F99AF00F423C3 /* README.md */; };
 		332B103FA34B4A228E822955 /* Pods_AIImageGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +76,9 @@
 		324CA2F82B8E3E8100F423C3 /* ShowPicturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicturePresenter.swift; sourceTree = "<group>"; };
 		324CA2FA2B8E496900F423C3 /* ShowPictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPictureModel.swift; sourceTree = "<group>"; };
 		324CA2FC2B8E841A00F423C3 /* AnimationClock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AnimationClock.json; path = ../../Example/AnimationClock.json; sourceTree = "<group>"; };
+		324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKingfisherManager.swift; sourceTree = "<group>"; };
+		324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoManager.swift; sourceTree = "<group>"; };
+		324CA3042B8F99AF00F423C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AIImageGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A18B9A35BFE0012A46FA49 /* Pods-AIImageGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIImageGenerator.debug.xcconfig"; path = "Target Support Files/Pods-AIImageGenerator/Pods-AIImageGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		E1DDF1A3123DA8C53EF542E4 /* Pods-AIImageGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIImageGenerator.release.xcconfig"; path = "Target Support Files/Pods-AIImageGenerator/Pods-AIImageGenerator.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 		324CA2932B8CBC0800F423C3 = {
 			isa = PBXGroup;
 			children = (
+				324CA3042B8F99AF00F423C3 /* README.md */,
 				324CA2B42B8CBD8B00F423C3 /* swiftlint.yml */,
 				324CA29E2B8CBC0800F423C3 /* AIImageGenerator */,
 				324CA29D2B8CBC0800F423C3 /* Products */,
@@ -131,8 +138,8 @@
 				324CA2FC2B8E841A00F423C3 /* AnimationClock.json */,
 				324CA2BC2B8CBDE800F423C3 /* Fonts */,
 				324CA2AA2B8CBC0A00F423C3 /* LaunchScreen.storyboard */,
-				324CA2AD2B8CBC0A00F423C3 /* Info.plist */,
 				324CA2A82B8CBC0A00F423C3 /* Assets.xcassets */,
+				324CA2AD2B8CBC0A00F423C3 /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 			children = (
 				324CA2CE2B8CE07B00F423C3 /* DecodeJSONManager.swift */,
 				324CA2D02B8CE0B300F423C3 /* NetworkManager.swift */,
+				324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */,
+				324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -209,9 +218,9 @@
 		324CA2BF2B8CBF8B00F423C3 /* GenerateImageScene */ = {
 			isa = PBXGroup;
 			children = (
-				324CA2C52B8CC06300F423C3 /* GenerateImageIterator.swift */,
 				324CA2C12B8CC03A00F423C3 /* GenerateImageAssembler.swift */,
 				324CA2C32B8CC05400F423C3 /* GenerateImageViewController.swift */,
+				324CA2C52B8CC06300F423C3 /* GenerateImageIterator.swift */,
 				324CA2C72B8CC07000F423C3 /* GenerateImagePresenter.swift */,
 				324CA2C92B8CC07F00F423C3 /* GenerateImageModel.swift */,
 				324CA2E32B8E0B7700F423C3 /* Worker+DTO */,
@@ -344,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324CA3052B8F99AF00F423C3 /* README.md in Resources */,
 				324CA2FD2B8E841B00F423C3 /* AnimationClock.json in Resources */,
 				324CA2AC2B8CBC0A00F423C3 /* LaunchScreen.storyboard in Resources */,
 				324CA2B52B8CBD8B00F423C3 /* swiftlint.yml in Resources */,
@@ -420,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324CA3012B8F2F9800F423C3 /* NetworkKingfisherManager.swift in Sources */,
 				324CA2EE2B8E3A1500F423C3 /* ICoordinator.swift in Sources */,
 				324CA2DB2B8D030100F423C3 /* Extension+UITextField.swift in Sources */,
 				324CA2CF2B8CE07B00F423C3 /* DecodeJSONManager.swift in Sources */,
@@ -440,6 +451,7 @@
 				324CA2CD2B8CC09600F423C3 /* GenerateImageWorker.swift in Sources */,
 				324CA2C42B8CC05400F423C3 /* GenerateImageViewController.swift in Sources */,
 				324CA2F32B8E3D6B00F423C3 /* ShowPictureAssembler.swift in Sources */,
+				324CA3032B8F48B100F423C3 /* SavePhotoManager.swift in Sources */,
 				324CA2FB2B8E496900F423C3 /* ShowPictureModel.swift in Sources */,
 				324CA2C62B8CC06300F423C3 /* GenerateImageIterator.swift in Sources */,
 				324CA2CA2B8CC07F00F423C3 /* GenerateImageModel.swift in Sources */,

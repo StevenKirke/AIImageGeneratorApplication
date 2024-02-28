@@ -20,42 +20,48 @@ typealias SPViewModel = ShowPictureModel.ViewModel
 enum ShowPictureModel {
 	/// Запрашиваемая сущность.
 	enum Response {
-		case success(ImageURL)
+		case success(ImageData)
 
-		struct ImageURL {
-			let url: URL
+		struct ImageData {
+			let data: Data
 		}
 	}
 
 	/// Сущность ответа.
 	enum Request {
-		case success(ImageURL)
+		case success(ImageData)
 		case failure(Error)
 
-		struct ImageURL {
-			let url: URL
+		struct ImageData {
+			let data: Data
 		}
 	}
 	/// Сущность для отображения.
 	enum ViewModel {
-		case success(ImageURL)
+		case success(ImageData)
 		case failure(String)
 
-		struct ImageURL {
-			let url: URL
+		struct ImageData {
+			let data: Data
 		}
 	}
 }
 // swiftlint:enable nesting
 
-extension ShowPictureModel.Request.ImageURL {
-	init(from: URL) {
-		self.init(url: from)
+extension ShowPictureModel.Response.ImageData {
+	init(from: MainSearchViewModel.Request.ImageData) {
+		self.init(data: from.data)
 	}
 }
 
-extension ShowPictureModel.ViewModel.ImageURL {
-	init(from: ShowPictureModel.Request.ImageURL) {
-		self.init(url: from.url)
+extension ShowPictureModel.Request.ImageData {
+	init(from: ShowPictureModel.Response.ImageData) {
+		self.init(data: from.data)
+	}
+}
+
+extension ShowPictureModel.ViewModel.ImageData {
+	init(from: ShowPictureModel.Request.ImageData) {
+		self.init(data: from.data)
 	}
 }

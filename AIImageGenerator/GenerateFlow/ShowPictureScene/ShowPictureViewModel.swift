@@ -10,7 +10,7 @@ import SnapKit
 import Kingfisher
 
 protocol IShowPictureLogic: AnyObject {
-	func renderImage(viewModel: SPViewModel.ImageURL)
+	func renderImage(viewModel: SPViewModel.ImageData)
 }
 
 final class ShowPictureViewController: UIViewController {
@@ -46,10 +46,8 @@ final class ShowPictureViewController: UIViewController {
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		setupLayout()
+		navigationController?.setNavigationBarHidden(true, animated: false)
 	}
-
-	// MARK: - Public methods
-	func reloadData() { }
 }
 
 // MARK: - Add UIView.
@@ -70,9 +68,11 @@ private extension ShowPictureViewController {
 private extension ShowPictureViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
-		imageBackground.image = UIImage(named: "@image.png")
 
+		// Кнопка сохранение.
 		buttonSaveImage.addTarget(self, action: #selector(saveImageInLibrary), for: .touchUpInside)
+		// Кнопка назад.
+		buttonBack.addTarget(self, action: #selector(backToView), for: .touchUpInside)
 	}
 }
 
@@ -133,52 +133,21 @@ private extension ShowPictureViewController {
 }
 
 // MARK: - UI Action.
-private extension ShowPictureViewController {
-	@objc func saveImageInLibrary() {
-		save()
-	}
-}
-#warning("TODO: Закинуть итератор!")
 extension ShowPictureViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-	func save() {
-			guard let currentImage = imageBackground.image else { return }
-			UIImageWriteToSavedPhotosAlbum(
-				currentImage,
-				self,
-				#selector(image(_:didFinishSavingWithError:contextInfo:)),
-				nil
-			)
-//			var imagePicker = UIImagePickerController()
-//			imagePicker.delegate = self
-//			imagePicker.sourceType = .photoLibrary
-//			present(imagePicker, animated: true)
-	}
-	@objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-		if let error = error {
-			print(error.localizedDescription)
-		} else {
-			print("Success")
+	@objc func saveImageInLibrary() {
+		if let currentImage = imageBackground.image {
+			iterator?.saveImage(image: currentImage)
 		}
+	}
+
+	@objc func backToView() {
+		iterator?.backToView()
 	}
 }
 
 // MARK: - Render logic.
 extension ShowPictureViewController: IShowPictureLogic {
-	func renderImage(viewModel: SPViewModel.ImageURL) {
-		self.fetchImage(url: viewModel.url)
-	}
-}
-
-private extension ShowPictureViewController {
-	func fetchImage(url: URL) {
-		KingfisherManager.shared.retrieveImage(with: url) { result in
-			switch result {
-			case .success(let image):
-				let currentImage = try? result.get().image
-				self.imageBackground.image = currentImage
-			case .failure(let error):
-				print("Error ShowPictureViewController \(error)")
-			}
-		}
+	func renderImage(viewModel: SPViewModel.ImageData) {
+		self.imageBackground.image = UIImage(data: viewModel.data)
 	}
 }

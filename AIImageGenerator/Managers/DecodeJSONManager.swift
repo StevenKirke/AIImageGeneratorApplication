@@ -31,7 +31,6 @@ final class DecodeJsonManager: IDecodeJsonManager {
 				let json = try JSONDecoder().decode(T.self, from: data)
 				return returnJSON(.success(json))
 			} catch let error {
-				print("ERROR \(error)")
 				return returnJSON(.failure(.errorDecodeJson(error.localizedDescription)))
 			}
 		}
