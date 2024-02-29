@@ -10,7 +10,7 @@ import SnapKit
 import Lottie
 
 protocol IGenerateImageLogic: AnyObject {
-	func handlerLogic()
+	func handlerLogic(massageError: String)
 }
 
 final class GenerateImageViewController: UIViewController {
@@ -19,13 +19,18 @@ final class GenerateImageViewController: UIViewController {
 
 	// MARK: - Dependencies
 	var iterator: IGenerateImageIterator?
+	var handlerAlertViewDelegate: IAlertMassageViewDelegate?
 
 	// MARK: - Private properties
 	private lazy var viewBackground = createView()
 	private lazy var gradient = createGradient()
 	private lazy var textField = createTextField()
 	private lazy var buttonGetImage = createButton()
+	// Плашка с анимацией.
 	private lazy var animationView = createAnimationView()
+	// Плашка с ошибкой и возможностью повторить запрос.
+	private lazy var alertView = UIView()
+	private var isTestAlertView = false
 
 	// MARK: - Initializator
 	init() {
@@ -42,6 +47,10 @@ final class GenerateImageViewController: UIViewController {
 		setupConfiguration()
 		addUIView()
 		observeKeyboard()
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		textField.text = ""
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -98,6 +107,7 @@ private extension GenerateImageViewController {
 		textField.layer.zPosition = viewBackground.layer.zPosition + 1
 		buttonGetImage.layer.zPosition = textField.layer.zPosition + 1
 
+		// НАстройка кнопки в TextField.
 		buttonGetImage.addTarget(self, action: #selector(handlerTextField), for: .touchUpInside)
 	}
 }
@@ -159,6 +169,20 @@ private extension GenerateImageViewController {
 		animationView.loopMode = .loop
 		animationView.animationSpeed = 0.5
 		return animationView
+	}
+
+	func createAlertView(massage: String) -> UIView {
+		let viewAlert = AlertMassageView()
+		viewAlert.reloadData(massage: massage)
+		viewAlert.frame = CGRect(
+			x: view.center.x - (view.bounds.width - 40) / 2,
+			y: view.bounds.height,
+			width: view.bounds.width - 40,
+			height: 350
+		)
+		// Настройка AlertMassageView.
+		viewAlert.handlerTabButtons = self
+		return viewAlert
 	}
 
 	func createGradient() -> CAGradientLayer {
@@ -223,30 +247,48 @@ private extension GenerateImageViewController {
 	// Запускаем и показываем animationView.
 	func showAnimationView() {
 		view.addSubview(animationView)
-		 startAnimation()
+		startAnimation(viewForAnimation: animationView)
 		animationView.play()
 	}
 	// Отключаем анимацию и прячем animationView.
 	func hideAnimationView() {
-		stopAnimation()
+		stopAnimation(viewForAnimation: animationView)
 		animationView.stop()
 		view.willRemoveSubview(animationView)
 	}
 
-	func startAnimation() {
+	// Запускаем и показываем AlertMassageView.
+	// Прячем плашку с анимацией.
+	func showAnimationAlertView(massage: String) {
+		// Прячем плашку с анимацией.
+		hideAnimationView()
+		alertView = createAlertView(massage: massage)
+		view.addSubview(alertView)
+		startAnimation(viewForAnimation: alertView)
+
+	}
+	// Отключаем анимацию и прячем AlertMassageView.
+	// Запускаем и показываем animationView.
+	func hideAnimationAlertView() {
+		stopAnimation(viewForAnimation: alertView)
+		view.willRemoveSubview(alertView)
+		showAnimationView()
+	}
+
+	func startAnimation(viewForAnimation: UIView) {
 		let viewFrame = self.view.frame
 		let centerX = self.view.bounds.midX - (self.view.bounds.width) / 2
-		let centerY = self.view.bounds.midY + (self.animationView.frame.height)
+		let centerY = self.view.bounds.midY + (viewForAnimation.frame.height)
 		UIView.animate(
 			withDuration: 1,
 			delay: 0,
 			options: [.curveEaseOut],
 			animations: {
-				self.animationView.transform = CGAffineTransform(translationX: centerX, y: -centerY)
+				viewForAnimation.transform = CGAffineTransform(translationX: centerX, y: -centerY)
 			})
 	}
 
-	func stopAnimation() {
+	func stopAnimation(viewForAnimation: UIView) {
 		let centerX = view.center.x - (view.bounds.width - 60) / 2
 		let centerY = view.bounds.height
 		UIView.animate(
@@ -254,7 +296,7 @@ private extension GenerateImageViewController {
 			delay: 0,
 			options: [.curveEaseOut],
 			animations: {
-				self.animationView.transform = CGAffineTransform(translationX: centerX, y: centerY)
+				viewForAnimation.transform = CGAffineTransform(translationX: centerX, y: centerY)
 			})
 	}
 }
@@ -271,12 +313,32 @@ private extension GenerateImageViewController {
 
 // MARK: - Render logic.
 extension GenerateImageViewController: IGenerateImageLogic {
-	func handlerLogic() {
-		// Очищаем поле ввода.
-		textField.text = ""
+	func handlerLogic(massageError: String) {
+		if !massageError.isEmpty {
+			showAnimationAlertView(massage: massageError)
+		}
 		// Разблокируем кнопку запроса.
 		buttonGetImage.isEnabled = true
 		// Прячем анимацию загрузки.
 		hideAnimationView()
+	}
+}
+
+// MARK: - Delegate IAlertMassageViewDelegate.
+extension GenerateImageViewController: IAlertMassageViewDelegate {
+	func tapAgain() {
+		stopAnimation(viewForAnimation: alertView)
+		view.willRemoveSubview(alertView)
+		showAnimationView()
+		// Запрос на генерацию картинки.
+		getData(text: textField.text!)
+		// Блокируем кнопку запроса.
+		buttonGetImage.isEnabled = false
+	}
+
+	func tapCancel() {
+		stopAnimation(viewForAnimation: alertView)
+		view.willRemoveSubview(alertView)
+		textField.text = ""
 	}
 }

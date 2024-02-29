@@ -24,7 +24,7 @@ final class GenerateImageIterator {
 	// MARK: - Dependencies
 	var worker: IGenerateImageWorker?
 	var presenter: IGenerateImagePresenter?
-	let converterDTO: IConvertGenerateImageDTO?
+	var converterDTO: IConvertGenerateImageDTO?
 
 	// MARK: - Initializator
 	init(

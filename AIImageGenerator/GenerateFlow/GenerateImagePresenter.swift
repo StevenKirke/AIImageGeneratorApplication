@@ -35,11 +35,10 @@ extension GenerateImagePresenter: IGenerateImagePresenter {
 		case .success(let imageData):
 			// Конвертируем модель для следующего VIP цикла.
 			let modelResponse = ShowPictureModel.Response.ImageData(from: imageData)
-			viewController?.handlerLogic()
+			viewController?.handlerLogic(massageError: "")
 			showPictureDelegate?.showImageScene(model: .success(modelResponse))
 		case .failure(let error):
-			print("Error \(error)")
-			viewController?.handlerLogic()
+			viewController?.handlerLogic(massageError: error.localizedDescription)
 		}
 	}
 }

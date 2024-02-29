@@ -37,6 +37,7 @@ final class GenerateImageCoordinator: NSObject, ICoordinator {
 	// MARK: - Public methods
 	func start() {
 		showMainGenerateImageScene()
+		// showFakeImageScene()
 	}
 
 	/// Отображение главной сцены текущего потока.
@@ -53,6 +54,18 @@ extension GenerateImageCoordinator: IShowPictureDelegate {
 		let showPictureVC = assembler.configurator(model: model, backSceneDelegate: self)
 		showPictureVC.modalPresentationStyle = .fullScreen
 		navigateController.present(showPictureVC, animated: true)
+	}
+
+	// Отображение изображения для тестирования текущей сцены.
+	func showFakeImageScene() {
+		let assembler = ShowPictureAssembler()
+		let image = UIImage(named: "Images/itching")
+		if let imageData = image?.pngData() {
+			let model = ShowPictureModel.Response.success(ShowPictureModel.Response.ImageData(data: imageData))
+			let showPictureVC = assembler.configurator(model: model, backSceneDelegate: self)
+			showPictureVC.modalPresentationStyle = .fullScreen
+			navigateController.present(showPictureVC, animated: true)
+		}
 	}
 }
 

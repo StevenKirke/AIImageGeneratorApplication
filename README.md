@@ -57,9 +57,11 @@
 │       │       │   ├── GenerateImageIterator.swift
 │       │       │   ├── GenerateImagePresenter.swift
 │       │       │   ├── GenerateImageModel.swift
-│       │       │   └── Worker+DTO
-│       │       │       ├── GenerateImageWorker.swift
-│       │       │       └── GenerateImageDTO.swift
+│       │       │   │── Worker+DTO
+│       │       │   │   ├── GenerateImageWorker.swift
+│       │       │   │   └── GenerateImageDTO.swift
+│       │       │   └── AdditionalView
+│       │       │       └── AlertMassageView.swift
 │       │     	└── ShowPictureScene
 │      	│           ├── ShowPictureAssembler.swift
 │       │           ├── ShowPictureViewModel.swift

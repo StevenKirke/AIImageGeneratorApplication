@@ -22,6 +22,7 @@ final class ShowPictureViewController: UIViewController {
 
 	// MARK: - Private properties
 	private lazy var imageBackground = createImage()
+	private lazy var imageLockScreen = createImage()
 	private lazy var buttonBack = createButton(systemName: "chevron.left")
 	private lazy var buttonShowScreen = createButton(systemName: "eye")
 	private lazy var buttonSaveImage = createButton(systemName: "arrow.down")
@@ -47,6 +48,8 @@ final class ShowPictureViewController: UIViewController {
 		super.viewDidLayoutSubviews()
 		setupLayout()
 		navigationController?.setNavigationBarHidden(true, animated: false)
+		let image = UIImage(named: "Images/IphoneLockScreen")
+		imageLockScreen.image = image?.resized(to: self.view.frame.size)
 	}
 }
 
@@ -58,7 +61,8 @@ private extension ShowPictureViewController {
 			imageBackground,
 			buttonBack,
 			buttonShowScreen,
-			buttonSaveImage
+			buttonSaveImage,
+			imageLockScreen
 		]
 		views.forEach(view.addSubview)
 	}
@@ -68,11 +72,14 @@ private extension ShowPictureViewController {
 private extension ShowPictureViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
-
+		// Прячем по умолчанию изображение заставки.
+		imageLockScreen.isHidden = true
 		// Кнопка сохранение.
 		buttonSaveImage.addTarget(self, action: #selector(saveImageInLibrary), for: .touchUpInside)
 		// Кнопка назад.
 		buttonBack.addTarget(self, action: #selector(backToView), for: .touchUpInside)
+
+		buttonShowScreen.addTarget(self, action: #selector(showLockScreen), for: .touchUpInside)
 	}
 }
 
@@ -85,6 +92,11 @@ private extension ShowPictureViewController {
 			image.top.bottom.equalToSuperview()
 			image.left.right.equalToSuperview()
 		}
+		imageLockScreen.snp.makeConstraints { lockScreen in
+			lockScreen.top.bottom.equalToSuperview()
+			lockScreen.left.right.equalToSuperview()
+		}
+
 		buttonBack.snp.makeConstraints { back in
 			back.top.equalToSuperview().inset(70)
 			back.left.equalToSuperview().inset(20)
@@ -122,7 +134,7 @@ private extension ShowPictureViewController {
 	}
 
 	func createImage() -> UIImageView {
-		let image = UIImage(named: "Images/itching")
+		let image = UIImage()
 		let imageView = UIImageView(image: image)
 		imageView.tintColor = UIColor.gray
 		imageView.contentMode = .scaleAspectFill
@@ -142,6 +154,10 @@ extension ShowPictureViewController: UINavigationControllerDelegate, UIImagePick
 
 	@objc func backToView() {
 		iterator?.backToView()
+	}
+
+	@objc func showLockScreen() {
+		imageLockScreen.isHidden.toggle()
 	}
 }
 

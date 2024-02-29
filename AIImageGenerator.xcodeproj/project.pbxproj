@@ -40,6 +40,8 @@
 		324CA3012B8F2F9800F423C3 /* NetworkKingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */; };
 		324CA3032B8F48B100F423C3 /* SavePhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */; };
 		324CA3052B8F99AF00F423C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 324CA3042B8F99AF00F423C3 /* README.md */; };
+		324CA3082B8FAC4400F423C3 /* AlertMassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3072B8FAC4400F423C3 /* AlertMassageView.swift */; };
+		324CA30A2B90B44B00F423C3 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3092B90B44B00F423C3 /* Extension+UIImage.swift */; };
 		332B103FA34B4A228E822955 /* Pods_AIImageGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 		324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKingfisherManager.swift; sourceTree = "<group>"; };
 		324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoManager.swift; sourceTree = "<group>"; };
 		324CA3042B8F99AF00F423C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		324CA3072B8FAC4400F423C3 /* AlertMassageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMassageView.swift; sourceTree = "<group>"; };
+		324CA3092B90B44B00F423C3 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AIImageGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A18B9A35BFE0012A46FA49 /* Pods-AIImageGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIImageGenerator.debug.xcconfig"; path = "Target Support Files/Pods-AIImageGenerator/Pods-AIImageGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		E1DDF1A3123DA8C53EF542E4 /* Pods-AIImageGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIImageGenerator.release.xcconfig"; path = "Target Support Files/Pods-AIImageGenerator/Pods-AIImageGenerator.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				324CA2D22B8CE15E00F423C3 /* Extension+UIColor.swift */,
 				324CA2DA2B8D030100F423C3 /* Extension+UITextField.swift */,
 				324CA2DF2B8D1DF800F423C3 /* Extension+UIApplication.swift */,
+				324CA3092B90B44B00F423C3 /* Extension+UIImage.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				324CA2C72B8CC07000F423C3 /* GenerateImagePresenter.swift */,
 				324CA2C92B8CC07F00F423C3 /* GenerateImageModel.swift */,
 				324CA2E32B8E0B7700F423C3 /* Worker+DTO */,
+				324CA3062B8FAB8300F423C3 /* AdditionalView */,
 			);
 			name = GenerateImageScene;
 			sourceTree = "<group>";
@@ -273,6 +279,14 @@
 				324CA2FA2B8E496900F423C3 /* ShowPictureModel.swift */,
 			);
 			path = ShowPictureScene;
+			sourceTree = "<group>";
+		};
+		324CA3062B8FAB8300F423C3 /* AdditionalView */ = {
+			isa = PBXGroup;
+			children = (
+				324CA3072B8FAC4400F423C3 /* AlertMassageView.swift */,
+			);
+			name = AdditionalView;
 			sourceTree = "<group>";
 		};
 		860154F56B4A7DC4006FA63E /* Pods */ = {
@@ -440,9 +454,11 @@
 				324CA2F52B8E3DD900F423C3 /* ShowPictureViewModel.swift in Sources */,
 				324CA2E02B8D1DF800F423C3 /* Extension+UIApplication.swift in Sources */,
 				324CA2D12B8CE0B300F423C3 /* NetworkManager.swift in Sources */,
+				324CA30A2B90B44B00F423C3 /* Extension+UIImage.swift in Sources */,
 				324CA2EB2B8E39B900F423C3 /* AppCoordinator.swift in Sources */,
 				324CA2F92B8E3E8100F423C3 /* ShowPicturePresenter.swift in Sources */,
 				324CA2F72B8E3E3000F423C3 /* ShowPictureIterator.swift in Sources */,
+				324CA3082B8FAC4400F423C3 /* AlertMassageView.swift in Sources */,
 				324CA2E52B8E0BA100F423C3 /* GenerateImageDTO.swift in Sources */,
 				324CA2C82B8CC07000F423C3 /* GenerateImagePresenter.swift in Sources */,
 				324CA2DE2B8D037300F423C3 /* FontStyle.swift in Sources */,
