@@ -135,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				324CA2DC2B8D035E00F423C3 /* GlobalStyles */,
-				324CA2BA2B8CBDC200F423C3 /* Converted */,
 				324CA2B82B8CBDAD00F423C3 /* Managers */,
 				324CA2B72B8CBDA200F423C3 /* Services */,
 				324CA2BB2B8CBDD000F423C3 /* Extensions */,
@@ -179,6 +178,7 @@
 		324CA2B82B8CBDAD00F423C3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				324CA2CC2B8CC09600F423C3 /* GenerateImageNetworkService.swift */,
 				324CA2CE2B8CE07B00F423C3 /* DecodeJSONManager.swift */,
 				324CA2D02B8CE0B300F423C3 /* NetworkManager.swift */,
 				324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */,
@@ -194,14 +194,6 @@
 				324CA2BE2B8CBF0900F423C3 /* GenerateFlow */,
 			);
 			name = Flows;
-			sourceTree = "<group>";
-		};
-		324CA2BA2B8CBDC200F423C3 /* Converted */ = {
-			isa = PBXGroup;
-			children = (
-				324CA2E62B8E1D6800F423C3 /* GenerateImageWorker.swift */,
-			);
-			path = Converted;
 			sourceTree = "<group>";
 		};
 		324CA2BB2B8CBDD000F423C3 /* Extensions */ = {
@@ -257,7 +249,7 @@
 		324CA2E32B8E0B7700F423C3 /* Worker+DTO */ = {
 			isa = PBXGroup;
 			children = (
-				324CA2CC2B8CC09600F423C3 /* GenerateImageNetworkService.swift */,
+				324CA2E62B8E1D6800F423C3 /* GenerateImageWorker.swift */,
 				324CA2E42B8E0BA100F423C3 /* GenerateImageDTO.swift */,
 			);
 			path = "Worker+DTO";

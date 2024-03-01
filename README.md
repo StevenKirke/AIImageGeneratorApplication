@@ -31,13 +31,13 @@
 │   └── AIImageGenerator
 │       ├── GlobalStyles
 │       │   └── FontStyle.swift
-│       ├── Converted
-│       │   └── ConvertGenerateImageDTO.swift
 │       ├── Managers
+│       │   ├── GenerateImageNetworkService
 │       │   ├── DecodeJSONManager.swift
 │       │   ├── NetworkManager.swift
 │       │   ├── NetworkKingfisherManager.swift
-│       │   └── SavePhotoManager.swift
+│       │   ├── SavePhotoManager.swift
+│       │   └── TimerManager.swift
 │       ├── Services
 │       │   └── AssemblerURLService.swift
 │       ├── Extensions
@@ -58,9 +58,10 @@
 │       │       │   ├── GenerateImagePresenter.swift
 │       │       │   ├── GenerateImageModel.swift
 │       │       │   │── Worker+DTO
-│       │       │   │   ├── GenerateImageWorker.swift
+│       │       │   │   ├── GenerateImageNetworkService.swift
 │       │       │   │   └── GenerateImageDTO.swift
 │       │       │   └── AdditionalView
+│       │       │       └── GenerateImageNetworkService.swift
 │       │       │       └── AlertMassageView.swift
 │       │     	└── ShowPictureScene
 │      	│           ├── ShowPictureAssembler.swift
