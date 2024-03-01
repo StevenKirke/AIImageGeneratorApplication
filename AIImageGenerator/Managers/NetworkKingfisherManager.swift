@@ -28,7 +28,7 @@ enum ErrorResponseWithKingfisher: LocalizedError {
 		case .errorConvertData:
 			textError = "Invalid convert DATA!"
 		case .kingfisherError(let kingfisher):
-			textError = "Invalid work Kingfisher! \(kingfisher.localizedDescription)"
+				textError = "Invalid work Kingfisher!"
 		}
 		return textError
 	}
@@ -48,7 +48,8 @@ final class NetworkKingfisherManager: INetworkKingfisherManager {
 				}
 				returnModel(.success(currentData))
 			case .failure(let error):
-				returnModel(.failure(.kingfisherError(error)))
+					print(error)
+					returnModel(.failure(.kingfisherError(error)))
 			}
 		}
 	}

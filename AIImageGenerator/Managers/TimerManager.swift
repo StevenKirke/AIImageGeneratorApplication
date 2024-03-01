@@ -26,12 +26,12 @@ final class TimerManager {
 
 	// MARK: - Private properties
 	/// Порог максимального количества секунд.
-	private let maxTime: Int = 20
+	private let maxTime: Int = 15
 	private var timer: Timer?
 	/// Активация таймера.
 	private var isActiveTimer = false
 	/// Количество секунд, для обратного отчета.
-	private var count = 20 {
+	private var count = 15 {
 		willSet {
 			delegate?.updateLabel(returnTime: handlerStringTimer())
 		}

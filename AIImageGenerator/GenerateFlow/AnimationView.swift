@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Lottie
 
-// MARK: - Class Your class
+// MARK: - AnimationView
 final class AnimationView: UIView {
 
 	// MARK: - Public properties
@@ -72,7 +72,7 @@ private extension AnimationView {
 	func setupConfiguration() {
 		viewBackground.backgroundColor = UIColor.clear
 		labelTimer.text = "Estimated time"
-		labelTimer.layer.borderWidth = 1
+		labelTimer.textAlignment = .center
 	}
 }
 
@@ -85,14 +85,12 @@ private extension AnimationView {
 			background.top.bottom.equalToSuperview()
 			background.left.right.equalToSuperview()
 		}
-
 		labelTimer.snp.makeConstraints { timer in
 			timer.top.equalTo(viewBackground.snp.top)
 			timer.left.equalTo(viewBackground.snp.left).inset(10)
 			timer.right.equalTo(viewBackground.snp.right).inset(10)
 			timer.height.equalTo(60)
 		}
-
 		imageLotte.snp.makeConstraints { lotte in
 			lotte.top.equalTo(labelTimer.snp.bottom)
 			lotte.left.equalTo(viewBackground.snp.left)
@@ -101,12 +99,6 @@ private extension AnimationView {
 		}
 	}
 }
-
-// MARK: - YourClass Layout.
-extension AnimationView { }
-
-// MARK: - YourClass Source and Delegate.
-extension AnimationView { }
 
 // MARK: - UI Fabric.
 private extension AnimationView {
@@ -118,7 +110,6 @@ private extension AnimationView {
 
 	func createUILabel() -> UILabel {
 		let label = UILabel()
-		label.textAlignment = .center
 		label.textColor = UIColor.white
 		label.font = FontsStyle.semiboldSF(26).font
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -150,7 +141,7 @@ private extension AnimationView {
 
 // MARK: Add TimerManager.
 extension AnimationView: IUpdateTimer {
-	func updateLabel(returnTime: String) {
+	func updateLabel(returnTime: String) { 
 		labelTimer.text = "Estimated time \(returnTime)"
 	}
 
