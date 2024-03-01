@@ -19,15 +19,15 @@ protocol IShowPictureIterator: AnyObject {
 final class ShowPictureIterator {
 
 	// MARK: - Dependencies
-	var presenter: IShowPicturePresenter?
-	var savePhotoManager: ISavePhotoManager?
-	let model: SPResponse
+	var presenter: IShowPicturePresenter
+	var savePhotoManager: ISavePhotoManager
+	let model: Data
 
 	// MARK: - Initializator
 	init(
-		presenter: IShowPicturePresenter?,
-		savePhotoManager: ISavePhotoManager?,
-		model: SPResponse
+		presenter: IShowPicturePresenter,
+		savePhotoManager: ISavePhotoManager,
+		model: Data
 	) {
 		self.presenter = presenter
 		self.savePhotoManager = savePhotoManager
@@ -37,18 +37,20 @@ final class ShowPictureIterator {
 
 extension ShowPictureIterator: IShowPictureIterator {
 	func fetch() {
-		switch model {
-		case .success(let data):
-			let modelRequest = ShowPictureModel.Request.ImageData(from: data)
-			presenter?.present(present: .success(modelRequest))
-		}
+		presenter.present(present: .needShowImage(model))
 	}
 
 	func saveImage(image: UIImage) {
-		savePhotoManager?.saveImage(image: image)
+		savePhotoManager.saveImage(image: image) { error in
+			if let error = error {
+				self.presenter.present(present: .failureSaveImage(error))
+			} else {
+				self.presenter.present(present: .successSaveImage)
+			}
+		}
 	}
 
 	func backToView() {
-		presenter?.backToView()
+		presenter.backToView()
 	}
 }

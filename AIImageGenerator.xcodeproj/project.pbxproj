@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3214B1002B9204BD00DF156D /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214B0FF2B9204BD00DF156D /* AnimationView.swift */; };
+		3214B1022B920F1D00DF156D /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214B1012B920F1D00DF156D /* TimerManager.swift */; };
 		324CA2A02B8CBC0800F423C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA29F2B8CBC0800F423C3 /* AppDelegate.swift */; };
 		324CA2A22B8CBC0800F423C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2A12B8CBC0800F423C3 /* SceneDelegate.swift */; };
 		324CA2A92B8CBC0A00F423C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324CA2A82B8CBC0A00F423C3 /* Assets.xcassets */; };
@@ -17,7 +19,7 @@
 		324CA2C62B8CC06300F423C3 /* GenerateImageIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2C52B8CC06300F423C3 /* GenerateImageIterator.swift */; };
 		324CA2C82B8CC07000F423C3 /* GenerateImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2C72B8CC07000F423C3 /* GenerateImagePresenter.swift */; };
 		324CA2CA2B8CC07F00F423C3 /* GenerateImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2C92B8CC07F00F423C3 /* GenerateImageModel.swift */; };
-		324CA2CD2B8CC09600F423C3 /* GenerateImageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2CC2B8CC09600F423C3 /* GenerateImageWorker.swift */; };
+		324CA2CD2B8CC09600F423C3 /* GenerateImageNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2CC2B8CC09600F423C3 /* GenerateImageNetworkService.swift */; };
 		324CA2CF2B8CE07B00F423C3 /* DecodeJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2CE2B8CE07B00F423C3 /* DecodeJSONManager.swift */; };
 		324CA2D12B8CE0B300F423C3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2D02B8CE0B300F423C3 /* NetworkManager.swift */; };
 		324CA2D32B8CE15E00F423C3 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2D22B8CE15E00F423C3 /* Extension+UIColor.swift */; };
@@ -27,7 +29,7 @@
 		324CA2DE2B8D037300F423C3 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2DD2B8D037300F423C3 /* FontStyle.swift */; };
 		324CA2E02B8D1DF800F423C3 /* Extension+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2DF2B8D1DF800F423C3 /* Extension+UIApplication.swift */; };
 		324CA2E52B8E0BA100F423C3 /* GenerateImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2E42B8E0BA100F423C3 /* GenerateImageDTO.swift */; };
-		324CA2E72B8E1D6800F423C3 /* ConvertGenerateImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2E62B8E1D6800F423C3 /* ConvertGenerateImageDTO.swift */; };
+		324CA2E72B8E1D6800F423C3 /* GenerateImageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2E62B8E1D6800F423C3 /* GenerateImageWorker.swift */; };
 		324CA2EB2B8E39B900F423C3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2EA2B8E39B900F423C3 /* AppCoordinator.swift */; };
 		324CA2EE2B8E3A1500F423C3 /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2ED2B8E3A1500F423C3 /* ICoordinator.swift */; };
 		324CA2F02B8E3A4D00F423C3 /* GenerateImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2EF2B8E3A4D00F423C3 /* GenerateImageCoordinator.swift */; };
@@ -42,10 +44,14 @@
 		324CA3052B8F99AF00F423C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 324CA3042B8F99AF00F423C3 /* README.md */; };
 		324CA3082B8FAC4400F423C3 /* AlertMassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3072B8FAC4400F423C3 /* AlertMassageView.swift */; };
 		324CA30A2B90B44B00F423C3 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3092B90B44B00F423C3 /* Extension+UIImage.swift */; };
+		329D02742B91244C0020615B /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 329D02732B91244C0020615B /* Kingfisher.framework */; };
+		32E6DCF12B91270C009E1BB6 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E6DCF02B91270C009E1BB6 /* SnapKit.framework */; };
 		332B103FA34B4A228E822955 /* Pods_AIImageGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3214B0FF2B9204BD00DF156D /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
+		3214B1012B920F1D00DF156D /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		324CA29C2B8CBC0800F423C3 /* AIImageGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIImageGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		324CA29F2B8CBC0800F423C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		324CA2A12B8CBC0800F423C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +64,7 @@
 		324CA2C52B8CC06300F423C3 /* GenerateImageIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageIterator.swift; sourceTree = "<group>"; };
 		324CA2C72B8CC07000F423C3 /* GenerateImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImagePresenter.swift; sourceTree = "<group>"; };
 		324CA2C92B8CC07F00F423C3 /* GenerateImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageModel.swift; sourceTree = "<group>"; };
-		324CA2CC2B8CC09600F423C3 /* GenerateImageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageWorker.swift; sourceTree = "<group>"; };
+		324CA2CC2B8CC09600F423C3 /* GenerateImageNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageNetworkService.swift; sourceTree = "<group>"; };
 		324CA2CE2B8CE07B00F423C3 /* DecodeJSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeJSONManager.swift; sourceTree = "<group>"; };
 		324CA2D02B8CE0B300F423C3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		324CA2D22B8CE15E00F423C3 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
@@ -68,7 +74,7 @@
 		324CA2DD2B8D037300F423C3 /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		324CA2DF2B8D1DF800F423C3 /* Extension+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIApplication.swift"; sourceTree = "<group>"; };
 		324CA2E42B8E0BA100F423C3 /* GenerateImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageDTO.swift; sourceTree = "<group>"; };
-		324CA2E62B8E1D6800F423C3 /* ConvertGenerateImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertGenerateImageDTO.swift; sourceTree = "<group>"; };
+		324CA2E62B8E1D6800F423C3 /* GenerateImageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageWorker.swift; sourceTree = "<group>"; };
 		324CA2EA2B8E39B900F423C3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		324CA2ED2B8E3A1500F423C3 /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
 		324CA2EF2B8E3A4D00F423C3 /* GenerateImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageCoordinator.swift; sourceTree = "<group>"; };
@@ -83,6 +89,9 @@
 		324CA3042B8F99AF00F423C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		324CA3072B8FAC4400F423C3 /* AlertMassageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMassageView.swift; sourceTree = "<group>"; };
 		324CA3092B90B44B00F423C3 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
+		329D02732B91244C0020615B /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		329D02752B9124790020615B /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32E6DCF02B91270C009E1BB6 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AIImageGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A18B9A35BFE0012A46FA49 /* Pods-AIImageGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIImageGenerator.debug.xcconfig"; path = "Target Support Files/Pods-AIImageGenerator/Pods-AIImageGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		E1DDF1A3123DA8C53EF542E4 /* Pods-AIImageGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIImageGenerator.release.xcconfig"; path = "Target Support Files/Pods-AIImageGenerator/Pods-AIImageGenerator.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E6DCF12B91270C009E1BB6 /* SnapKit.framework in Frameworks */,
+				329D02742B91244C0020615B /* Kingfisher.framework in Frameworks */,
 				332B103FA34B4A228E822955 /* Pods_AIImageGenerator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +183,7 @@
 				324CA2D02B8CE0B300F423C3 /* NetworkManager.swift */,
 				324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */,
 				324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */,
+				3214B1012B920F1D00DF156D /* TimerManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -187,7 +199,7 @@
 		324CA2BA2B8CBDC200F423C3 /* Converted */ = {
 			isa = PBXGroup;
 			children = (
-				324CA2E62B8E1D6800F423C3 /* ConvertGenerateImageDTO.swift */,
+				324CA2E62B8E1D6800F423C3 /* GenerateImageWorker.swift */,
 			);
 			path = Converted;
 			sourceTree = "<group>";
@@ -245,7 +257,7 @@
 		324CA2E32B8E0B7700F423C3 /* Worker+DTO */ = {
 			isa = PBXGroup;
 			children = (
-				324CA2CC2B8CC09600F423C3 /* GenerateImageWorker.swift */,
+				324CA2CC2B8CC09600F423C3 /* GenerateImageNetworkService.swift */,
 				324CA2E42B8E0BA100F423C3 /* GenerateImageDTO.swift */,
 			);
 			path = "Worker+DTO";
@@ -284,6 +296,7 @@
 		324CA3062B8FAB8300F423C3 /* AdditionalView */ = {
 			isa = PBXGroup;
 			children = (
+				3214B0FF2B9204BD00DF156D /* AnimationView.swift */,
 				324CA3072B8FAC4400F423C3 /* AlertMassageView.swift */,
 			);
 			name = AdditionalView;
@@ -301,6 +314,9 @@
 		E258B56B08DD578384649FA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32E6DCF02B91270C009E1BB6 /* SnapKit.framework */,
+				329D02752B9124790020615B /* Kingfisher.framework */,
+				329D02732B91244C0020615B /* Kingfisher.framework */,
 				C0F015EAC79489629F80C1AC /* Pods_AIImageGenerator.framework */,
 			);
 			name = Frameworks;
@@ -314,7 +330,6 @@
 			buildConfigurationList = 324CA2B02B8CBC0A00F423C3 /* Build configuration list for PBXNativeTarget "AIImageGenerator" */;
 			buildPhases = (
 				8A4D039627187686D23BA053 /* [CP] Check Pods Manifest.lock */,
-				324CA2BD2B8CBEA500F423C3 /* Run SwiftLint */,
 				324CA2982B8CBC0800F423C3 /* Sources */,
 				324CA2992B8CBC0800F423C3 /* Frameworks */,
 				324CA29A2B8CBC0800F423C3 /* Resources */,
@@ -379,25 +394,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		324CA2BD2B8CBEA500F423C3 /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n\n";
-		};
 		8A4D039627187686D23BA053 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +451,7 @@
 				324CA2E02B8D1DF800F423C3 /* Extension+UIApplication.swift in Sources */,
 				324CA2D12B8CE0B300F423C3 /* NetworkManager.swift in Sources */,
 				324CA30A2B90B44B00F423C3 /* Extension+UIImage.swift in Sources */,
+				3214B1022B920F1D00DF156D /* TimerManager.swift in Sources */,
 				324CA2EB2B8E39B900F423C3 /* AppCoordinator.swift in Sources */,
 				324CA2F92B8E3E8100F423C3 /* ShowPicturePresenter.swift in Sources */,
 				324CA2F72B8E3E3000F423C3 /* ShowPictureIterator.swift in Sources */,
@@ -464,7 +461,7 @@
 				324CA2DE2B8D037300F423C3 /* FontStyle.swift in Sources */,
 				324CA2C22B8CC03A00F423C3 /* GenerateImageAssembler.swift in Sources */,
 				324CA2A22B8CBC0800F423C3 /* SceneDelegate.swift in Sources */,
-				324CA2CD2B8CC09600F423C3 /* GenerateImageWorker.swift in Sources */,
+				324CA2CD2B8CC09600F423C3 /* GenerateImageNetworkService.swift in Sources */,
 				324CA2C42B8CC05400F423C3 /* GenerateImageViewController.swift in Sources */,
 				324CA2F32B8E3D6B00F423C3 /* ShowPictureAssembler.swift in Sources */,
 				324CA3032B8F48B100F423C3 /* SavePhotoManager.swift in Sources */,
@@ -472,7 +469,8 @@
 				324CA2C62B8CC06300F423C3 /* GenerateImageIterator.swift in Sources */,
 				324CA2CA2B8CC07F00F423C3 /* GenerateImageModel.swift in Sources */,
 				324CA2D32B8CE15E00F423C3 /* Extension+UIColor.swift in Sources */,
-				324CA2E72B8E1D6800F423C3 /* ConvertGenerateImageDTO.swift in Sources */,
+				324CA2E72B8E1D6800F423C3 /* GenerateImageWorker.swift in Sources */,
+				3214B1002B9204BD00DF156D /* AnimationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

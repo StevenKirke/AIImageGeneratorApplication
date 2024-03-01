@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public class ConstraintMakerFinalizable {
     
     internal let description: ConstraintDescription
@@ -47,4 +47,3 @@ public class ConstraintMakerFinalizable {
     }
     
 }
-// swiftlint:enable all 

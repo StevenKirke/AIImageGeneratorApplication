@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Withrow on 1/25/19.
 //
-// swiftlint:disable all
+
 /// Connects a LottieImageProvider to a group of image layers
 final class LayerImageProvider {
 
@@ -50,4 +50,3 @@ final class LayerImageProvider {
     }
   }
 }
-// swiftlint:enable all 

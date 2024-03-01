@@ -7,7 +7,7 @@
 
 import Foundation
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - PolygonNodeProperties
 
 final class PolygonNodeProperties: NodePropertyMap, KeypathSearchable {
@@ -23,11 +23,11 @@ final class PolygonNodeProperties: NodePropertyMap, KeypathSearchable {
     rotation = NodeProperty(provider: KeyframeInterpolator(keyframes: star.rotation.keyframes))
     points = NodeProperty(provider: KeyframeInterpolator(keyframes: star.points.keyframes))
     keypathProperties = [
-      PropertyName.position.rawValue: position,
-      "Outer Radius": outerRadius,
-      "Outer Roundedness": outerRoundedness,
-      PropertyName.rotation.rawValue: rotation,
-      "Points": points
+      PropertyName.position.rawValue : position,
+      "Outer Radius" : outerRadius,
+      "Outer Roundedness" : outerRoundedness,
+      PropertyName.rotation.rawValue : rotation,
+      "Points" : points,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -73,7 +73,7 @@ final class PolygonNode: AnimatorNode, PathNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   // MARK: Animator Node
 
@@ -110,7 +110,8 @@ extension BezierPath {
     outerRoundedness inputOuterRoundedness: CGFloat,
     rotation: CGFloat,
     direction: PathDirection)
-    -> BezierPath {
+    -> BezierPath
+  {
     var currentAngle = (rotation - 90).toRadians()
     let anglePerPoint = ((2 * CGFloat.pi) / numberOfPoints)
     let outerRoundedness = inputOuterRoundedness * 0.01
@@ -121,7 +122,7 @@ extension BezierPath {
     var vertices = [CurveVertex(point: point + position, inTangentRelative: .zero, outTangentRelative: .zero)]
 
     var previousPoint = point
-    currentAngle += anglePerPoint
+    currentAngle += anglePerPoint;
     for _ in 0..<Int(ceil(numberOfPoints)) {
       previousPoint = point
       point = CGPoint(
@@ -130,8 +131,8 @@ extension BezierPath {
 
       if outerRoundedness != 0 {
         let cp1Theta = (atan2(previousPoint.y, previousPoint.x) - CGFloat.pi / 2)
-        let cp1Dx = cos(cp1Theta)
-        let cp1Dy = sin(cp1Theta)
+        let cp1Dx = cos(cp1Theta);
+        let cp1Dy = sin(cp1Theta);
 
         let cp2Theta = (atan2(point.y, point.x) - CGFloat.pi / 2)
         let cp2Dx = cos(cp2Theta)
@@ -153,7 +154,7 @@ extension BezierPath {
       } else {
         vertices.append(CurveVertex(point: point + position, inTangentRelative: .zero, outTangentRelative: .zero))
       }
-      currentAngle += anglePerPoint
+      currentAngle += anglePerPoint;
     }
     let reverse = direction == .counterClockwise
     if reverse {
@@ -167,4 +168,3 @@ extension BezierPath {
     return path
   }
 }
-// swiftlint:enable all 

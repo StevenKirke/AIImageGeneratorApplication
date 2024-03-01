@@ -2,7 +2,7 @@
 // Copyright © 2023 Airbnb Inc. All rights reserved.
 
 // MARK: - LayerEffectType
-// swiftlint:disable all
+
 /// https://lottiefiles.github.io/lottie-docs/schema/#/$defs/effects
 enum LayerEffectType: Int, Codable, Sendable {
   case dropShadow = 25
@@ -100,4 +100,3 @@ extension [LayerEffect] {
 /// All `LayerEffect` subclasses are immutable `Sendable` values.
 // swiftlint:disable:next no_unchecked_sendable
 extension LayerEffect: @unchecked Sendable { }
-// swiftlint:enable all 

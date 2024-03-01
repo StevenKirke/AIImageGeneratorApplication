@@ -26,7 +26,7 @@
 #else
     import AppKit
 #endif
-// swiftlint:disable all
+
 public struct ConstraintPriority : ExpressibleByFloatLiteral, Equatable, Strideable {
     public typealias FloatLiteralType = Float
     
@@ -75,4 +75,3 @@ public struct ConstraintPriority : ExpressibleByFloatLiteral, Equatable, Stridea
         return other.value - value
     }
 }
-// swiftlint:enable all 

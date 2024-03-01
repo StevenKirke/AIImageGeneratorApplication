@@ -17,7 +17,7 @@ import UIKit
 #endif
 
 // MARK: - CoreTextRenderLayer
-// swiftlint:disable all
+
 /// A CALayer subclass that renders text content using CoreText
 final class CoreTextRenderLayer: CALayer {
 
@@ -253,7 +253,7 @@ final class CoreTextRenderLayer: CALayer {
       NSAttributedString.Key.ligature: 0,
       NSAttributedString.Key.font: font,
       NSAttributedString.Key.kern: tracking,
-      NSAttributedString.Key.paragraphStyle: paragraphStyle
+      NSAttributedString.Key.paragraphStyle: paragraphStyle,
     ]
 
     if let fillColor {
@@ -347,4 +347,3 @@ extension CGContext {
     }
   }
 }
-// swiftlint:enable all 

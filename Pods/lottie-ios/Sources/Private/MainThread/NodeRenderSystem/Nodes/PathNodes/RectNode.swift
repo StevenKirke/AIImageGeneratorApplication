@@ -9,7 +9,7 @@ import CoreGraphics
 import Foundation
 
 // MARK: - RectNodeProperties
-// swiftlint:disable all
+
 final class RectNodeProperties: NodePropertyMap, KeypathSearchable {
 
   // MARK: Lifecycle
@@ -22,9 +22,9 @@ final class RectNodeProperties: NodePropertyMap, KeypathSearchable {
     cornerRadius = NodeProperty(provider: KeyframeInterpolator(keyframes: rectangle.cornerRadius.keyframes))
 
     keypathProperties = [
-      PropertyName.position.rawValue: position,
-      "Size": size,
-      "Roundness": cornerRadius
+      PropertyName.position.rawValue : position,
+      "Size" : size,
+      "Roundness" : cornerRadius,
     ]
 
     properties = Array(keypathProperties.values)
@@ -64,7 +64,7 @@ final class RectangleNode: AnimatorNode, PathNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   // MARK: Animator Node
 
@@ -99,9 +99,10 @@ extension BezierPath {
     size inputSize: CGSize,
     cornerRadius: CGFloat,
     direction: PathDirection)
-    -> BezierPath {
+    -> BezierPath
+  {
     let size = inputSize * 0.5
-    let radius = min(min(cornerRadius, size.width), size.height)
+    let radius = min(min(cornerRadius, size.width) , size.height)
 
     var bezierPath = BezierPath()
     let points: [CurveVertex]
@@ -138,7 +139,7 @@ extension BezierPath {
           point: CGPoint(x: size.width, y: -size.height),
           inTangentRelative: .zero,
           outTangentRelative: .zero)
-          .translated(position)
+          .translated(position),
       ]
     } else {
       let controlPoint = radius * EllipseNode.ControlPointConstant
@@ -210,7 +211,7 @@ extension BezierPath {
           CGPoint(x: radius, y: 0)) // Out tangent
           .translated(CGPoint(x: -radius, y: radius))
           .translated(CGPoint(x: size.width, y: -size.height))
-          .translated(position)
+          .translated(position),
       ]
     }
     let reversed = direction == .counterClockwise
@@ -222,4 +223,3 @@ extension BezierPath {
     return bezierPath
   }
 }
-// swiftlint:enable all 

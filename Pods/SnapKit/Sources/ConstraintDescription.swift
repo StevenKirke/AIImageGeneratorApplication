@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public class ConstraintDescription {
     
     internal let item: LayoutConstraintItem
@@ -67,4 +67,3 @@ public class ConstraintDescription {
     }
     
 }
-// swiftlint:enable all 

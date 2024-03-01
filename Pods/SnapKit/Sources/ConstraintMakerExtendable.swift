@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public class ConstraintMakerExtendable: ConstraintMakerRelatable {
     
     public var left: ConstraintMakerExtendable {
@@ -193,4 +193,3 @@ public class ConstraintMakerExtendable: ConstraintMakerRelatable {
     }
     
 }
-// swiftlint:enable all 

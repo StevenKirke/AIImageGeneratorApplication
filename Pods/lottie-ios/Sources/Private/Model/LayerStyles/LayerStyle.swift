@@ -2,7 +2,7 @@
 // Copyright © 2023 Airbnb Inc. All rights reserved.
 
 // MARK: - LayerStyleType
-// swiftlint:disable all
+
 enum LayerStyleType: Int, Codable, Sendable {
   case dropShadow = 1
   case unknown = 9999
@@ -82,4 +82,3 @@ extension [LayerStyle] {
 /// All `LayerStyle` subclasses are immutable `Sendable` values.
 // swiftlint:disable:next no_unchecked_sendable
 extension LayerStyle: @unchecked Sendable { }
-// swiftlint:enable all 

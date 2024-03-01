@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CAShapeLayer {
   /// Adds a `path` animation for the given `ShapeItem`
   @nonobjc
@@ -11,7 +11,8 @@ extension CAShapeLayer {
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier,
     roundedCorners: RoundedCorners?)
-    throws {
+    throws
+  {
     switch shape {
     case let customShape as Shape:
       try addAnimations(
@@ -104,7 +105,8 @@ extension Trim {
   /// trim values larger than 100% can be displayed properly.
   fileprivate func caShapeLayerKeyframes()
     throws
-    -> (strokeStart: KeyframeGroup<LottieVector1D>, strokeEnd: KeyframeGroup<LottieVector1D>, pathMultiplier: PathMultiplier) {
+    -> (strokeStart: KeyframeGroup<LottieVector1D>, strokeEnd: KeyframeGroup<LottieVector1D>, pathMultiplier: PathMultiplier)
+  {
     let strokeStart: KeyframeGroup<LottieVector1D>
     let strokeEnd: KeyframeGroup<LottieVector1D>
 
@@ -214,7 +216,8 @@ extension Trim {
   /// Interpolates the start and end keyframes, at each frame if necessary,
   /// so that the value of `strokeStart` is always less than `strokeEnd`.
   private func interpolatedAtEachFrame()
-    -> (strokeStart: KeyframeGroup<LottieVector1D>, strokeEnd: KeyframeGroup<LottieVector1D>) {
+    -> (strokeStart: KeyframeGroup<LottieVector1D>, strokeEnd: KeyframeGroup<LottieVector1D>)
+  {
     let combinedKeyframes = Keyframes.combined(
       start,
       end,
@@ -231,4 +234,3 @@ extension Trim {
       strokeEnd: combinedKeyframes.map { $0.end })
   }
 }
-// swiftlint:enable all 

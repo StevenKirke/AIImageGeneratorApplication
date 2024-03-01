@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 import UIKit
-// swiftlint:disable all
+
 extension UIColor {
 
   public var lottieColorValue: LottieColor {
@@ -18,4 +18,3 @@ extension UIColor {
 
 }
 #endif
-// swiftlint:enable all 

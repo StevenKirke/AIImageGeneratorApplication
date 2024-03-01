@@ -7,9 +7,8 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
-/// A node property that holds a reference to a T ValueProvider and a T ValueContainer.
 
+/// A node property that holds a reference to a T ValueProvider and a T ValueContainer.
 class NodeProperty<T>: AnyNodeProperty {
 
   // MARK: Lifecycle
@@ -54,4 +53,3 @@ class NodeProperty<T>: AnyNodeProperty {
 
   fileprivate var typedContainer: ValueContainer<T>
 }
-// swiftlint:enable all 

@@ -17,12 +17,12 @@ protocol INetworkKingfisherManager: AnyObject {
 }
 
 // Описание ошибок.
-enum ErrorResponseWithKingfisher: Error {
+enum ErrorResponseWithKingfisher: LocalizedError {
 	/// Ошибка, конвертации Data.
 	case errorConvertData
 	case kingfisherError(Error)
 
-	var title: String {
+	var errorDescription: String? {
 		var textError = ""
 		switch self {
 		case .errorConvertData:
@@ -54,3 +54,4 @@ final class NetworkKingfisherManager: INetworkKingfisherManager {
 	}
 
 }
+

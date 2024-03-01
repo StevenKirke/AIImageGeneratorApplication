@@ -31,7 +31,8 @@ extension Data {
   }
 
   static func readStruct<T>(from file: FILEPointer, at offset: UInt64)
-    -> T? where T: DataSerializable {
+    -> T? where T: DataSerializable
+  {
     guard offset <= .max else { return nil }
     fseeko(file, off_t(offset), SEEK_SET)
     guard let data = try? readChunk(of: T.size, from: file) else {
@@ -49,7 +50,8 @@ extension Data {
     skipCRC32: Bool = false,
     provider: Provider,
     consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     var checksum = CRC32(0)
     guard size > 0 else {
       try consumer(Data())
@@ -112,7 +114,8 @@ extension Data {
     size: UInt64,
     bufferSize: Int,
     to file: FILEPointer)
-    throws -> UInt64 {
+    throws -> UInt64
+  {
     var sizeWritten: UInt64 = 0
     chunk.withUnsafeBytes { rawBufferPointer in
       if let baseAddress = rawBufferPointer.baseAddress, rawBufferPointer.count > 0 {

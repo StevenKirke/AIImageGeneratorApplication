@@ -2,7 +2,7 @@
 // Copyright © 2020 Airbnb Inc. All rights reserved.
 
 // MARK: - LottieLogger
-// swiftlint:disable all
+
 /// A shared logger that allows consumers to intercept Lottie assertions and warning messages to pipe
 /// into their own logging systems.
 public final class LottieLogger {
@@ -34,7 +34,8 @@ public final class LottieLogger {
       // swiftlint:disable:next no_direct_standard_out_logs
       print(message())
       #endif
-    }) {
+    })
+  {
     _assert = assert
     _assertionFailure = assertionFailure
     _warn = warn
@@ -78,7 +79,8 @@ public final class LottieLogger {
     _ condition: @autoclosure () -> Bool,
     _ message: @autoclosure () -> String = String(),
     fileID: StaticString = #fileID,
-    line: UInt = #line) {
+    line: UInt = #line)
+  {
     _assert(condition(), message(), fileID, line)
   }
 
@@ -86,7 +88,8 @@ public final class LottieLogger {
   public func assertionFailure(
     _ message: @autoclosure () -> String = String(),
     fileID: StaticString = #fileID,
-    line: UInt = #line) {
+    line: UInt = #line)
+  {
     _assertionFailure(message(), fileID, line)
   }
 
@@ -94,7 +97,8 @@ public final class LottieLogger {
   public func warn(
     _ message: @autoclosure () -> String = String(),
     fileID: StaticString = #fileID,
-    line: UInt = #line) {
+    line: UInt = #line)
+  {
     _warn(message(), fileID, line)
   }
 
@@ -131,4 +135,3 @@ extension LottieLogger {
       })
   }
 }
-// swiftlint:enable all 

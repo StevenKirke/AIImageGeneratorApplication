@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 internal struct ConstraintAttributes : OptionSet, ExpressibleByIntegerLiteral {
     
     typealias IntegerLiteralType = UInt
@@ -201,4 +201,3 @@ internal func -=(left: inout ConstraintAttributes, right: ConstraintAttributes) 
 internal func ==(left: ConstraintAttributes, right: ConstraintAttributes) -> Bool {
     return left.rawValue == right.rawValue
 }
-// swiftlint:enable all

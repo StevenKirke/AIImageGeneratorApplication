@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Withrow on 2/19/19.
 //
-// swiftlint:disable all
+
 import QuartzCore
 
 // MARK: - TextAnimatorNodeProperties
@@ -15,7 +15,7 @@ final class TextAnimatorNodeProperties: NodePropertyMap, KeypathSearchable {
 
   init(textAnimator: TextAnimator) {
     keypathName = textAnimator.name
-    var properties = [String: AnyNodeProperty]()
+    var properties = [String : AnyNodeProperty]()
 
     if let keyframeGroup = textAnimator.anchor {
       anchor = NodeProperty(provider: KeyframeInterpolator(keyframes: keyframeGroup.keyframes))
@@ -259,7 +259,7 @@ class TextAnimatorNode: AnimatorNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
   var isEnabled = true
 
   var outputNode: NodeOutput {
@@ -285,4 +285,3 @@ class TextAnimatorNode: AnimatorNode {
     textOutputNode.strokeWidth = textAnimatorProperties.strokeWidth?.value.cgFloatValue ?? 0
   }
 }
-// swiftlint:enable all 

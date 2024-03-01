@@ -75,7 +75,8 @@ extension Archive.ZIP64EndOfCentralDirectoryRecord {
     numberOfEntriesOnDisk: UInt64,
     numberOfEntriesInCD: UInt64,
     sizeOfCentralDirectory: UInt64,
-    offsetToStartOfCD: UInt64) {
+    offsetToStartOfCD: UInt64)
+  {
     sizeOfZIP64EndOfCentralDirectoryRecord = record.sizeOfZIP64EndOfCentralDirectoryRecord
     versionMadeBy = record.versionMadeBy
     versionNeededToExtract = record.versionNeededToExtract

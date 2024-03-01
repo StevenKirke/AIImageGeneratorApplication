@@ -17,7 +17,7 @@ final class RoundedCornersProperties: NodePropertyMap, KeypathSearchable {
   init(roundedCorners: RoundedCorners) {
     keypathName = roundedCorners.name
     radius = NodeProperty(provider: KeyframeInterpolator(keyframes: roundedCorners.radius.keyframes))
-    keypathProperties = ["Radius": radius]
+    keypathProperties = ["Radius" : radius]
     properties = Array(keypathProperties.values)
   }
 
@@ -51,7 +51,7 @@ final class RoundedCornersNode: AnimatorNode {
   let outputNode: NodeOutput
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
   var isEnabled = true
 
   // MARK: Animator Node

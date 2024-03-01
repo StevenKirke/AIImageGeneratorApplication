@@ -23,7 +23,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-// swiftlint:disable all
+
 import Foundation
 /// A class that keeps a weakly reference for `self` when implementing `onXXX` behaviors.
 /// Instead of remembering to keep `self` as weak in a stored closure:
@@ -67,7 +67,7 @@ import Foundation
 ///     }
 /// }
 /// ```
-
+///
 public class Delegate<Input, Output> {
     public init() {}
 
@@ -125,9 +125,8 @@ extension Delegate where Output: OptionalProtocol {
 public protocol OptionalProtocol {
     static var _createNil: Self { get }
 }
-extension Optional: OptionalProtocol {
-    public static var _createNil: Wrapped? {
+extension Optional : OptionalProtocol {
+    public static var _createNil: Optional<Wrapped> {
          return nil
     }
 }
-// swiftlint:enable all 

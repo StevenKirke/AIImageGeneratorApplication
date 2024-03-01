@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 // MARK: - DefaultAnimationCache
 
 /// A thread-safe Animation Cache that will store animations up to `cacheSize`.
@@ -65,4 +65,3 @@ public class DefaultAnimationCache: AnimationCacheProvider {
 // making breaking changes.
 // swiftlint:disable:next no_unchecked_sendable
 extension DefaultAnimationCache: @unchecked Sendable { }
-// swiftlint:enable all 

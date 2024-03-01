@@ -1,7 +1,7 @@
 // From: https://medium.com/@kewindannerfjordremeczki/swift-4-0-decodable-heterogeneous-collections-ecc0e6b468cf
 
 // MARK: - ClassFamily
-// swiftlint:disable all
+
 /// To support a new class family, create an enum that conforms to this protocol and contains the different types.
 protocol ClassFamily: Decodable {
   /// The discriminator key.
@@ -69,4 +69,3 @@ extension KeyedDecodingContainer {
     return list
   }
 }
-// swiftlint:enable all 

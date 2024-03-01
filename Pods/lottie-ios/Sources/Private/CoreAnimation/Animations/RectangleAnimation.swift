@@ -2,7 +2,7 @@
 // Copyright © 2021 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CAShapeLayer {
   /// Adds animations for the given `Rectangle` to this `CALayer`
   @nonobjc
@@ -11,7 +11,8 @@ extension CAShapeLayer {
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier,
     roundedCorners: RoundedCorners?)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .path,
       keyframes: try rectangle.combinedKeyframes(roundedCorners: roundedCorners),
@@ -51,4 +52,3 @@ extension Rectangle {
       makeCombinedResult: Rectangle.Keyframe.init)
   }
 }
-// swiftlint:enable all 

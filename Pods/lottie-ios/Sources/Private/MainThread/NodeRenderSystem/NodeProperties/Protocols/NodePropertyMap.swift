@@ -6,7 +6,7 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - NodePropertyMap
 
 protocol NodePropertyMap {
@@ -41,4 +41,3 @@ extension NodePropertyMap {
   }
 
 }
-// swiftlint:enable all 

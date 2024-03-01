@@ -6,7 +6,7 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - LayerTransformProperties
 
 final class LayerTransformProperties: NodePropertyMap, KeypathSearchable {
@@ -22,13 +22,13 @@ final class LayerTransformProperties: NodePropertyMap, KeypathSearchable {
     opacity = NodeProperty(provider: KeyframeInterpolator(keyframes: transform.opacity.keyframes))
 
     var propertyMap: [String: AnyNodeProperty] = [
-      "Anchor Point": anchor,
-      PropertyName.scale.rawValue: scale,
+      "Anchor Point" : anchor,
+      PropertyName.scale.rawValue : scale,
       PropertyName.rotation.rawValue: rotationZ,
-      "Rotation X": rotationX,
-      "Rotation Y": rotationY,
-      "Rotation Z": rotationZ,
-      PropertyName.opacity.rawValue: opacity
+      "Rotation X" : rotationX,
+      "Rotation Y" : rotationY,
+      "Rotation Z" : rotationZ,
+      PropertyName.opacity.rawValue : opacity,
     ]
 
     if
@@ -99,7 +99,7 @@ class LayerTransformNode: AnimatorNode {
   var parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
   var isEnabled = true
 
   var opacity: Float = 1
@@ -148,4 +148,3 @@ class LayerTransformNode: AnimatorNode {
     }
   }
 }
-// swiftlint:enable all 

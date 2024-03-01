@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 /// The `CALayer` type responsible for rendering `TextLayer`s
 final class TextLayer: BaseCompositionLayer {
 
@@ -11,7 +11,8 @@ final class TextLayer: BaseCompositionLayer {
   init(
     textLayerModel: TextLayerModel,
     context: LayerContext)
-    throws {
+    throws
+  {
     self.textLayerModel = textLayerModel
     super.init(layerModel: textLayerModel)
     setupSublayers()
@@ -112,4 +113,3 @@ final class TextLayer: BaseCompositionLayer {
   }
 
 }
-// swiftlint:enable all 

@@ -8,7 +8,7 @@
 import Foundation
 #if canImport(UIKit)
 import UIKit
-// swiftlint:disable all
+
 /// An Objective-C compatible wrapper around Lottie's Animation class.
 /// Use in tandem with CompatibleAnimationView when using Lottie in Objective-C
 @objc
@@ -20,7 +20,8 @@ public final class CompatibleAnimation: NSObject {
   public init(
     name: String,
     subdirectory: String? = nil,
-    bundle: Bundle = Bundle.main) {
+    bundle: Bundle = Bundle.main)
+  {
     self.name = name
     self.subdirectory = subdirectory
     self.bundle = bundle
@@ -72,7 +73,8 @@ public enum CompatibleRenderingEngineOption: Int {
   /// internal rendering engine configuration.
   public static func generateLottieConfiguration(
     _ configuration: CompatibleRenderingEngineOption)
-    -> LottieConfiguration {
+    -> LottieConfiguration
+  {
     switch configuration {
     case .shared:
       return LottieConfiguration.shared
@@ -132,7 +134,8 @@ public final class CompatibleAnimationView: UIView {
   @objc
   public init(
     compatibleAnimation: CompatibleAnimation,
-    compatibleRenderingEngineOption: CompatibleRenderingEngineOption) {
+    compatibleRenderingEngineOption: CompatibleRenderingEngineOption)
+  {
     animationView = LottieAnimationView(
       animation: compatibleAnimation.animation,
       configuration: CompatibleRenderingEngineOption.generateLottieConfiguration(compatibleRenderingEngineOption))
@@ -325,7 +328,8 @@ public final class CompatibleAnimationView: UIView {
   public func play(
     fromProgress: CGFloat,
     toProgress: CGFloat,
-    completion: ((Bool) -> Void)? = nil) {
+    completion: ((Bool) -> Void)? = nil)
+  {
     animationView.play(
       fromProgress: fromProgress,
       toProgress: toProgress,
@@ -339,7 +343,8 @@ public final class CompatibleAnimationView: UIView {
   public func play(
     fromFrame: CGFloat,
     toFrame: CGFloat,
-    completion: ((Bool) -> Void)? = nil) {
+    completion: ((Bool) -> Void)? = nil)
+  {
     animationView.play(
       fromFrame: fromFrame,
       toFrame: toFrame,
@@ -353,7 +358,8 @@ public final class CompatibleAnimationView: UIView {
   public func play(
     fromMarker: String,
     toMarker: String,
-    completion: ((Bool) -> Void)? = nil) {
+    completion: ((Bool) -> Void)? = nil)
+  {
     animationView.play(
       fromMarker: fromMarker,
       toMarker: toMarker,
@@ -363,7 +369,8 @@ public final class CompatibleAnimationView: UIView {
   @objc
   public func play(
     marker: String,
-    completion: ((Bool) -> Void)? = nil) {
+    completion: ((Bool) -> Void)? = nil)
+  {
     animationView.play(
       marker: marker,
       completion: completion)
@@ -393,7 +400,8 @@ public final class CompatibleAnimationView: UIView {
   public func getValue(
     for keypath: CompatibleAnimationKeypath,
     atFrame: CGFloat)
-    -> Any? {
+    -> Any?
+  {
     animationView.getValue(
       for: keypath.animationKeypath,
       atFrame: atFrame)
@@ -432,7 +440,7 @@ public final class CompatibleAnimationView: UIView {
   public func getColorValue(for keypath: CompatibleAnimationKeypath, atFrame: CGFloat) -> UIColor? {
     let value = animationView.getValue(for: keypath.animationKeypath, atFrame: atFrame)
     guard let colorValue = value as? LottieColor else {
-      return nil
+      return nil;
     }
 
     return UIColor(
@@ -445,7 +453,8 @@ public final class CompatibleAnimationView: UIView {
   @objc
   public func addSubview(
     _ subview: AnimationSubview,
-    forLayerAt keypath: CompatibleAnimationKeypath) {
+    forLayerAt keypath: CompatibleAnimationKeypath)
+  {
     animationView.addSubview(
       subview,
       forLayerAt: keypath.animationKeypath)
@@ -455,7 +464,8 @@ public final class CompatibleAnimationView: UIView {
   public func convert(
     rect: CGRect,
     toLayerAt keypath: CompatibleAnimationKeypath?)
-    -> CGRect {
+    -> CGRect
+  {
     animationView.convert(
       rect,
       toLayerAt: keypath?.animationKeypath) ?? .zero
@@ -465,7 +475,8 @@ public final class CompatibleAnimationView: UIView {
   public func convert(
     point: CGPoint,
     toLayerAt keypath: CompatibleAnimationKeypath?)
-    -> CGPoint {
+    -> CGPoint
+  {
     animationView.convert(
       point,
       toLayerAt: keypath?.animationKeypath) ?? .zero
@@ -529,4 +540,3 @@ public final class CompatibleDictionaryTextProvider: NSObject {
   private let values: [String: String]
 }
 #endif
-// swiftlint:enable all 

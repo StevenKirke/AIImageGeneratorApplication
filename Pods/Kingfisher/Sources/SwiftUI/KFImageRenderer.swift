@@ -27,21 +27,21 @@
 #if canImport(SwiftUI) && canImport(Combine)
 import SwiftUI
 import Combine
-// swiftlint:disable all
+
 /// A Kingfisher compatible SwiftUI `View` to load an image from a `Source`.
 /// Declaring a `KFImage` in a `View`'s body to trigger loading from the given `Source`.
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-struct KFImageRenderer<HoldingView>: View where HoldingView: KFImageHoldingView {
-
+struct KFImageRenderer<HoldingView> : View where HoldingView: KFImageHoldingView {
+    
     @StateObject var binder: KFImage.ImageBinder = .init()
     let context: KFImage.Context<HoldingView>
-
+    
     var body: some View {
         if context.startLoadingBeforeViewAppear && !binder.loadingOrSucceeded && !binder.animating {
             binder.markLoading()
             DispatchQueue.main.async { binder.start(context: context) }
         }
-
+        
         return ZStack {
             renderedImage().opacity(binder.loaded ? 1.0 : 0.0)
             if binder.loadedImage == nil {
@@ -81,7 +81,7 @@ struct KFImageRenderer<HoldingView>: View where HoldingView: KFImageHoldingView 
         // It should be a bug in iOS 16, I guess it is some kinds of over-optimization in list cell loading caused it.
         .onAppear()
     }
-
+    
     @ViewBuilder
     private func renderedImage() -> some View {
         let configuredImage = context.configurations
@@ -127,4 +127,3 @@ extension UIImage.Orientation {
 }
 #endif
 #endif
-// swiftlint:enable all 

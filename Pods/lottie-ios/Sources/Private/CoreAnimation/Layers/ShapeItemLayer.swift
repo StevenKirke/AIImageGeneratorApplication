@@ -150,7 +150,8 @@ final class ShapeItemLayer: BaseAnimationLayer {
 
   private func setupGradientFillLayerHierarchy(
     for gradientFill: GradientFill)
-    -> FillLayerConfiguration {
+    -> FillLayerConfiguration
+  {
     let container = BaseAnimationLayer()
     let pathContainer = BaseAnimationLayer()
 
@@ -185,7 +186,8 @@ final class ShapeItemLayer: BaseAnimationLayer {
 
   private func setupGradientStrokeLayerHierarchy(
     for gradientStroke: GradientStroke)
-    -> GradientLayers {
+    -> GradientLayers
+  {
     let container = BaseAnimationLayer()
 
     let pathMask = CAShapeLayer()
@@ -215,8 +217,9 @@ final class ShapeItemLayer: BaseAnimationLayer {
   private func setupSolidFillAnimations(
     shapeLayer: CAShapeLayer,
     context: LayerAnimationContext)
-    throws {
-    var trimPathMultiplier: PathMultiplier?
+    throws
+  {
+    var trimPathMultiplier: PathMultiplier? = nil
     if let (trim, context) = otherItems.first(Trim.self, where: { !$0.isEmpty }, context: context) {
       trimPathMultiplier = try shapeLayer.addAnimations(for: trim, context: context)
 
@@ -246,7 +249,8 @@ final class ShapeItemLayer: BaseAnimationLayer {
   private func setupGradientFillAnimations(
     layers: GradientLayers,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     let pathLayers = [layers.shapeMaskLayer, layers.overlayLayer]
     for pathLayer in pathLayers {
       try pathLayer?.addAnimations(
@@ -270,8 +274,9 @@ final class ShapeItemLayer: BaseAnimationLayer {
   private func setupGradientStrokeAnimations(
     layers: GradientLayers,
     context: LayerAnimationContext)
-    throws {
-    var trimPathMultiplier: PathMultiplier?
+    throws
+  {
+    var trimPathMultiplier: PathMultiplier? = nil
     if let (trim, context) = otherItems.first(Trim.self, context: context) {
       trimPathMultiplier = try layers.shapeMaskLayer.addAnimations(for: trim, context: context)
     }
@@ -300,7 +305,8 @@ extension [ShapeItemLayer.Item] {
     _: ItemType.Type,
     where condition: (ItemType) -> Bool = { _ in true },
     context: LayerAnimationContext)
-    -> (item: ItemType, context: LayerAnimationContext)? {
+    -> (item: ItemType, context: LayerAnimationContext)?
+  {
     for item in self {
       if let match = item.item as? ItemType, condition(match) {
         return (match, context.for(item))

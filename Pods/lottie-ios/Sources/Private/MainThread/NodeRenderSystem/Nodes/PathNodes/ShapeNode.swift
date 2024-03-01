@@ -18,7 +18,7 @@ final class ShapeNodeProperties: NodePropertyMap, KeypathSearchable {
     keypathName = shape.name
     path = NodeProperty(provider: KeyframeInterpolator(keyframes: shape.path.keyframes))
     keypathProperties = [
-      "Path": path
+      "Path" : path,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -54,7 +54,7 @@ final class ShapeNode: AnimatorNode, PathNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   // MARK: Animator Node
   var propertyMap: NodePropertyMap & KeypathSearchable {

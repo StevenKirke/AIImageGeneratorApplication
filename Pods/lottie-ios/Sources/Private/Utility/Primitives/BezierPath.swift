@@ -8,7 +8,7 @@
 import CoreGraphics
 
 // MARK: - BezierPath
-// swiftlint:disable all
+
 /// A container that holds instructions for creating a single, unbroken Bezier Path.
 struct BezierPath {
 
@@ -484,4 +484,3 @@ extension BezierPath {
   }
 
 }
-// swiftlint:enable all 

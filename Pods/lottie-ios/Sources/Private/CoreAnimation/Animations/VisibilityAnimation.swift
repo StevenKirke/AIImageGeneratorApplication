@@ -1,6 +1,6 @@
 // Created by Cal Stephens on 12/21/21.
 // Copyright © 2021 Airbnb Inc. All rights reserved.
-// swiftlint:disable all
+
 import QuartzCore
 
 extension CALayer {
@@ -10,14 +10,15 @@ extension CALayer {
     inFrame: AnimationFrameTime,
     outFrame: AnimationFrameTime,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     /// If this layer uses `complexTimeRemapping`, use the `addAnimation` codepath
     /// which uses `Keyframes.manuallyInterpolatedWithTimeRemapping`.
     if context.mustUseComplexTimeRemapping {
       let isHiddenKeyframes = KeyframeGroup(keyframes: [
         Keyframe(value: true, time: 0, isHold: true), // hidden, before `inFrame`
         Keyframe(value: false, time: inFrame, isHold: true), // visible
-        Keyframe(value: true, time: outFrame, isHold: true) // hidden, after `outFrame`
+        Keyframe(value: true, time: outFrame, isHold: true), // hidden, after `outFrame`
       ])
 
       try addAnimation(
@@ -37,7 +38,7 @@ extension CALayer {
       animation.values = [
         true, // hidden, before `inFrame`
         false, // visible
-        true // hidden, after `outFrame`
+        true, // hidden, after `outFrame`
       ]
 
       // From the documentation of `keyTimes`:
@@ -53,11 +54,10 @@ extension CALayer {
         context.simpleTimeRemapping(outFrame) == context.animation.endFrame
           ? NSNumber(value: Double(1.0))
           : NSNumber(value: min(Double(try context.progressTime(for: outFrame)), 1)),
-        NSNumber(value: 1.0)
+        NSNumber(value: 1.0),
       ]
 
       add(animation, timedWith: context)
     }
   }
 }
-// swiftlint:enable all 

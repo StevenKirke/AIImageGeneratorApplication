@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 // MARK: - SizeValueProvider
 
 /// A `ValueProvider` that returns a CGSize Value
@@ -81,4 +81,3 @@ extension SizeValueProvider: Equatable {
     lhs.identity == rhs.identity
   }
 }
-// swiftlint:enable all 

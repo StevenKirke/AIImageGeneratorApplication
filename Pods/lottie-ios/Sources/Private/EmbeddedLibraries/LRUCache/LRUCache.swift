@@ -58,7 +58,8 @@ final class LRUCache<Key: Hashable, Value> {
   init(
     totalCostLimit: Int = .max,
     countLimit: Int = .max,
-    notificationCenter: NotificationCenter = .default) {
+    notificationCenter: NotificationCenter = .default)
+  {
     self.totalCostLimit = totalCostLimit
     self.countLimit = countLimit
     self.notificationCenter = notificationCenter
@@ -66,7 +67,8 @@ final class LRUCache<Key: Hashable, Value> {
     token = notificationCenter.addObserver(
       forName: LRUCacheMemoryWarningNotification,
       object: nil,
-      queue: nil) { [weak self] _ in
+      queue: nil)
+    { [weak self] _ in
       self?.removeAllValues()
     }
   }

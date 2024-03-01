@@ -8,7 +8,7 @@
 import QuartzCore
 
 // MARK: - GradientFillLayer
-// swiftlint:disable all
+
 private final class GradientFillLayer: CALayer {
 
   var start: CGPoint = .zero {
@@ -144,15 +144,15 @@ final class GradientFillRenderer: PassThroughOutputNode, Renderable {
     gradientLayer.mask = maskLayer
 
     maskLayer.actions = [
-      "startPoint": NSNull(),
-      "endPoint": NSNull(),
-      "opacity": NSNull(),
-      "locations": NSNull(),
-      "colors": NSNull(),
-      "bounds": NSNull(),
-      "anchorPoint": NSNull(),
-      "isRadial": NSNull(),
-      "path": NSNull()
+      "startPoint" : NSNull(),
+      "endPoint" : NSNull(),
+      "opacity" : NSNull(),
+      "locations" : NSNull(),
+      "colors" : NSNull(),
+      "bounds" : NSNull(),
+      "anchorPoint" : NSNull(),
+      "isRadial" : NSNull(),
+      "path" : NSNull(),
     ]
     gradientLayer.actions = maskLayer.actions
   }
@@ -244,4 +244,3 @@ final class GradientFillRenderer: PassThroughOutputNode, Renderable {
   private let maskLayer = CAShapeLayer()
 
 }
-// swiftlint:enable all 

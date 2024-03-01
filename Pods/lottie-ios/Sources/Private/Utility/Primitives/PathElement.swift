@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Withrow on 1/11/19.
 //
-// swiftlint:disable all
+
 import CoreGraphics
 import Foundation
 
@@ -14,7 +14,7 @@ import Foundation
 /// Ideally a path section would be defined by two vertices and a length.
 /// We don't do this however, as it would effectively double the memory footprint
 /// of path data.
-
+///
 struct PathElement {
 
   // MARK: Lifecycle
@@ -50,7 +50,8 @@ struct PathElement {
 
   /// Splits an element span defined by the receiver and fromElement to a position 0-1
   func splitElementAtPosition(fromElement: PathElement, atLength: CGFloat) ->
-    (leftSpan: (start: PathElement, end: PathElement), rightSpan: (start: PathElement, end: PathElement)) {
+    (leftSpan: (start: PathElement, end: PathElement), rightSpan: (start: PathElement, end: PathElement))
+  {
     /// Trim the span. Start and trim go into the first, trim and end go into second.
     let trimResults = fromElement.vertex.trimCurve(toVertex: vertex, atLength: atLength, curveLength: length, maxSamples: 3)
 
@@ -72,4 +73,3 @@ struct PathElement {
   }
 
 }
-// swiftlint:enable all 

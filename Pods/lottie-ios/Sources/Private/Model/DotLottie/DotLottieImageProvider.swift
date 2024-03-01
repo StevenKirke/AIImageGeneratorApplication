@@ -4,7 +4,7 @@
 //
 //  Created by Evandro Hoffmann on 20/10/22.
 //
-// swiftlint:disable all
+
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -87,4 +87,3 @@ extension DotLottieImageProvider: Hashable {
   }
 
 }
-// swiftlint:enable all 

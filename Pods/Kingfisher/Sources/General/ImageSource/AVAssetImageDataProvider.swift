@@ -34,7 +34,7 @@ import MobileCoreServices
 #else
 import CoreServices
 #endif
-// swiftlint:disable all
+
 /// A data provider to provide thumbnail data from a given AVKit asset.
 public struct AVAssetImageDataProvider: ImageDataProvider {
 
@@ -104,7 +104,7 @@ public struct AVAssetImageDataProvider: ImageDataProvider {
 
     public func data(handler: @escaping (Result<Data, Error>) -> Void) {
         assetImageGenerator.generateCGImagesAsynchronously(forTimes: [NSValue(time: time)]) {
-            (_, image, _, result, error) in
+            (requestedTime, image, imageTime, result, error) in
             if let error = error {
                 handler(.failure(error))
                 return
@@ -132,7 +132,7 @@ extension CGImage {
         }
 #if os(visionOS)
         guard let destination = CGImageDestinationCreateWithData(
-            mutableData, UTType.jpeg.identifier as CFString, 1, nil
+            mutableData, UTType.jpeg.identifier as CFString , 1, nil
         ) else {
             return nil
         }
@@ -141,7 +141,7 @@ extension CGImage {
             return nil
         }
 #endif
-
+        
         CGImageDestinationAddImage(destination, self, nil)
         guard CGImageDestinationFinalize(destination) else { return nil }
         return mutableData as Data
@@ -149,4 +149,3 @@ extension CGImage {
 }
 
 #endif
-// swiftlint:enable all 

@@ -9,7 +9,8 @@ struct SectionedChangeset {
 
   init(
     sectionChangeset: IndexSetChangeset,
-    itemChangeset: IndexPathChangeset) {
+    itemChangeset: IndexPathChangeset)
+  {
     self.sectionChangeset = sectionChangeset
     self.itemChangeset = itemChangeset
   }

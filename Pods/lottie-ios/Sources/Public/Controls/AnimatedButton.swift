@@ -12,7 +12,7 @@ import AppKit
 #endif
 
 // MARK: - AnimatedButton
-// swiftlint:disable all
+
 /// An interactive button that plays an animation when pressed.
 open class AnimatedButton: AnimatedControl {
 
@@ -20,7 +20,8 @@ open class AnimatedButton: AnimatedControl {
 
   public override init(
     animation: LottieAnimation?,
-    configuration: LottieConfiguration = .shared) {
+    configuration: LottieConfiguration = .shared)
+  {
     super.init(animation: animation, configuration: configuration)
 
     #if canImport(UIKit)
@@ -54,7 +55,7 @@ open class AnimatedButton: AnimatedControl {
 
   #if canImport(UIKit)
   open override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-    _ = super.beginTracking(touch, with: event)
+    let _ = super.beginTracking(touch, with: event)
     let touchEvent = UIControl.Event.touchDown
     if let playRange = rangesForEvents[touchEvent.id] {
       animationView.play(fromProgress: playRange.from, toProgress: playRange.to, loopMode: .playOnce)
@@ -124,4 +125,3 @@ open class AnimatedButton: AnimatedControl {
     from: 0,
     to: 1)]
 }
-// swiftlint:enable all 

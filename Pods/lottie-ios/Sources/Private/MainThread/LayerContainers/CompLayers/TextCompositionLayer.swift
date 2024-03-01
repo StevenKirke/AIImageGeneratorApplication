@@ -11,7 +11,7 @@ import AppKit
 #else
 import UIKit
 #endif
-// swiftlint:disable all
+
 extension TextJustification {
   var textAlignment: NSTextAlignment {
     switch self {
@@ -46,7 +46,8 @@ final class TextCompositionLayer: CompositionLayer {
     textLayer: TextLayerModel,
     textProvider: AnimationKeypathTextProvider,
     fontProvider: AnimationFontProvider,
-    rootAnimationLayer: MainThreadAnimationLayer?) {
+    rootAnimationLayer: MainThreadAnimationLayer?)
+  {
     var rootNode: TextAnimatorNode?
     for animator in textLayer.animators {
       rootNode = TextAnimatorNode(parentNode: rootNode, textAnimator: animator)
@@ -167,4 +168,3 @@ final class TextCompositionLayer: CompositionLayer {
     textLayer.contentsScale = renderScale
   }
 }
-// swiftlint:enable all 

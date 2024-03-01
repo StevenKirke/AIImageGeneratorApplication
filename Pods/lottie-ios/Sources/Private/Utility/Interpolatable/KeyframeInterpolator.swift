@@ -9,7 +9,7 @@ import CoreGraphics
 import Foundation
 
 // MARK: - KeyframeInterpolator
-// swiftlint:disable all
+
 /// A value provider that produces a value at Time from a group of keyframes
 final class KeyframeInterpolator<ValueType>: ValueProvider where ValueType: AnyInterpolatable {
 
@@ -111,10 +111,10 @@ final class KeyframeInterpolator<ValueType>: ValueProvider where ValueType: AnyI
 
   fileprivate var lastUpdatedFrame: CGFloat?
 
-  fileprivate var leadingIndex: Int?
-  fileprivate var trailingIndex: Int?
-  fileprivate var leadingKeyframe: Keyframe<ValueType>?
-  fileprivate var trailingKeyframe: Keyframe<ValueType>?
+  fileprivate var leadingIndex: Int? = nil
+  fileprivate var trailingIndex: Int? = nil
+  fileprivate var leadingKeyframe: Keyframe<ValueType>? = nil
+  fileprivate var trailingKeyframe: Keyframe<ValueType>? = nil
 
   /// Finds the appropriate Leading and Trailing keyframe index for the given time.
   fileprivate func updateSpanIndices(frame: CGFloat) {
@@ -248,4 +248,3 @@ extension ContiguousArray {
   }
 
 }
-// swiftlint:enable all 

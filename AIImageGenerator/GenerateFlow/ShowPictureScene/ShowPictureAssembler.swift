@@ -15,9 +15,9 @@ final class ShowPictureAssembler {
 	/// Отображение второй сцены.
 	/// - Parameters:
 	///		- model: Тип ShowPictureModel.Request.Передаем URL изображения.
-	func configurator(model: SPResponse, backSceneDelegate: IBackShowPictureDelegate) -> UIViewController {
+	func configurator(imageData: Data, backSceneDelegate: IBackShowPictureDelegate) -> UIViewController {
 		// Подключение менеджеров.
-		let savePhotoManager = SavePhotoManager(handlerSaveImage: self)
+		let savePhotoManager = SavePhotoManager()
 
 		// Подключение VIP цикла.
 		let viewController = ShowPictureViewController()
@@ -25,16 +25,10 @@ final class ShowPictureAssembler {
 		let iterator = ShowPictureIterator(
 			presenter: presenter,
 			savePhotoManager: savePhotoManager,
-			model: model
+			model: imageData
 		)
 
 		viewController.iterator = iterator
 		return viewController
-	}
-}
-
-extension ShowPictureAssembler: IReturnResultSavePhotoDelegate {
-	func returnResultSaveImage(result: Result<Bool, Error>) {
-		print("result \(result)")
 	}
 }

@@ -7,9 +7,9 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
-/// A collection of BezierPath objects that can be trimmed and added.
 
+/// A collection of BezierPath objects that can be trimmed and added.
+///
 struct CompoundBezierPath {
 
   // MARK: Lifecycle
@@ -105,7 +105,7 @@ struct CompoundBezierPath {
     if endPosition < startPosition {
       positions = [
         (start: 0, end: endPosition * length),
-        (start: startPosition * length, end: length)
+        (start: startPosition * length, end: length),
       ]
     } else {
       positions = [(start: startPosition * length, end: endPosition * length)]
@@ -165,4 +165,3 @@ struct CompoundBezierPath {
   }
 
 }
-// swiftlint:enable all 

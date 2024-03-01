@@ -88,7 +88,8 @@ public struct LottieSwitch: UIViewConfiguringSwiftUIView {
   public func onAnimation(
     fromProgress onStartProgress: AnimationProgressTime,
     toProgress onEndProgress: AnimationProgressTime)
-    -> Self {
+    -> Self
+  {
     configure { view in
       if onStartProgress != view.onStartProgress || onEndProgress != view.onEndProgress {
         view.setProgressForState(
@@ -105,7 +106,8 @@ public struct LottieSwitch: UIViewConfiguringSwiftUIView {
   public func offAnimation(
     fromProgress offStartProgress: AnimationProgressTime,
     toProgress offEndProgress: AnimationProgressTime)
-    -> Self {
+    -> Self
+  {
     configure { view in
       if offStartProgress != view.offStartProgress || offEndProgress != view.offEndProgress {
         view.setProgressForState(
@@ -121,7 +123,8 @@ public struct LottieSwitch: UIViewConfiguringSwiftUIView {
   public func valueProvider<ValueProvider: AnyValueProvider & Equatable>(
     _ valueProvider: ValueProvider,
     for keypath: AnimationKeypath)
-    -> Self {
+    -> Self
+  {
     configure { view in
       if (view.animationView.valueProviders[keypath] as? ValueProvider) != valueProvider {
         view.animationView.setValueProvider(valueProvider, keypath: keypath)

@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-// swiftlint:disable all
+
 extension CGPoint: AnyInitializable {
 
   // MARK: Lifecycle
@@ -33,4 +33,3 @@ extension CGPoint: AnyInitializable {
     case y
   }
 }
-// swiftlint:enable all 

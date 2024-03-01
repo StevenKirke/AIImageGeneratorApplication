@@ -9,7 +9,7 @@ import CoreGraphics
 import Foundation
 
 // MARK: - ColorValueProvider
-// swiftlint:disable all
+
 /// A `ValueProvider` that returns a CGColor Value
 public final class ColorValueProvider: ValueProvider {
 
@@ -96,4 +96,3 @@ extension ColorValueProvider: Equatable {
     lhs.identity == rhs.identity
   }
 }
-// swiftlint:enable all 

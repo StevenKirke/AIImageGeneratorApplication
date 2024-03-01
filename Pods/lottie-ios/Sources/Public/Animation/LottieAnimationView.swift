@@ -8,7 +8,7 @@
 import QuartzCore
 
 // MARK: - LottieBackgroundBehavior
-// swiftlint:disable all
+
 /// Describes the behavior of an AnimationView when the app is moved to the background.
 public enum LottieBackgroundBehavior {
   /// Stop the animation and reset it to the beginning of its current play time. The completion block is called.
@@ -102,7 +102,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
     textProvider: AnimationKeypathTextProvider = DefaultTextProvider(),
     fontProvider: AnimationFontProvider = DefaultFontProvider(),
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     lottieAnimationLayer = LottieAnimationLayer(
       animation: animation,
       imageProvider: imageProvider,
@@ -125,7 +126,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
     textProvider: AnimationKeypathTextProvider = DefaultTextProvider(),
     fontProvider: AnimationFontProvider = DefaultFontProvider(),
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     lottieAnimationLayer = LottieAnimationLayer(
       dotLottie: dotLottie,
       animationId: animationId,
@@ -143,7 +145,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
 
   public init(
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     lottieAnimationLayer = LottieAnimationLayer(configuration: configuration, logger: logger)
     self.logger = logger
     super.init(frame: .zero)
@@ -182,7 +185,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
     textProvider: AnimationKeypathTextProvider = DefaultTextProvider(),
     fontProvider: AnimationFontProvider = DefaultFontProvider(),
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     switch animationSource {
     case .lottieAnimation(let animation):
       self.init(
@@ -238,7 +242,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
     fromProgress: AnimationProgressTime? = nil,
     toProgress: AnimationProgressTime,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.play(fromProgress: fromProgress, toProgress: toProgress, loopMode: loopMode, completion: completion)
   }
 
@@ -252,7 +257,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
     fromFrame: AnimationFrameTime? = nil,
     toFrame: AnimationFrameTime,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.play(fromFrame: fromFrame, toFrame: toFrame, loopMode: loopMode, completion: completion)
   }
 
@@ -276,7 +282,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
     toMarker: String,
     playEndMarkerFrame: Bool = true,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.play(
       fromMarker: fromMarker,
       toMarker: toMarker,
@@ -298,7 +305,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
   open func play(
     marker: String,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.play(marker: marker, loopMode: loopMode, completion: completion)
   }
 
@@ -320,7 +328,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
   /// - Parameter completion: An optional completion closure to be called when the animation stops.
   open func play(
     markers: [String],
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.play(markers: markers, completion: completion)
   }
 
@@ -341,7 +350,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
   @available(*, deprecated, renamed: "setPlaybackMode(_:completion:)", message: "Will be removed in a future major release.")
   open func play(
     _ playbackMode: LottiePlaybackMode,
-    animationCompletionHandler: LottieCompletionBlock? = nil) {
+    animationCompletionHandler: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.setPlaybackMode(playbackMode, completion: animationCompletionHandler)
   }
 
@@ -350,7 +360,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
   ///   an animation triggered by this method completes.
   open func setPlaybackMode(
     _ playbackMode: LottiePlaybackMode,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     lottieAnimationLayer.setPlaybackMode(playbackMode, completion: completion)
   }
 
@@ -605,7 +616,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
   ///   - dotLottieFile: Lottie file to play
   public func loadAnimation(
     _ animationId: String? = nil,
-    from dotLottieFile: DotLottieFile) {
+    from dotLottieFile: DotLottieFile)
+  {
     lottieAnimationLayer.loadAnimation(animationId, from: dotLottieFile)
   }
 
@@ -620,7 +632,8 @@ open class LottieAnimationView: LottieAnimationViewBase {
   ///   - dotLottieFile: Lottie file to play
   public func loadAnimation(
     atIndex index: Int,
-    from dotLottieFile: DotLottieFile) {
+    from dotLottieFile: DotLottieFile)
+  {
     lottieAnimationLayer.loadAnimation(atIndex: index, from: dotLottieFile)
   }
 
@@ -1039,4 +1052,3 @@ open class LottieAnimationView: LottieAnimationViewBase {
 
   private let logger: LottieLogger
 }
-// swiftlint:enable all 

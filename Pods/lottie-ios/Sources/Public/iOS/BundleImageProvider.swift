@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 import UIKit
-// swiftlint:disable all
+
 /// An `AnimationImageProvider` that provides images by name from a specific bundle.
 /// The BundleImageProvider is initialized with a bundle and an optional searchPath.
 public class BundleImageProvider: AnimationImageProvider {
@@ -96,4 +96,3 @@ extension BundleImageProvider: Equatable {
   }
 }
 #endif
-// swiftlint:enable all

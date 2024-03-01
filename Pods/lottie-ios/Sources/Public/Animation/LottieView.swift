@@ -5,7 +5,7 @@
 import SwiftUI
 
 // MARK: - LottieView
-// swiftlint:disable all
+
 /// A wrapper which exposes Lottie's `LottieAnimationView` to SwiftUI
 @available(iOS 13.0, tvOS 13.0, macOS 10.15, *)
 public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
@@ -46,7 +46,8 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   /// While the animation is loading, the `placeholder` view is shown in place of the `LottieAnimationView`.
   public init(
     _ loadAnimation: @escaping () async throws -> LottieAnimation?,
-    @ViewBuilder placeholder: @escaping (() -> Placeholder)) {
+    @ViewBuilder placeholder: @escaping (() -> Placeholder))
+  {
     self.init {
       try await loadAnimation().map(LottieAnimationSource.lottieAnimation)
     } placeholder: {
@@ -81,7 +82,8 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   /// ```
   public init(
     _ loadDotLottieFile: @escaping () async throws -> DotLottieFile?,
-    @ViewBuilder placeholder: @escaping (() -> Placeholder)) {
+    @ViewBuilder placeholder: @escaping (() -> Placeholder))
+  {
     self.init {
       try await loadDotLottieFile().map(LottieAnimationSource.dotLottieFile)
     } placeholder: {
@@ -103,7 +105,8 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   /// While the animation is loading, the `placeholder` view is shown in place of the `LottieAnimationView`.
   public init(
     _ loadAnimation: @escaping () async throws -> LottieAnimationSource?,
-    @ViewBuilder placeholder: @escaping () -> Placeholder) {
+    @ViewBuilder placeholder: @escaping () -> Placeholder)
+  {
     self.loadAnimation = loadAnimation
     self.placeholder = placeholder
     _animationSource = State(initialValue: nil)
@@ -329,7 +332,8 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   public func valueProvider<ValueProvider: AnyValueProvider & Equatable>(
     _ valueProvider: ValueProvider,
     for keypath: AnimationKeypath)
-    -> Self {
+    -> Self
+  {
     configure { view in
       if (view.valueProviders[keypath] as? ValueProvider) != valueProvider {
         view.setValueProvider(valueProvider, keypath: keypath)
@@ -437,7 +441,8 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
   ///    of an active dotLottie animation will override any value provided via other methods.
   public func dotLottieConfigurationComponents(
     _ dotLottieConfigurationComponents: DotLottieConfigurationComponents)
-    -> Self {
+    -> Self
+  {
     var copy = self
     copy.dotLottieConfigurationComponents = dotLottieConfigurationComponents
     return copy
@@ -536,9 +541,10 @@ public struct LottieView<Placeholder: View>: UIViewConfiguringSwiftUIView {
       animationDidLoad?(animationSource)
     }
 
-    if
+    if 
       let playbackMode,
-      playbackMode != view.currentPlaybackMode {
+      playbackMode != view.currentPlaybackMode
+    {
       view.setPlaybackMode(playbackMode, completion: animationCompletionHandler)
     }
 
@@ -564,10 +570,10 @@ extension View {
   /// The `.overlay` modifier that uses a `ViewBuilder` is available in iOS 15+, this helper function helps us to use the same API in older OSs
   fileprivate func overlay(
     @ViewBuilder content: () -> some View)
-    -> some View {
+    -> some View
+  {
     overlay(content(), alignment: .center)
   }
 }
 
 #endif
-// swiftlint:enable all 

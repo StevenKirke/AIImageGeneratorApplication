@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 extension String {
 
   var cgColor: CGColor {
@@ -41,4 +41,3 @@ extension String {
   }
 
 }
-// swiftlint:enable all 

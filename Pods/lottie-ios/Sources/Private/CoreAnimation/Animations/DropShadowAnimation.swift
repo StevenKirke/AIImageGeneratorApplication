@@ -4,7 +4,7 @@
 import QuartzCore
 
 // MARK: - DropShadowModel
-// swiftlint:disable all
+
 protocol DropShadowModel {
   /// The opacity of the drop shadow, from 0 to 100.
   var _opacity: KeyframeGroup<LottieVector1D>? { get }
@@ -86,7 +86,8 @@ extension CALayer {
   func addDropShadowAnimations(
     for dropShadowModel: DropShadowModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     try addShadowOpacityAnimation(from: dropShadowModel, context: context)
     try addShadowColorAnimation(from: dropShadowModel, context: context)
     try addShadowRadiusAnimation(from: dropShadowModel, context: context)
@@ -157,4 +158,3 @@ extension CALayer {
   }
 
 }
-// swiftlint:enable all 

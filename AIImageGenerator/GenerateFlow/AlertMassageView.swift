@@ -31,7 +31,6 @@ final class AlertMassageView: UIView {
 	private lazy var buttonCancel = createButton("Cancel")
 
 	// MARK: - Initializator
-
 	convenience init(handlerTabButtons: IAlertMassageViewDelegate?) {
 		self.init(frame: CGRect.zero)
 		self.handlerTabButtons = handlerTabButtons

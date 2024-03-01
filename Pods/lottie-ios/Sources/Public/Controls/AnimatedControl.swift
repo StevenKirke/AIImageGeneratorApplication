@@ -10,7 +10,7 @@ import UIKit
 #elseif canImport(AppKit)
 import AppKit
 #endif
-// swiftlint:disable all
+
 // MARK: - AnimatedControl
 
 /// Lottie comes prepacked with a two Animated Controls, `AnimatedSwitch` and
@@ -36,7 +36,8 @@ open class AnimatedControl: LottieControlType {
 
   public init(
     animation: LottieAnimation?,
-    configuration: LottieConfiguration = .shared) {
+    configuration: LottieConfiguration = .shared)
+  {
     animationView = LottieAnimationView(
       animation: animation,
       configuration: configuration)
@@ -242,4 +243,3 @@ open class AnimatedControl: LottieControlType {
     animationView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
   }
 }
-// swiftlint:enable all 

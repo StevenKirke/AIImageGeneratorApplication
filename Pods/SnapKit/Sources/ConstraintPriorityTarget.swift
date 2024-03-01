@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public protocol ConstraintPriorityTarget {
     
     var constraintPriorityTargetValue: Float { get }
@@ -83,4 +83,3 @@ extension UILayoutPriority: ConstraintPriorityTarget {
 
 }
 #endif
-// swiftlint:enable all 

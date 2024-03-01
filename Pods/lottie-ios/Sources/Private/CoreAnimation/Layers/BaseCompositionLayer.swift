@@ -101,7 +101,8 @@ class BaseCompositionLayer: BaseAnimationLayer {
     if
       renderLayerContents,
       let masks = baseLayerModel.masks?.filter({ $0.mode != .none }),
-      !masks.isEmpty {
+      !masks.isEmpty
+    {
       contentsLayer.mask = MaskCompositionLayer(masks: masks)
     }
   }

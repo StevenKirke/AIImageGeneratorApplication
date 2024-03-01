@@ -35,7 +35,7 @@ public final class DefaultFontProvider: AnimationFontProvider {
 // MARK: Equatable
 
 extension DefaultFontProvider: Equatable {
-  public static func == (_: DefaultFontProvider, _: DefaultFontProvider) -> Bool {
+  public static func ==(_: DefaultFontProvider, _: DefaultFontProvider) -> Bool {
     true
   }
 }

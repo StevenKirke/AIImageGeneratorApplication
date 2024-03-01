@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 // MARK: - PointValueProvider
 
 /// A `ValueProvider` that returns a CGPoint Value
@@ -81,4 +81,3 @@ extension PointValueProvider: Equatable {
     lhs.identity == rhs.identity
   }
 }
-// swiftlint:enable all 

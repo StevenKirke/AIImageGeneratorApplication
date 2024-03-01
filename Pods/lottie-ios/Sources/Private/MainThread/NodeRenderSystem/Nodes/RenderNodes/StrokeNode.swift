@@ -36,11 +36,11 @@ final class StrokeNodeProperties: NodePropertyMap, KeypathSearchable {
       dashPhase = NodeProperty(provider: SingleValueProvider(LottieVector1D(0)))
     }
     keypathProperties = [
-      PropertyName.opacity.rawValue: opacity,
-      PropertyName.color.rawValue: color,
-      PropertyName.strokeWidth.rawValue: width,
-      "Dashes": dashPattern,
-      "Dash Phase": dashPhase
+      PropertyName.opacity.rawValue : opacity,
+      PropertyName.color.rawValue : color,
+      PropertyName.strokeWidth.rawValue : width,
+      "Dashes" : dashPattern,
+      "Dash Phase" : dashPhase,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -86,7 +86,7 @@ final class StrokeNode: AnimatorNode, RenderNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   var renderer: NodeOutput & Renderable {
     strokeRender

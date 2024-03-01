@@ -26,7 +26,7 @@
 
 import Foundation
 import ImageIO
-// swiftlint:disable all
+
 #if os(macOS)
 import AppKit
 public typealias KFCrossPlatformImage = NSImage
@@ -104,4 +104,3 @@ extension TVMonogramView: KingfisherCompatible { }
 @available(iOS 14.0, *)
 extension CPListItem: KingfisherCompatible { }
 #endif
-// swiftlint:enable all 

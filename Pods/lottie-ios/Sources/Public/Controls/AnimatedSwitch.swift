@@ -12,7 +12,7 @@ import AppKit
 #endif
 
 // MARK: - AnimatedSwitch
-// swiftlint:disable all
+
 /// An interactive switch with an 'On' and 'Off' state. When the user taps on the
 /// switch the state is toggled and the appropriate animation is played.
 ///
@@ -25,7 +25,8 @@ open class AnimatedSwitch: AnimatedControl {
 
   public override init(
     animation: LottieAnimation?,
-    configuration: LottieConfiguration = .shared) {
+    configuration: LottieConfiguration = .shared)
+  {
     /// Generate a haptic generator if available.
     #if os(iOS)
     hapticGenerator = HapticGenerator()
@@ -148,7 +149,8 @@ open class AnimatedSwitch: AnimatedControl {
   public func setProgressForState(
     fromProgress: AnimationProgressTime,
     toProgress: AnimationProgressTime,
-    forOnState: Bool) {
+    forOnState: Bool)
+  {
     if forOnState {
       onStartProgress = fromProgress
       onEndProgress = toProgress
@@ -267,4 +269,3 @@ class NullHapticGenerator: ImpactGenerator {
   func generateImpact() { }
 }
 #endif
-// swiftlint:enable all 

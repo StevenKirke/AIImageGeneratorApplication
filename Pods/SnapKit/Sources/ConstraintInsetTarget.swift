@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public protocol ConstraintInsetTarget: ConstraintConstantTarget {
 }
 
@@ -70,4 +70,3 @@ extension ConstraintInsetTarget {
     }
     
 }
-// swiftlint:enable all 

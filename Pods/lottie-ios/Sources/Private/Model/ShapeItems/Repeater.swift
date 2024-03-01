@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Withrow on 1/8/19.
 //
-// swiftlint:disable all
+
 final class Repeater: ShapeItem {
 
   // MARK: Lifecycle
@@ -170,4 +170,3 @@ final class Repeater: ShapeItem {
     case scale = "s"
   }
 }
-// swiftlint:enable all 

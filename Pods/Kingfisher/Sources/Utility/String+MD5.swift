@@ -26,7 +26,7 @@
 
 import Foundation
 import CommonCrypto
-// swiftlint:disable all
+
 extension String: KingfisherCompatibleValue { }
 extension KingfisherWrapper where Base == String {
     var md5: String {
@@ -75,7 +75,7 @@ func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
         }
         return bytes
     }
-
+    
     valuePointer.deinitialize(count: 1)
     valuePointer.deallocate()
 
@@ -276,4 +276,3 @@ class MD5: HashProtocol {
         return result
     }
 }
-// swiftlint:enable all 

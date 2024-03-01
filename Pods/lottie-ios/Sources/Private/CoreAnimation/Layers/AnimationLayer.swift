@@ -116,7 +116,8 @@ struct LayerAnimationContext {
   /// Chains an additional time remapping closure onto the `simpleTimeRemapping` closure
   func withSimpleTimeRemapping(
     _ additionalSimpleTimeRemapping: @escaping (_ localTime: AnimationFrameTime) -> AnimationFrameTime)
-    -> LayerAnimationContext {
+    -> LayerAnimationContext
+  {
     var copy = self
     copy.simpleTimeRemapping = { [existingSimpleTimeRemapping = simpleTimeRemapping] time in
       existingSimpleTimeRemapping(additionalSimpleTimeRemapping(time))
@@ -131,7 +132,8 @@ struct LayerAnimationContext {
   func withComplexTimeRemapping(
     required: Bool,
     _ additionalComplexTimeRemapping: @escaping (_ globalTime: AnimationFrameTime) -> AnimationFrameTime)
-    -> LayerAnimationContext {
+    -> LayerAnimationContext
+  {
     var copy = self
     copy.mustUseComplexTimeRemapping = copy.mustUseComplexTimeRemapping || required
     copy.complexTimeRemapping = { [existingComplexTimeRemapping = complexTimeRemapping] time in

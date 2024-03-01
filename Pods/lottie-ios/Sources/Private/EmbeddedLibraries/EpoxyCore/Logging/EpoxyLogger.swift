@@ -1,9 +1,8 @@
 // Created by eric_horacek on 12/9/20.
 // Copyright © 2020 Airbnb Inc. All rights reserved.
-// swiftlint:disable all
+
 /// A shared logger that allows consumers to intercept Epoxy assertions and warning messages to pipe
 /// into their own logging systems.
-
 final class EpoxyLogger {
 
   // MARK: Lifecycle
@@ -27,7 +26,8 @@ final class EpoxyLogger {
       // swiftlint:disable:next no_direct_standard_out_logs
       print(message())
       #endif
-    }) {
+    })
+  {
     _assert = assert
     _assertionFailure = assertionFailure
     _warn = warn
@@ -67,7 +67,8 @@ final class EpoxyLogger {
     _ condition: @autoclosure () -> Bool,
     _ message: @autoclosure () -> String = String(),
     fileID: StaticString = #fileID,
-    line: UInt = #line) {
+    line: UInt = #line)
+  {
     _assert(condition(), message(), fileID, line)
   }
 
@@ -75,7 +76,8 @@ final class EpoxyLogger {
   func assertionFailure(
     _ message: @autoclosure () -> String = String(),
     fileID: StaticString = #fileID,
-    line: UInt = #line) {
+    line: UInt = #line)
+  {
     _assertionFailure(message(), fileID, line)
   }
 
@@ -83,7 +85,8 @@ final class EpoxyLogger {
   func warn(
     _ message: @autoclosure () -> String = String(),
     fileID: StaticString = #fileID,
-    line: UInt = #line) {
+    line: UInt = #line)
+  {
     _warn(message(), fileID, line)
   }
 
@@ -94,4 +97,3 @@ final class EpoxyLogger {
   private let _warn: Warn
 
 }
-// swiftlint:enable all 

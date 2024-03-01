@@ -8,7 +8,7 @@
 import CoreGraphics
 
 // MARK: - LottieColor + Codable
-// swiftlint:disable all
+
 extension LottieColor: Codable {
 
   // MARK: Lifecycle
@@ -99,4 +99,3 @@ extension LottieColor {
     .rgba(CGFloat(r), CGFloat(g), CGFloat(b), CGFloat(a))
   }
 }
-// swiftlint:enable all 

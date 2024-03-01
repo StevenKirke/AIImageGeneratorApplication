@@ -28,7 +28,8 @@ extension StyledView where Self: ContentConfigurableView & BehaviorsConfigurable
     content: Content,
     style: Style,
     behaviors: Behaviors? = nil)
-    -> SwiftUIView<Self, (content: Content, style: Style)> {
+    -> SwiftUIView<Self, (content: Content, style: Style)>
+  {
     SwiftUIView(storage: (content: content, style: style)) {
       let view = Self(style: style)
       view.setContent(content, animated: false)
@@ -55,7 +56,8 @@ extension StyledView where Self: ContentConfigurableView & BehaviorsConfigurable
 extension StyledView
   where
   Self: ContentConfigurableView & BehaviorsConfigurableView,
-  Style == Never {
+  Style == Never
+{
   /// Returns a SwiftUI `View` representing this `EpoxyableView`.
   ///
   /// To perform additional configuration of the `EpoxyableView` instance, call `configure` on the
@@ -75,7 +77,8 @@ extension StyledView
   static func swiftUIView(
     content: Content,
     behaviors: Behaviors? = nil)
-    -> SwiftUIView<Self, Content> {
+    -> SwiftUIView<Self, Content>
+  {
     SwiftUIView(storage: content) {
       let view = Self()
       view.setContent(content, animated: false)
@@ -97,7 +100,8 @@ extension StyledView
 extension StyledView
   where
   Self: ContentConfigurableView & BehaviorsConfigurableView,
-  Content == Never {
+  Content == Never
+{
   /// Returns a SwiftUI `View` representing this `EpoxyableView`.
   ///
   /// To perform additional configuration of the `EpoxyableView` instance, call `configure` on the
@@ -118,7 +122,8 @@ extension StyledView
   static func swiftUIView(
     style: Style,
     behaviors: Behaviors? = nil)
-    -> SwiftUIView<Self, Style> {
+    -> SwiftUIView<Self, Style>
+  {
     SwiftUIView(storage: style) {
       Self(style: style)
     }
@@ -138,7 +143,8 @@ extension StyledView
   where
   Self: ContentConfigurableView & BehaviorsConfigurableView,
   Content == Never,
-  Style == Never {
+  Style == Never
+{
   /// Returns a SwiftUI `View` representing this `EpoxyableView`.
   ///
   /// To perform additional configuration of the `EpoxyableView` instance, call `configure` on the

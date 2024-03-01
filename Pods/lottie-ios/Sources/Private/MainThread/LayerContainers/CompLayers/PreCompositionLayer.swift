@@ -6,7 +6,7 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 final class PreCompositionLayer: CompositionLayer {
 
   // MARK: Lifecycle
@@ -20,7 +20,8 @@ final class PreCompositionLayer: CompositionLayer {
     fontProvider: AnimationFontProvider,
     assetLibrary: AssetLibrary?,
     frameRate: CGFloat,
-    rootAnimationLayer: MainThreadAnimationLayer?) {
+    rootAnimationLayer: MainThreadAnimationLayer?)
+  {
     animationLayers = []
     if let keyframes = precomp.timeRemapping?.keyframes {
       remappingNode = NodeProperty(provider: KeyframeInterpolator(keyframes: keyframes))
@@ -45,7 +46,7 @@ final class PreCompositionLayer: CompositionLayer {
     var imageLayers = [ImageCompositionLayer]()
     var textLayers = [TextCompositionLayer]()
 
-    var mattedLayer: CompositionLayer?
+    var mattedLayer: CompositionLayer? = nil
 
     for layer in layers.reversed() {
       layer.bounds = bounds
@@ -103,7 +104,7 @@ final class PreCompositionLayer: CompositionLayer {
     guard let remappingNode else {
       return super.keypathProperties
     }
-    return ["Time Remap": remappingNode]
+    return ["Time Remap" : remappingNode]
   }
 
   override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
@@ -130,4 +131,3 @@ final class PreCompositionLayer: CompositionLayer {
 
   fileprivate var animationLayers: [CompositionLayer]
 }
-// swiftlint:enable all 

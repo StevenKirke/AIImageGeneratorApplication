@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public protocol LayoutConstraintItem: AnyObject {
 }
 
@@ -91,4 +91,3 @@ extension LayoutConstraintItem {
     
 }
 private var constraintsKey: UInt8 = 0
-// swiftlint:enable all 

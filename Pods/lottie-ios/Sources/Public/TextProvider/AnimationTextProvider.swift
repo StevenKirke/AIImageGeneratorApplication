@@ -6,7 +6,7 @@
 //
 
 // MARK: - AnimationKeypathTextProvider
-// swiftlint:disable all
+
 /// Protocol for providing dynamic text to for a Lottie animation.
 public protocol AnimationKeypathTextProvider: AnyObject {
   /// The text to display for the given `AnimationKeypath`.
@@ -63,12 +63,16 @@ public final class DictionaryTextProvider: AnimationKeypathTextProvider, LegacyA
   public func text(for keypath: AnimationKeypath, sourceText: String) -> String? {
     if let valueForFullKeypath = values[keypath.fullPath] {
       return valueForFullKeypath
-    } else if
+    }
+
+    else if
       let lastKeypathComponent = keypath.keys.last,
       let valueForLastComponent = values[lastKeypathComponent]
     {
       return valueForLastComponent
-    } else {
+    }
+
+    else {
       return sourceText
     }
   }
@@ -118,4 +122,3 @@ extension DefaultTextProvider: Equatable {
     true
   }
 }
-// swiftlint:enable all 

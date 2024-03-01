@@ -28,7 +28,7 @@ import Foundation
 //
 //    The distance that the vertices and control points are moved are relative to the
 //    shape's vertex distances and the roundedness set in the animation.
-// swiftlint:disable all
+
 extension CompoundBezierPath {
   // Round corners of a compound bezier
   func roundCorners(radius: CGFloat) -> CompoundBezierPath {
@@ -156,4 +156,3 @@ extension BezierPath {
     return newPath
   }
 }
-// swiftlint:enable all 

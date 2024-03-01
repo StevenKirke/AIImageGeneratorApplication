@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 extension Keyframe where T: AnyInterpolatable {
   func interpolate(to: Keyframe<T>, progress: CGFloat) -> T {
     value._interpolate(
@@ -44,4 +44,3 @@ extension Keyframe {
     return progress
   }
 }
-// swiftlint:enable all 

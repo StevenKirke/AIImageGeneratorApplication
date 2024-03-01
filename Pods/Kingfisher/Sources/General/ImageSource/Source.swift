@@ -23,7 +23,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-// swiftlint:disable all
+
 import Foundation
 
 /// Represents an image setting source for Kingfisher methods.
@@ -34,7 +34,6 @@ import Foundation
 ///            value defines detail information like image URL and cache key.
 /// - provider: The target image should be provided in a data format. Normally, it can be an image
 ///             from local storage or in any other encoding format (like Base64).
-
 public enum Source {
 
     /// Represents the source task identifier when setting an image to a view with extension methods.
@@ -54,7 +53,7 @@ public enum Source {
     /// The target image should be got from network remotely. The associated `Resource`
     /// value defines detail information like image URL and cache key.
     case network(Resource)
-
+    
     /// The target image should be provided in a data format. Normally, it can be an image
     /// from local storage or in any other encoding format (like Base64).
     case provider(ImageDataProvider)
@@ -115,4 +114,3 @@ extension Source {
         return resource
     }
 }
-// swiftlint:enable all 

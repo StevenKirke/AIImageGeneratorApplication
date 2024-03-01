@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 extension LottieAnimation {
 
   /// A closure for an Animation download. The closure is passed `nil` if there was an error.
@@ -43,7 +43,8 @@ extension LottieAnimation {
     bundle: Bundle = Bundle.main,
     subdirectory: String? = nil,
     animationCache: AnimationCacheProvider? = LottieAnimationCache.shared)
-    -> LottieAnimation? {
+    -> LottieAnimation?
+  {
     /// Create a cache key for the animation.
     let cacheKey = bundle.bundlePath + (subdirectory ?? "") + "/" + name
 
@@ -77,7 +78,8 @@ extension LottieAnimation {
   public static func filepath(
     _ filepath: String,
     animationCache: AnimationCacheProvider? = LottieAnimationCache.shared)
-    -> LottieAnimation? {
+    -> LottieAnimation?
+  {
     /// Check cache for animation
     if
       let animationCache,
@@ -110,7 +112,8 @@ extension LottieAnimation {
     _ name: String,
     bundle: Bundle = Bundle.main,
     animationCache: AnimationCacheProvider? = LottieAnimationCache.shared)
-    -> LottieAnimation? {
+    -> LottieAnimation?
+  {
     /// Create a cache key for the animation.
     let cacheKey = bundle.bundlePath + "/" + name
 
@@ -149,7 +152,8 @@ extension LottieAnimation {
   public static func from(
     data: Data,
     strategy: DecodingStrategy = LottieConfiguration.shared.decodingStrategy)
-    throws -> LottieAnimation {
+    throws -> LottieAnimation
+  {
     switch strategy {
     case .legacyCodable:
       return try JSONDecoder().decode(LottieAnimation.self, from: data)
@@ -172,7 +176,8 @@ extension LottieAnimation {
     url: URL,
     session: URLSession = .shared,
     animationCache: AnimationCacheProvider? = LottieAnimationCache.shared)
-    async -> LottieAnimation? {
+    async -> LottieAnimation?
+  {
     await withCheckedContinuation { continuation in
       LottieAnimation.loadedFrom(
         url: url,
@@ -194,7 +199,8 @@ extension LottieAnimation {
     url: URL,
     session: URLSession = .shared,
     closure: @escaping LottieAnimation.DownloadClosure,
-    animationCache: AnimationCacheProvider? = LottieAnimationCache.shared) {
+    animationCache: AnimationCacheProvider? = LottieAnimationCache.shared)
+  {
     if let animationCache, let animation = animationCache.animation(forKey: url.absoluteString) {
       closure(animation)
     } else {
@@ -273,7 +279,8 @@ extension LottieAnimation {
   public func progressTime(
     forFrame frameTime: AnimationFrameTime,
     clamped: Bool = true)
-    -> AnimationProgressTime {
+    -> AnimationProgressTime
+  {
     let progressTime = ((frameTime - startFrame) / (endFrame - startFrame))
 
     if clamped {
@@ -312,4 +319,3 @@ extension LottieAnimation {
 ///
 // swiftlint:disable:next no_unchecked_sendable
 extension Foundation.Bundle: @unchecked Sendable { }
-// swiftlint:enable all 

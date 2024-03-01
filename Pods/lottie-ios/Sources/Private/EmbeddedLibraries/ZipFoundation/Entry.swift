@@ -25,7 +25,8 @@ struct Entry: Equatable {
     centralDirectoryStructure: CentralDirectoryStructure,
     localFileHeader: LocalFileHeader,
     dataDescriptor: DefaultDataDescriptor? = nil,
-    zip64DataDescriptor: ZIP64DataDescriptor? = nil) {
+    zip64DataDescriptor: ZIP64DataDescriptor? = nil)
+  {
     // We currently don't support encrypted archives
     guard !centralDirectoryStructure.isEncrypted else { return nil }
     self.centralDirectoryStructure = centralDirectoryStructure
@@ -258,7 +259,8 @@ extension Entry.CentralDirectoryStructure {
     localFileHeader: Entry.LocalFileHeader,
     fileAttributes: UInt32,
     relativeOffset: UInt32,
-    extraField: (length: UInt16, data: Data)) {
+    extraField: (length: UInt16, data: Data))
+  {
     versionMadeBy = UInt16(789)
     versionNeededToExtract = localFileHeader.versionNeededToExtract
     generalPurposeBitFlag = localFileHeader.generalPurposeBitFlag
@@ -290,7 +292,8 @@ extension Entry.CentralDirectoryStructure {
   init(
     centralDirectoryStructure: Entry.CentralDirectoryStructure,
     zip64ExtendedInformation: Entry.ZIP64ExtendedInformation?,
-    relativeOffset: UInt32) {
+    relativeOffset: UInt32)
+  {
     if let existingInfo = zip64ExtendedInformation {
       extraFieldData = existingInfo.data
       versionNeededToExtract = max(

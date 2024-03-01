@@ -7,7 +7,7 @@
 //
 //  See https://github.com/weichsel/ZIPFoundation/blob/master/LICENSE for license information.
 //
-// swiftlint:disable all
+
 import Foundation
 
 extension FileManager {
@@ -37,7 +37,8 @@ extension FileManager {
     for externalFileAttributes: UInt32,
     osType: Entry.OSType,
     entryType: Entry.EntryType)
-    -> UInt16 {
+    -> UInt16
+  {
     switch osType {
     case .unix, .osx:
       let permissions = mode_t(externalFileAttributes >> 16) & ~S_IFMT
@@ -139,7 +140,8 @@ extension FileManager {
     shouldKeepParent: Bool = true,
     compressionMethod: CompressionMethod = .none,
     progress: Progress? = nil)
-    throws {
+    throws
+  {
     let fileManager = FileManager()
     guard fileManager.itemExists(at: sourceURL) else {
       throw CocoaError(.fileReadNoSuchFile, userInfo: [NSFilePathErrorKey: sourceURL.path])
@@ -211,7 +213,8 @@ extension FileManager {
     skipCRC32: Bool = false,
     progress: Progress? = nil,
     preferredEncoding: String.Encoding? = nil)
-    throws {
+    throws
+  {
     let fileManager = FileManager()
     guard fileManager.itemExists(at: sourceURL) else {
       throw CocoaError(.fileReadNoSuchFile, userInfo: [NSFilePathErrorKey: sourceURL.path])
@@ -363,4 +366,3 @@ extension URL {
     return standardized.absoluteString.hasPrefix(parentDirectoryURL.absoluteString)
   }
 }
-// swiftlint:enable all 

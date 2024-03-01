@@ -169,7 +169,7 @@ public final class LottieAnimation: Codable, Sendable, DictionaryInitializable {
       "reduced motion",
       "reduced_motion",
       "reduced-motion",
-      "reducedmotion"
+      "reducedmotion",
     ])
 
     return markers?.first(where: { marker in

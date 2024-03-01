@@ -4,7 +4,7 @@
 import Foundation
 
 // MARK: - LottiePlaybackMode
-// swiftlint:disable all
+
 /// Configuration for how a Lottie animation should be played
 public enum LottiePlaybackMode: Hashable {
 
@@ -156,7 +156,8 @@ extension LottiePlaybackMode {
     _ toMarker: String,
     playEndMarkerFrame: Bool = true,
     loopMode: LottieLoopMode)
-    -> LottiePlaybackMode {
+    -> LottiePlaybackMode
+  {
     .playing(.fromMarker(nil, toMarker: toMarker, playEndMarkerFrame: playEndMarkerFrame, loopMode: loopMode))
   }
 }
@@ -191,7 +192,8 @@ extension LottiePlaybackMode.PlaybackMode {
     _ toMarker: String,
     playEndMarkerFrame: Bool = true,
     loopMode: LottieLoopMode)
-    -> Self {
+    -> Self
+  {
     .fromMarker(nil, toMarker: toMarker, playEndMarkerFrame: playEndMarkerFrame, loopMode: loopMode)
   }
 }
@@ -233,7 +235,7 @@ extension LottiePlaybackMode {
     case .marker(let marker, _):
       return .playing(.marker(marker, loopMode: updatedLoopMode))
 
-    case .pause, .paused, .progress, .time, .frame, .markers:
+    case .pause, .paused, .progress(_), .time(_), .frame(_), .markers:
       return self
     }
   }
@@ -256,4 +258,3 @@ extension LottiePlaybackMode.PlaybackMode {
     }
   }
 }
-// swiftlint:enable all 

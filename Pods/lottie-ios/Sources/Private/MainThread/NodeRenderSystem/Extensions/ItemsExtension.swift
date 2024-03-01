@@ -6,10 +6,10 @@
 //
 
 // MARK: - NodeTree
-// swiftlint:disable all
+
 final class NodeTree {
-  var rootNode: AnimatorNode?
-  var transform: ShapeTransform?
+  var rootNode: AnimatorNode? = nil
+  var transform: ShapeTransform? = nil
   var renderContainers: [ShapeContainerLayer] = []
   var paths: [PathOutputNode] = []
   var childrenNodes: [AnimatorNode] = []
@@ -103,4 +103,3 @@ extension [ShapeItem] {
     return nodeTree
   }
 }
-// swiftlint:enable all 

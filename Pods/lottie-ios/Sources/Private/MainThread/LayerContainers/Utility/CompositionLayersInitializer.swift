@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 extension [LayerModel] {
 
   func initializeCompositionLayers(
@@ -18,9 +18,10 @@ extension [LayerModel] {
     fontProvider: AnimationFontProvider,
     frameRate: CGFloat,
     rootAnimationLayer: MainThreadAnimationLayer?)
-    -> [CompositionLayer] {
+    -> [CompositionLayer]
+  {
     var compositionLayers = [CompositionLayer]()
-    var layerMap = [Int: CompositionLayer]()
+    var layerMap = [Int : CompositionLayer]()
 
     /// Organize the assets into a dictionary of [ID : ImageAsset]
     var childLayers = [LayerModel]()
@@ -96,4 +97,3 @@ extension [LayerModel] {
   }
 
 }
-// swiftlint:enable all 

@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Withrow on 1/7/19.
 //
-// swiftlint:disable all
+
 /// The animatable transform for a layer. Controls position, rotation, scale, and opacity.
 final class Transform: Codable, DictionaryInitializable {
 
@@ -176,7 +176,8 @@ final class Transform: Codable, DictionaryInitializable {
     rotationY: KeyframeGroup<LottieVector1D>,
     rotationZ: KeyframeGroup<LottieVector1D>,
     opacity: KeyframeGroup<LottieVector1D>,
-    rotation: KeyframeGroup<LottieVector1D>?) {
+    rotation: KeyframeGroup<LottieVector1D>?)
+  {
     self.anchorPoint = anchorPoint
     self.position = position
     self.positionX = positionX
@@ -257,4 +258,3 @@ final class Transform: Codable, DictionaryInitializable {
   /// Here for the CodingKeys.rotation = "r". `r` and `rz` are the same.
   private let rotation: KeyframeGroup<LottieVector1D>?
 }
-// swiftlint:enable all 

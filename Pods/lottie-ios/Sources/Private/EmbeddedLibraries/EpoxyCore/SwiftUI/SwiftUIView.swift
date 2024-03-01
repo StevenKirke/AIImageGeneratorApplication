@@ -14,7 +14,8 @@ import SwiftUI
 /// across state changes to prevent redundant view updates.
 @available(iOS 13.0, tvOS 13.0, macOS 10.15, *)
 struct SwiftUIView<Content: ViewType, Storage>: MeasuringViewRepresentable,
-  UIViewConfiguringSwiftUIView {
+  UIViewConfiguringSwiftUIView
+{
 
   // MARK: Lifecycle
 

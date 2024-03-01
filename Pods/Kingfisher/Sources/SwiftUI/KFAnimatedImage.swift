@@ -27,7 +27,7 @@
 #if canImport(SwiftUI) && canImport(Combine) && !os(watchOS)
 import SwiftUI
 import Combine
-// swiftlint:disable all
+
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct KFAnimatedImage: KFImageProtocol {
     public typealias HoldingView = KFAnimatedImageViewRepresenter
@@ -35,7 +35,7 @@ public struct KFAnimatedImage: KFImageProtocol {
     public init(context: KFImage.Context<HoldingView>) {
         self.context = context
     }
-
+    
     /// Configures current rendering view with a `block`. This block will be applied when the under-hood
     /// `AnimatedImageView` is created in `UIViewRepresentable.makeUIView(context:)`
     ///
@@ -62,15 +62,15 @@ public struct KFAnimatedImageViewRepresenter: KFCrossPlatformViewRepresentable, 
     public static func created(from image: KFCrossPlatformImage?, context: KFImage.Context<Self>) -> KFAnimatedImageViewRepresenter {
         KFAnimatedImageViewRepresenter(image: image, context: context)
     }
-
+    
     var image: KFCrossPlatformImage?
     let context: KFImage.Context<KFAnimatedImageViewRepresenter>
-
+    
     #if os(macOS)
     public func makeNSView(context: Context) -> AnimatedImageView {
         return makeImageView()
     }
-
+    
     public func updateNSView(_ nsView: AnimatedImageView, context: Context) {
         updateImageView(nsView)
     }
@@ -78,25 +78,25 @@ public struct KFAnimatedImageViewRepresenter: KFCrossPlatformViewRepresentable, 
     public func makeUIView(context: Context) -> AnimatedImageView {
         return makeImageView()
     }
-
+    
     public func updateUIView(_ uiView: AnimatedImageView, context: Context) {
         updateImageView(uiView)
     }
     #endif
-
+    
     private func makeImageView() -> AnimatedImageView {
         let view = AnimatedImageView()
-
+        
         self.context.renderConfigurations.forEach { $0(view) }
-
+        
         view.image = image
-
+        
         // Allow SwiftUI scale (fit/fill) working fine.
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return view
     }
-
+    
     private func updateImageView(_ imageView: AnimatedImageView) {
         imageView.image = image
     }
@@ -120,4 +120,3 @@ struct KFAnimatedImage_Previews: PreviewProvider {
 }
 #endif
 #endif
-// swiftlint:enable all 

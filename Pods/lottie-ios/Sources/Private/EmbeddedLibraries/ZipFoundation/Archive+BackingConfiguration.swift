@@ -24,7 +24,8 @@ extension Archive {
       file: FILEPointer,
       endOfCentralDirectoryRecord: EndOfCentralDirectoryRecord,
       zip64EndOfCentralDirectory: ZIP64EndOfCentralDirectory? = nil,
-      memoryFile: MemoryFile? = nil) {
+      memoryFile: MemoryFile? = nil)
+    {
       self.file = file
       self.endOfCentralDirectoryRecord = endOfCentralDirectoryRecord
       self.zip64EndOfCentralDirectory = zip64EndOfCentralDirectory
@@ -35,7 +36,8 @@ extension Archive {
     init(
       file: FILEPointer,
       endOfCentralDirectoryRecord: EndOfCentralDirectoryRecord,
-      zip64EndOfCentralDirectory: ZIP64EndOfCentralDirectory?) {
+      zip64EndOfCentralDirectory: ZIP64EndOfCentralDirectory?)
+    {
       self.file = file
       self.endOfCentralDirectoryRecord = endOfCentralDirectoryRecord
       self.zip64EndOfCentralDirectory = zip64EndOfCentralDirectory
@@ -44,7 +46,8 @@ extension Archive {
   }
 
   static func makeBackingConfiguration(for url: URL, mode: AccessMode)
-    -> BackingConfiguration? {
+    -> BackingConfiguration?
+  {
     let fileManager = FileManager()
     switch mode {
     case .read:
@@ -91,7 +94,8 @@ extension Archive {
 
   #if swift(>=5.0)
   static func makeBackingConfiguration(for data: Data, mode: AccessMode)
-    -> BackingConfiguration? {
+    -> BackingConfiguration?
+  {
     let posixMode: String
     switch mode {
     case .read: posixMode = "rb"

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 // MARK: - DotLottieFile
 
 /// Detailed .lottie file structure
@@ -152,4 +152,3 @@ extension String {
 // to make it truly thread-safe.
 // swiftlint:disable:next no_unchecked_sendable
 extension DotLottieFile: @unchecked Sendable { }
-// swiftlint:enable all 

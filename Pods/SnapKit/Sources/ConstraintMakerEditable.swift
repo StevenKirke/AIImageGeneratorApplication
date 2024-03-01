@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
 
     @discardableResult
@@ -62,4 +62,3 @@ public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
     }
     #endif
 }
-// swiftlint:enable all 

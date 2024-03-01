@@ -31,7 +31,7 @@ import AppKit
 #else
 import UIKit
 #endif
-// swiftlint:disable all
+
 public protocol KFOptionSetter {
     var options: KingfisherParsedOptionsInfo { get nonmutating set }
 
@@ -54,7 +54,7 @@ extension KFOptionSetter {
     ///                    will be reset.
     /// - Returns: A `Self` value with changes applied.
     public func onProgress(_ block: DownloadProgressBlock?) -> Self {
-        onProgressDelegate.delegate(on: delegateObserver) { (_, result) in
+        onProgressDelegate.delegate(on: delegateObserver) { (observer, result) in
             block?(result.0, result.1)
         }
         return self
@@ -65,7 +65,7 @@ extension KFOptionSetter {
     ///                    is `nil`, the callback will be reset.
     /// - Returns: A `KF.Builder` with changes applied.
     public func onSuccess(_ block: ((RetrieveImageResult) -> Void)?) -> Self {
-        onSuccessDelegate.delegate(on: delegateObserver) { (_, result) in
+        onSuccessDelegate.delegate(on: delegateObserver) { (observer, result) in
             block?(result)
         }
         return self
@@ -76,7 +76,7 @@ extension KFOptionSetter {
     ///                    is `nil`, the callback will be reset.
     /// - Returns: A `KF.Builder` with changes applied.
     public func onFailure(_ block: ((KingfisherError) -> Void)?) -> Self {
-        onFailureDelegate.delegate(on: delegateObserver) { (_, error) in
+        onFailureDelegate.delegate(on: delegateObserver) { (observer, error) in
             block?(error)
         }
         return self
@@ -484,7 +484,8 @@ extension KFOptionSetter {
         targetSize: CGSize? = nil,
         roundingCorners corners: RectCorner = .all,
         backgroundColor: KFCrossPlatformColor? = nil
-    ) -> Self {
+    ) -> Self
+    {
         let processor = RoundCornerImageProcessor(
             radius: radius,
             targetSize: targetSize,
@@ -564,6 +565,7 @@ extension KFOptionSetter {
             return appendProcessor(processor)
         }
     }
+
 
     /// Appends a `ResizingImageProcessor` to current processors.
     ///
@@ -648,6 +650,7 @@ extension KFOptionSetter {
     }
 }
 
+
 // MARK: - Cache Expiration
 extension KFOptionSetter {
 
@@ -706,4 +709,3 @@ extension KFOptionSetter {
         return self
     }
 }
-// swiftlint:enable all 

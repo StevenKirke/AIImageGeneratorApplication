@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 /// A value provider that produces an array of values from an array of Keyframe Interpolators
 final class GroupInterpolator<ValueType>: ValueProvider where ValueType: Interpolatable {
 
@@ -37,4 +37,3 @@ final class GroupInterpolator<ValueType>: ValueProvider where ValueType: Interpo
     return updated != nil
   }
 }
-// swiftlint:enable all 

@@ -1,6 +1,6 @@
 // Created by Cal Stephens on 12/17/21.
 // Copyright © 2021 Airbnb Inc. All rights reserved.
-// swiftlint:disable all
+
 import QuartzCore
 
 // MARK: - TransformModel
@@ -8,7 +8,6 @@ import QuartzCore
 /// This protocol mirrors the interface of `Transform`,
 /// but is also implemented by `ShapeTransform` to allow
 /// both transform types to share the same animation implementation.
-
 protocol TransformModel {
   /// The anchor point of the transform.
   var anchorPoint: KeyframeGroup<LottieVector3D> { get }
@@ -75,7 +74,8 @@ extension CALayer {
   func addTransformAnimations(
     for transformModel: TransformModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     if
       // CALayers don't support animating skew with its own set of keyframes.
       // If the transform includes a skew, we have to combine all of the transform
@@ -88,7 +88,9 @@ extension CALayer {
       || transformModel.hasNegativeXScaleValues
     {
       try addCombinedTransformAnimation(for: transformModel, context: context)
-    } else {
+    }
+
+    else {
       try addPositionAnimations(from: transformModel, context: context)
       try addAnchorPointAnimation(from: transformModel, context: context)
       try addScaleAnimations(from: transformModel, context: context)
@@ -102,7 +104,8 @@ extension CALayer {
   private func addPositionAnimations(
     from transformModel: TransformModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     if let positionKeyframes = transformModel._position {
       try addAnimation(
         for: .position,
@@ -135,7 +138,8 @@ extension CALayer {
   private func addAnchorPointAnimation(
     from transformModel: TransformModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .anchorPoint,
       keyframes: transformModel.anchorPoint,
@@ -159,7 +163,8 @@ extension CALayer {
   private func addScaleAnimations(
     from transformModel: TransformModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .scaleX,
       keyframes: transformModel.scale,
@@ -186,7 +191,8 @@ extension CALayer {
   private func addRotationAnimations(
     from transformModel: TransformModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     let containsXRotationValues = transformModel.rotationX.keyframes.contains(where: { $0.value.cgFloatValue != 0 })
     let containsYRotationValues = transformModel.rotationY.keyframes.contains(where: { $0.value.cgFloatValue != 0 })
 
@@ -245,7 +251,8 @@ extension CALayer {
   private func addCombinedTransformAnimation(
     for transformModel: TransformModel,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     let requiresManualInterpolation =
       // Core Animation doesn't animate skew changes properly. If the skew value
       // changes over the course of the animation then we have to manually
@@ -334,4 +341,3 @@ extension TransformModel {
     scale.keyframes.contains(where: { $0.value.x < 0 })
   }
 }
-// swiftlint:enable all 

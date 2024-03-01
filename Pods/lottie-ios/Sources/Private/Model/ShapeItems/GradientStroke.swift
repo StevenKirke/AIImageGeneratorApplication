@@ -6,7 +6,7 @@
 //
 
 // MARK: - LineCap
-// swiftlint:disable all
+
 enum LineCap: Int, Codable, Sendable {
   case none
   case butt
@@ -114,7 +114,8 @@ final class GradientStroke: ShapeItem {
     lineCap: LineCap,
     lineJoin: LineJoin,
     miterLimit: Double,
-    dashPattern: [DashElement]?) {
+    dashPattern: [DashElement]?)
+  {
     self.opacity = opacity
     self.startPoint = startPoint
     self.endPoint = endPoint
@@ -233,4 +234,3 @@ final class GradientStroke: ShapeItem {
     case colors = "k"
   }
 }
-// swiftlint:enable all 

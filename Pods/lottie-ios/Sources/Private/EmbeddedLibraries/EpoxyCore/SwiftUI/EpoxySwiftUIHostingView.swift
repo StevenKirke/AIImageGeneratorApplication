@@ -4,7 +4,7 @@
 #if canImport(Combine) && canImport(SwiftUI) && !os(macOS)
 import Combine
 import SwiftUI
-// swiftlint:disable all
+
 // MARK: - SwiftUIHostingViewReuseBehavior
 
 /// The reuse behavior of an `EpoxySwiftUIHostingView`.
@@ -25,7 +25,8 @@ enum SwiftUIHostingViewReuseBehavior: Hashable {
 extension CallbackContextEpoxyModeled
   where
   Self: WillDisplayProviding & DidEndDisplayingProviding,
-  CallbackContext: ViewProviding & AnimatedProviding {
+  CallbackContext: ViewProviding & AnimatedProviding
+{
   /// Updates the appearance state of a `EpoxySwiftUIHostingView` in coordination with the
   /// `willDisplay` and `didEndDisplaying` callbacks of this `EpoxyableModel`.
   ///
@@ -33,7 +34,8 @@ extension CallbackContextEpoxyModeled
   ///   `EpoxyableModel` convenience vendor method, e.g. `SwiftUI.View.itemModel(…)`.
   func linkDisplayLifecycle<RootView: View>() -> Self
     where
-    CallbackContext.View == EpoxySwiftUIHostingView<RootView> {
+    CallbackContext.View == EpoxySwiftUIHostingView<RootView>
+  {
     willDisplay { context in
       context.view.handleWillDisplay(animated: context.animated)
     }
@@ -96,6 +98,10 @@ final class EpoxySwiftUIHostingView<RootView: View>: UIView, EpoxyableView {
   // MARK: Internal
 
   struct Style: Hashable {
+    init(reuseBehavior: SwiftUIHostingViewReuseBehavior, initialContent: Content) {
+      self.reuseBehavior = reuseBehavior
+      self.initialContent = initialContent
+    }
 
     var reuseBehavior: SwiftUIHostingViewReuseBehavior
     var initialContent: Content
@@ -110,6 +116,10 @@ final class EpoxySwiftUIHostingView<RootView: View>: UIView, EpoxyableView {
   }
 
   struct Content: Equatable {
+    init(rootView: RootView, dataID: AnyHashable?) {
+      self.rootView = rootView
+      self.dataID = dataID
+    }
 
     var rootView: RootView
     var dataID: AnyHashable?
@@ -295,7 +305,7 @@ final class EpoxySwiftUIHostingView<RootView: View>: UIView, EpoxyableView {
       viewController.view.leadingAnchor.constraint(equalTo: leadingAnchor),
       viewController.view.topAnchor.constraint(equalTo: topAnchor),
       viewController.view.trailingAnchor.constraint(equalTo: trailingAnchor),
-      viewController.view.bottomAnchor.constraint(equalTo: bottomAnchor)
+      viewController.view.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
 
     viewController.didMove(toParent: parent)
@@ -377,4 +387,3 @@ struct EpoxyHostingWrapper<Content: View>: View {
   }
 }
 #endif
-// swiftlint:enable all 

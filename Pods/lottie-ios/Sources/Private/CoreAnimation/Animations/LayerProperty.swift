@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - LayerProperty
 
 /// A strongly typed value that can be used as the `keyPath` of a `CAAnimation`
@@ -39,7 +39,8 @@ extension LayerProperty where ValueRepresentation: Equatable {
   init(
     caLayerKeypath: String,
     defaultValue: ValueRepresentation?,
-    customizableProperty: CustomizableProperty<ValueRepresentation>?) {
+    customizableProperty: CustomizableProperty<ValueRepresentation>?)
+  {
     self.init(
       caLayerKeypath: caLayerKeypath,
       isDefaultValue: { $0 == defaultValue },
@@ -398,4 +399,3 @@ extension CustomizableProperty {
       })
   }
 }
-// swiftlint:enable all 

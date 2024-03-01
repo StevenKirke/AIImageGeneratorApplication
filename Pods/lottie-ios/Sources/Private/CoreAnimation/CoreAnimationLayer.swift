@@ -4,9 +4,8 @@
 import QuartzCore
 
 // MARK: - CoreAnimationLayer
-// swiftlint:disable all
-/// The root `CALayer` of the Core Animation rendering engine
 
+/// The root `CALayer` of the Core Animation rendering engine
 final class CoreAnimationLayer: BaseAnimationLayer {
 
   // MARK: Lifecycle
@@ -22,7 +21,8 @@ final class CoreAnimationLayer: BaseAnimationLayer {
     maskAnimationToBounds: Bool,
     compatibilityTrackerMode: CompatibilityTracker.Mode,
     logger: LottieLogger)
-    throws {
+    throws
+  {
     self.animation = animation
     self.imageProvider = imageProvider
     self.textProvider = textProvider
@@ -130,7 +130,8 @@ final class CoreAnimationLayer: BaseAnimationLayer {
   ///     will only be set up a single time.
   func playAnimation(
     configuration: AnimationConfiguration,
-    playbackState: PlaybackState = .playing) {
+    playbackState: PlaybackState = .playing)
+  {
     pendingAnimationConfiguration = (
       animationConfiguration: configuration,
       playbackState: playbackState)
@@ -399,7 +400,9 @@ extension CoreAnimationLayer: RootAnimationLayer {
         currentAnimationConfiguration == requiredAnimationConfiguration
       {
         currentPlaybackState = .paused(frame: newValue)
-      } else {
+      }
+
+      else {
         playAnimation(
           configuration: requiredAnimationConfiguration,
           playbackState: .paused(frame: newValue))
@@ -566,9 +569,10 @@ extension CALayer {
     var numberOfSublayersWithTimeRemapping = 0
 
     for sublayer in sublayers ?? [] {
-      if
+      if 
         let preCompLayer = sublayer as? PreCompLayer,
-        preCompLayer.preCompLayer.timeRemapping != nil {
+        preCompLayer.preCompLayer.timeRemapping != nil
+      {
         numberOfSublayersWithTimeRemapping += preCompLayer.allSublayers.count
       } else {
         numberOfSublayersWithTimeRemapping += sublayer.numberOfLayersWithTimeRemapping
@@ -578,4 +582,3 @@ extension CALayer {
     return numberOfSublayersWithTimeRemapping
   }
 }
-// swiftlint:enable all 

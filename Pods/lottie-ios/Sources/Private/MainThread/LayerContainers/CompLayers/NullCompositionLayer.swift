@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 final class NullCompositionLayer: CompositionLayer {
 
   init(layer: LayerModel) {
@@ -26,4 +26,3 @@ final class NullCompositionLayer: CompositionLayer {
   }
 
 }
-// swiftlint:enable all 

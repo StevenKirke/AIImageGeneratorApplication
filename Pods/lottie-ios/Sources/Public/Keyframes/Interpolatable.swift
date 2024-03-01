@@ -4,7 +4,7 @@
 import CoreGraphics
 
 // MARK: - Interpolatable
-// swiftlint:disable all
+
 /// A type that can be interpolated between two values
 public protocol Interpolatable: AnyInterpolatable {
   /// Interpolates the `self` to the given number by `amount`.
@@ -71,7 +71,8 @@ extension Interpolatable {
     amount: CGFloat,
     spatialOutTangent _: CGPoint?,
     spatialInTangent _: CGPoint?)
-    -> Self {
+    -> Self
+  {
     interpolate(to: to, amount: amount)
   }
 }
@@ -92,7 +93,8 @@ extension SpatialInterpolatable {
     amount: CGFloat,
     spatialOutTangent: CGPoint?,
     spatialInTangent: CGPoint?)
-    -> Self {
+    -> Self
+  {
     interpolate(
       to: to,
       amount: amount,
@@ -149,7 +151,8 @@ extension CGPoint: SpatialInterpolatable {
     amount: CGFloat,
     spatialOutTangent: CGPoint?,
     spatialInTangent: CGPoint?)
-    -> CGPoint {
+    -> CGPoint
+  {
     guard
       let outTan = spatialOutTangent,
       let inTan = spatialInTangent
@@ -193,7 +196,8 @@ extension LottieVector2D: SpatialInterpolatable {
     amount: CGFloat,
     spatialOutTangent: CGPoint?,
     spatialInTangent: CGPoint?)
-    -> LottieVector2D {
+    -> LottieVector2D
+  {
     pointValue.interpolate(
       to: to.pointValue,
       amount: amount,
@@ -211,7 +215,8 @@ extension LottieVector3D: SpatialInterpolatable {
     amount: CGFloat,
     spatialOutTangent: CGPoint?,
     spatialInTangent: CGPoint?)
-    -> LottieVector3D {
+    -> LottieVector3D
+  {
     if spatialInTangent != nil || spatialOutTangent != nil {
       // TODO Support third dimension spatial interpolation
       let point = pointValue.interpolate(
@@ -272,4 +277,3 @@ struct Hold<T>: Interpolatable {
     }
   }
 }
-// swiftlint:enable all 

@@ -9,7 +9,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 extension Archive {
   /// Read a ZIP `Entry` from the receiver and write it to `url`.
   ///
@@ -27,7 +27,8 @@ extension Archive {
     bufferSize: Int = defaultReadChunkSize,
     skipCRC32: Bool = false,
     progress: Progress? = nil)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     guard bufferSize > 0 else {
       throw ArchiveError.invalidBufferSize
     }
@@ -98,7 +99,8 @@ extension Archive {
     skipCRC32: Bool = false,
     progress: Progress? = nil,
     consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     guard bufferSize > 0 else {
       throw ArchiveError.invalidBufferSize
     }
@@ -140,4 +142,3 @@ extension Archive {
     return checksum
   }
 }
-// swiftlint:enable all 

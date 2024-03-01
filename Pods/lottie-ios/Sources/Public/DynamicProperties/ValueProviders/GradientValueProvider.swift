@@ -9,7 +9,7 @@ import CoreGraphics
 import Foundation
 
 // MARK: - GradientValueProvider
-// swiftlint:disable all
+
 /// A `ValueProvider` that returns a Gradient Color Value.
 public final class GradientValueProvider: ValueProvider {
 
@@ -18,7 +18,8 @@ public final class GradientValueProvider: ValueProvider {
   /// Initializes with a block provider.
   public init(
     block: @escaping ColorsValueBlock,
-    locations: ColorLocationsBlock? = nil) {
+    locations: ColorLocationsBlock? = nil)
+  {
     self.block = block
     locationsBlock = locations
     colors = []
@@ -29,7 +30,8 @@ public final class GradientValueProvider: ValueProvider {
   /// Initializes with an array of colors.
   public init(
     _ colors: [LottieColor],
-    locations: [Double] = []) {
+    locations: [Double] = [])
+  {
     self.colors = colors
     self.locations = locations
     identity = [AnyHashable(colors), AnyHashable(locations)]
@@ -136,4 +138,3 @@ extension GradientValueProvider: Equatable {
     lhs.identity == rhs.identity
   }
 }
-// swiftlint:enable all 

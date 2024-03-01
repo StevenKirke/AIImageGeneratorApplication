@@ -72,7 +72,8 @@ public struct LottieButton: UIViewConfiguringSwiftUIView {
     fromProgress: AnimationProgressTime,
     toProgress: AnimationProgressTime,
     on event: LottieControlEvent)
-    -> Self {
+    -> Self
+  {
     configure { view in
       // `setPlayRange` just modifies a dictionary,
       // so we can just call it on every state update without diffing
@@ -86,7 +87,8 @@ public struct LottieButton: UIViewConfiguringSwiftUIView {
     fromMarker: String,
     toMarker: String,
     on event: LottieControlEvent)
-    -> Self {
+    -> Self
+  {
     configure { view in
       // `setPlayRange` just modifies a dictionary,
       // so we can just call it on every state update without diffing
@@ -99,7 +101,8 @@ public struct LottieButton: UIViewConfiguringSwiftUIView {
   public func valueProvider<ValueProvider: AnyValueProvider & Equatable>(
     _ valueProvider: ValueProvider,
     for keypath: AnimationKeypath)
-    -> Self {
+    -> Self
+  {
     configure { view in
       if (view.animationView.valueProviders[keypath] as? ValueProvider) != valueProvider {
         view.animationView.setValueProvider(valueProvider, keypath: keypath)

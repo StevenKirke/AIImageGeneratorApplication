@@ -4,7 +4,7 @@
 import QuartzCore
 
 // MARK: - ShapeLayer
-// swiftlint:disable all
+
 /// The CALayer type responsible for rendering `ShapeLayerModel`s
 final class ShapeLayer: BaseCompositionLayer {
 
@@ -128,7 +128,8 @@ final class GroupLayer: BaseAnimationLayer {
         shapeRenderGroup.pathItems.allSatisfy({ $0.item is Shape }),
         // `Trim`s are currently only applied correctly using individual `ShapeItemLayer`s,
         // because each path has to be trimmed separately.
-        !shapeRenderGroup.otherItems.contains(where: { $0.item is Trim }) {
+        !shapeRenderGroup.otherItems.contains(where: { $0.item is Trim })
+      {
         let allPathKeyframes = shapeRenderGroup.pathItems.compactMap { ($0.item as? Shape)?.path }
         let combinedShape = CombinedShapeItem(
           shapes: Keyframes.combined(allPathKeyframes),
@@ -172,7 +173,8 @@ extension CALayer {
     parentGroup: Group?,
     parentGroupPath: [String],
     context: LayerContext)
-    throws {
+    throws
+  {
     // If the layer has any `Repeater`s, set up each repeater
     // and then handle any remaining groups like normal.
     if items.contains(where: { $0.item is Repeater }) {
@@ -198,7 +200,9 @@ extension CALayer {
             context: context)
         }
       }
-    } else {
+    }
+
+    else {
       let groupLayers = try makeGroupLayers(
         from: items,
         parentGroup: parentGroup,
@@ -219,7 +223,8 @@ extension CALayer {
     items allItems: [ShapeItemLayer.Item],
     parentGroupPath: [String],
     context: LayerContext)
-    throws {
+    throws
+  {
     let items = allItems.filter { !($0.item is Repeater) }
     let copyCount = Int(try repeater.copies.exactlyOneKeyframe(context: context, description: "repeater copies").value)
 
@@ -245,7 +250,8 @@ extension CALayer {
     parentGroup: Group?,
     parentGroupPath: [String],
     context: LayerContext)
-    throws -> [GroupLayer] {
+    throws -> [GroupLayer]
+  {
     var groupItems = items.compactMap { $0.item as? Group }.filter { !$0.hidden }
     var otherItems = items.filter { !($0.item is Group) && !$0.item.hidden }
 
@@ -386,7 +392,8 @@ extension Collection {
   ///  1. `(grouping: [A], trailingSeparator: B)`
   ///  2. `(grouping: [C], trailingSeparator: nil)`
   func split(whereSeparator separatorPredicate: (Element) -> Bool)
-    -> [(grouping: [Element], trailingSeparator: Element?)] {
+    -> [(grouping: [Element], trailingSeparator: Element?)]
+  {
     guard !isEmpty else { return [] }
 
     var groupings: [(grouping: [Element], trailingSeparator: Element?)] = []
@@ -424,7 +431,8 @@ extension [ShapeItemLayer.Item] {
   ///  - groupHasChildGroupsToInheritUnusedItems: whether or not this group has child groups
   ///    that will inherit any items that aren't used as part of a valid render group
   func shapeRenderGroups(groupHasChildGroupsToInheritUnusedItems: Bool)
-    -> (validGroups: [ShapeRenderGroup], unusedItems: [ShapeItemLayer.Item]) {
+    -> (validGroups: [ShapeRenderGroup], unusedItems: [ShapeItemLayer.Item])
+  {
     var renderGroups = [ShapeRenderGroup()]
 
     for item in self {
@@ -497,7 +505,8 @@ extension [ShapeItemLayer.Item] {
       let strokeDrawnOnTopOfFill: Bool
       if
         let strokeIndex = strokesAndFills.firstIndex(where: { $0.item.isStroke }),
-        let fillIndex = strokesAndFills.firstIndex(where: { $0.item.isFill }) {
+        let fillIndex = strokesAndFills.firstIndex(where: { $0.item.isFill })
+      {
         strokeDrawnOnTopOfFill = strokeIndex < fillIndex
       } else {
         strokeDrawnOnTopOfFill = false
@@ -550,4 +559,3 @@ extension [ShapeItemLayer.Item] {
     return (validGroups: renderGroups, unusedItems: itemsNotInValidRenderGroups)
   }
 }
-// swiftlint:enable all 

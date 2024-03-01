@@ -9,7 +9,7 @@ import Foundation
 import QuartzCore
 
 // MARK: - EllipseNodeProperties
-// swiftlint:disable all
+
 final class EllipseNodeProperties: NodePropertyMap, KeypathSearchable {
 
   // MARK: Lifecycle
@@ -20,8 +20,8 @@ final class EllipseNodeProperties: NodePropertyMap, KeypathSearchable {
     position = NodeProperty(provider: KeyframeInterpolator(keyframes: ellipse.position.keyframes))
     size = NodeProperty(provider: KeyframeInterpolator(keyframes: ellipse.size.keyframes))
     keypathProperties = [
-      PropertyName.position.rawValue: position,
-      "Size": size
+      PropertyName.position.rawValue : position,
+      "Size" : size,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -61,7 +61,7 @@ final class EllipseNode: AnimatorNode, PathNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   // MARK: Animator Node
 
@@ -92,7 +92,8 @@ extension BezierPath {
     size: CGSize,
     center: CGPoint,
     direction: PathDirection)
-    -> BezierPath {
+    -> BezierPath
+  {
     // Unfortunately we HAVE to manually build out the ellipse.
     // Every Apple method constructs an ellipse from the 3 o-clock position
     // After effects constructs from the Noon position.
@@ -136,4 +137,3 @@ extension BezierPath {
     return path
   }
 }
-// swiftlint:enable all 

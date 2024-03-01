@@ -26,7 +26,7 @@
 
 import Foundation
 import ImageIO
-// swiftlint:disable all
+
 /// Represents a set of image creating options used in Kingfisher.
 public struct ImageCreatingOptions {
 
@@ -42,7 +42,7 @@ public struct ImageCreatingOptions {
     /// For an animated image, whether or not only the first image should be
     /// loaded as a static image. It is useful for preview purpose of an animated image.
     public let onlyFirstFrame: Bool
-
+    
     /// Creates an `ImageCreatingOptions` object.
     ///
     /// - Parameters:
@@ -59,7 +59,8 @@ public struct ImageCreatingOptions {
         scale: CGFloat = 1.0,
         duration: TimeInterval = 0.0,
         preloadAll: Bool = false,
-        onlyFirstFrame: Bool = false) {
+        onlyFirstFrame: Bool = false)
+    {
         self.scale = scale
         self.duration = duration
         self.preloadAll = preloadAll
@@ -72,17 +73,17 @@ public struct ImageCreatingOptions {
 public class GIFAnimatedImage {
     let images: [KFCrossPlatformImage]
     let duration: TimeInterval
-
+    
     init?(from frameSource: ImageFrameSource, options: ImageCreatingOptions) {
         let frameCount = frameSource.frameCount
         var images = [KFCrossPlatformImage]()
         var gifDuration = 0.0
-
+        
         for i in 0 ..< frameCount {
             guard let imageRef = frameSource.frame(at: i) else {
                 return nil
             }
-
+            
             if frameCount == 1 {
                 gifDuration = .infinity
             } else {
@@ -95,21 +96,21 @@ public class GIFAnimatedImage {
         self.images = images
         self.duration = gifDuration
     }
-
+    
     convenience init?(from imageSource: CGImageSource, for info: [String: Any], options: ImageCreatingOptions) {
         let frameSource = CGImageFrameSource(data: nil, imageSource: imageSource, options: info)
         self.init(from: frameSource, options: options)
     }
-
+    
     /// Calculates frame duration for a gif frame out of the kCGImagePropertyGIFDictionary dictionary.
     public static func getFrameDuration(from gifInfo: [String: Any]?) -> TimeInterval {
         let defaultFrameDuration = 0.1
         guard let gifInfo = gifInfo else { return defaultFrameDuration }
-
+        
         let unclampedDelayTime = gifInfo[kCGImagePropertyGIFUnclampedDelayTime as String] as? NSNumber
         let delayTime = gifInfo[kCGImagePropertyGIFDelayTime as String] as? NSNumber
         let duration = unclampedDelayTime ?? delayTime
-
+        
         guard let frameDuration = duration else { return defaultFrameDuration }
         return frameDuration.doubleValue > 0.011 ? frameDuration.doubleValue : defaultFrameDuration
     }
@@ -128,14 +129,14 @@ public class GIFAnimatedImage {
 public protocol ImageFrameSource {
     /// Source data associated with this frame source.
     var data: Data? { get }
-
+    
     /// Count of total frames in this frame source.
     var frameCount: Int { get }
-
+    
     /// Retrieves the frame at a specific index. The result image is expected to be
     /// no larger than `maxSize`. If the index is invalid, implementors should return `nil`.
     func frame(at index: Int, maxSize: CGSize?) -> CGImage?
-
+    
     /// Retrieves the duration at a specific index. If the index is invalid, implementors should return `0.0`.
     func duration(at index: Int) -> TimeInterval
 }
@@ -151,7 +152,7 @@ struct CGImageFrameSource: ImageFrameSource {
     let data: Data?
     let imageSource: CGImageSource
     let options: [String: Any]?
-
+    
     var frameCount: Int {
         return CGImageSourceGetCount(imageSource)
     }
@@ -173,4 +174,4 @@ struct CGImageFrameSource: ImageFrameSource {
         return GIFAnimatedImage.getFrameDuration(from: imageSource, at: index)
     }
 }
-// swiftlint:enable all 
+

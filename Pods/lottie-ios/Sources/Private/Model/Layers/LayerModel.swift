@@ -6,7 +6,7 @@
 //
 
 // MARK: - LayerType + ClassFamily
-// swiftlint:disable all
+
 /// Used for mapping a heterogeneous list to classes for parsing.
 extension LayerType: ClassFamily {
   static var discriminator: Discriminator = .type
@@ -264,4 +264,3 @@ extension [LayerModel] {
 /// All `LayerModel` subclasses are immutable `Sendable` values.
 // swiftlint:disable:next no_unchecked_sendable
 extension LayerModel: @unchecked Sendable { }
-// swiftlint:enable all 

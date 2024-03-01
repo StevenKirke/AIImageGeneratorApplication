@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 // MARK: - Keyframes
-// swiftlint:disable all
+
 enum Keyframes {
 
   // MARK: Internal
@@ -14,7 +14,8 @@ enum Keyframes {
     _ allGroups: [KeyframeGroup<T>],
     requiresManualInterpolation: Bool = false)
     -> KeyframeGroup<[T]>
-    where T: AnyInterpolatable {
+    where T: AnyInterpolatable
+  {
     Keyframes.combined(
       allGroups,
       requiresManualInterpolation: requiresManualInterpolation,
@@ -33,7 +34,8 @@ enum Keyframes {
     makeCombinedResult: (T1, T2) throws -> CombinedResult)
     rethrows
     -> KeyframeGroup<CombinedResult>
-    where T1: AnyInterpolatable, T2: AnyInterpolatable {
+    where T1: AnyInterpolatable, T2: AnyInterpolatable
+  {
     try Keyframes.combined(
       [k1, k2],
       requiresManualInterpolation: requiresManualInterpolation,
@@ -57,7 +59,8 @@ enum Keyframes {
     requiresManualInterpolation: Bool = false,
     makeCombinedResult: (T1, T2, T3) -> CombinedResult)
     -> KeyframeGroup<CombinedResult>
-    where T1: AnyInterpolatable, T2: AnyInterpolatable, T3: AnyInterpolatable {
+    where T1: AnyInterpolatable, T2: AnyInterpolatable, T3: AnyInterpolatable
+  {
     Keyframes.combined(
       [k1, k2, k3],
       requiresManualInterpolation: requiresManualInterpolation,
@@ -87,7 +90,8 @@ enum Keyframes {
     makeCombinedResult: (T1, T2, T3, T4, T5, T6, T7) -> CombinedResult)
     -> KeyframeGroup<CombinedResult>
     where T1: AnyInterpolatable, T2: AnyInterpolatable, T3: AnyInterpolatable, T4: AnyInterpolatable,
-    T5: AnyInterpolatable, T6: AnyInterpolatable, T7: AnyInterpolatable {
+    T5: AnyInterpolatable, T6: AnyInterpolatable, T7: AnyInterpolatable
+  {
     Keyframes.combined(
       [k1, k2, k3, k4, k5, k6, k7],
       requiresManualInterpolation: requiresManualInterpolation,
@@ -122,7 +126,8 @@ enum Keyframes {
     makeCombinedResult: (T1, T2, T3, T4, T5, T6, T7, T8) -> CombinedResult)
     -> KeyframeGroup<CombinedResult>
     where T1: AnyInterpolatable, T2: AnyInterpolatable, T3: AnyInterpolatable, T4: AnyInterpolatable,
-    T5: AnyInterpolatable, T6: AnyInterpolatable, T7: AnyInterpolatable, T8: AnyInterpolatable {
+    T5: AnyInterpolatable, T6: AnyInterpolatable, T7: AnyInterpolatable, T8: AnyInterpolatable
+  {
     Keyframes.combined(
       [k1, k2, k3, k4, k5, k6, k7, k8],
       requiresManualInterpolation: requiresManualInterpolation,
@@ -161,7 +166,8 @@ enum Keyframes {
     -> KeyframeGroup<CombinedResult>
     where T1: AnyInterpolatable, T2: AnyInterpolatable, T3: AnyInterpolatable, T4: AnyInterpolatable,
     T5: AnyInterpolatable, T6: AnyInterpolatable, T7: AnyInterpolatable, T8: AnyInterpolatable,
-    T9: AnyInterpolatable, T10: AnyInterpolatable {
+    T9: AnyInterpolatable, T10: AnyInterpolatable
+  {
     Keyframes.combined(
       [k1, k2, k3, k4, k5, k6, k7, k8, k9, k10],
       requiresManualInterpolation: requiresManualInterpolation,
@@ -199,7 +205,8 @@ enum Keyframes {
     requiresManualInterpolation: Bool,
     makeCombinedResult: ([Any]) throws -> CombinedResult?)
     rethrows
-    -> KeyframeGroup<CombinedResult> {
+    -> KeyframeGroup<CombinedResult>
+  {
     let untypedGroups = allGroups.map { $0.untyped }
 
     // Animations with no timing information (e.g. with just a single keyframe)
@@ -240,7 +247,8 @@ enum Keyframes {
     _ allGroups: [AnyKeyframeGroup],
     makeCombinedResult: ([Any]) throws -> CombinedResult?)
     rethrows
-    -> KeyframeGroup<CombinedResult> {
+    -> KeyframeGroup<CombinedResult>
+  {
     let untypedGroups = allGroups.map { $0.untyped }
     let untypedInterpolators = allGroups.map { $0.interpolator }
 
@@ -318,4 +326,3 @@ extension KeyframeGroup {
     }
   }
 }
-// swiftlint:enable all 

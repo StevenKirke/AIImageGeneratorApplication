@@ -6,7 +6,7 @@
 import QuartzCore
 
 // MARK: - LottieAnimationLayer
-// swiftlint:disable all
+
 /// A CALayer subclass for rendering Lottie animations.
 ///  - Also available as a SwiftUI view (`LottieView`) and a UIView subclass (`LottieAnimationView`)
 public class LottieAnimationLayer: CALayer {
@@ -20,7 +20,8 @@ public class LottieAnimationLayer: CALayer {
     textProvider: AnimationKeypathTextProvider = DefaultTextProvider(),
     fontProvider: AnimationFontProvider = DefaultFontProvider(),
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     self.animation = animation
     self.imageProvider = imageProvider ?? BundleImageProvider(bundle: Bundle.main, searchPath: nil)
     self.textProvider = textProvider
@@ -42,7 +43,8 @@ public class LottieAnimationLayer: CALayer {
     textProvider: AnimationKeypathTextProvider = DefaultTextProvider(),
     fontProvider: AnimationFontProvider = DefaultFontProvider(),
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     let dotLottieAnimation = dotLottie?.animation(for: animationId)
     animation = dotLottieAnimation?.animation
     imageProvider = dotLottie?.imageProvider ?? BundleImageProvider(bundle: Bundle.main, searchPath: nil)
@@ -62,7 +64,8 @@ public class LottieAnimationLayer: CALayer {
 
   public init(
     configuration: LottieConfiguration = .shared,
-    logger: LottieLogger = .shared) {
+    logger: LottieLogger = .shared)
+  {
     animation = nil
     imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
     textProvider = DefaultTextProvider()
@@ -130,7 +133,8 @@ public class LottieAnimationLayer: CALayer {
     fromProgress: AnimationProgressTime? = nil,
     toProgress: AnimationProgressTime,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     guard let animation else { return }
 
     defer {
@@ -164,7 +168,8 @@ public class LottieAnimationLayer: CALayer {
     fromFrame: AnimationFrameTime? = nil,
     toFrame: AnimationFrameTime,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     defer {
       currentPlaybackMode = .playing(.fromFrame(fromFrame, toFrame: toFrame, loopMode: loopMode ?? self.loopMode))
     }
@@ -207,7 +212,8 @@ public class LottieAnimationLayer: CALayer {
     toMarker: String,
     playEndMarkerFrame: Bool = true,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     defer {
       currentPlaybackMode = .playing(.fromMarker(
         fromMarker,
@@ -259,7 +265,8 @@ public class LottieAnimationLayer: CALayer {
   open func play(
     marker: String,
     loopMode: LottieLoopMode? = nil,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     guard let from = animation?.markerMap?[marker] else {
       return
     }
@@ -298,7 +305,8 @@ public class LottieAnimationLayer: CALayer {
   /// - Parameter completion: An optional completion closure to be called when the animation stops.
   open func play(
     markers: [String],
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     guard !markers.isEmpty else { return }
 
     defer {
@@ -384,7 +392,8 @@ public class LottieAnimationLayer: CALayer {
   @available(*, deprecated, renamed: "setPlaybackMode(_:completion:)", message: "Will be removed in a future major release.")
   open func play(
     _ playbackMode: LottiePlaybackMode,
-    animationCompletionHandler: LottieCompletionBlock? = nil) {
+    animationCompletionHandler: LottieCompletionBlock? = nil)
+  {
     setPlaybackMode(playbackMode, completion: animationCompletionHandler)
   }
 
@@ -394,7 +403,8 @@ public class LottieAnimationLayer: CALayer {
   ///   an animation triggered by this method completes.
   open func setPlaybackMode(
     _ playbackMode: LottiePlaybackMode,
-    completion: LottieCompletionBlock? = nil) {
+    completion: LottieCompletionBlock? = nil)
+  {
     switch playbackMode {
     case .paused(at: let state):
       pause(at: state)
@@ -781,7 +791,8 @@ public class LottieAnimationLayer: CALayer {
   ///   - dotLottieFile: Lottie file to play
   public func loadAnimation(
     _ animationId: String? = nil,
-    from dotLottieFile: DotLottieFile) {
+    from dotLottieFile: DotLottieFile)
+  {
     guard let dotLottieAnimation = dotLottieFile.animation(for: animationId) else { return }
     loadAnimation(dotLottieAnimation)
   }
@@ -797,7 +808,8 @@ public class LottieAnimationLayer: CALayer {
   ///   - dotLottieFile: Lottie file to play
   public func loadAnimation(
     atIndex index: Int,
-    from dotLottieFile: DotLottieFile) {
+    from dotLottieFile: DotLottieFile)
+  {
     guard let dotLottieAnimation = dotLottieFile.animation(at: index) else { return }
     loadAnimation(dotLottieAnimation)
   }
@@ -1009,7 +1021,7 @@ public class LottieAnimationLayer: CALayer {
 
   // MARK: Internal
 
-  var rootAnimationLayer: RootAnimationLayer?
+  var rootAnimationLayer: RootAnimationLayer? = nil
 
   /// Context describing the animation that is currently playing in this `LottieAnimationView`
   ///  - When non-nil, an animation is currently playing in this layer. Otherwise,
@@ -1503,4 +1515,3 @@ extension LottieLoopMode {
     }
   }
 }
-// swiftlint:enable all 

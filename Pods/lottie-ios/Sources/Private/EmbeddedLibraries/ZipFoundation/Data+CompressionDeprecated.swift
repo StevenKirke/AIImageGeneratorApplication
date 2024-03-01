@@ -18,7 +18,8 @@ extension Data {
     bufferSize: Int,
     provider: (_ position: Int, _ size: Int) throws -> Data,
     consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     let newProvider: Provider = { try provider(Int($0), $1) }
     return try compress(size: Int64(size), bufferSize: bufferSize, provider: newProvider, consumer: consumer)
   }
@@ -30,7 +31,8 @@ extension Data {
     skipCRC32: Bool,
     provider: (_ position: Int, _ size: Int) throws -> Data,
     consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     let newProvider: Provider = { try provider(Int($0), $1) }
     return try decompress(
       size: Int64(size),

@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CALayer {
 
   // MARK: Internal
@@ -13,7 +13,8 @@ extension CALayer {
   func setupLayerHierarchy(
     for layers: [LayerModel],
     context: LayerContext)
-    throws {
+    throws
+  {
     // A `LottieAnimation`'s `LayerModel`s are listed from front to back,
     // but `CALayer.sublayers` are listed from back to front.
     // We reverse the layer ordering to match what Core Animation expects.
@@ -32,7 +33,8 @@ extension CALayer {
       childLayerModel: LayerModel,
       childLayer: CALayer,
       name: (LayerModel) -> String)
-      -> CALayer {
+      -> CALayer
+    {
       guard
         let parentIndex = childLayerModel.parent,
         let parentLayerModel = layersByIndex[parentIndex]
@@ -89,7 +91,9 @@ extension CALayer {
         maskContainer.mask = additionalMaskParent
 
         addSublayer(maskContainer)
-      } else {
+      }
+
+      else {
         addSublayer(parentTransformLayer)
       }
     }
@@ -103,7 +107,8 @@ extension CALayer {
     for matteLayerModel: LayerModel,
     type: MatteType,
     context: LayerContext)
-    throws -> CALayer? {
+    throws -> CALayer?
+  {
     switch type {
     case .add:
       return try matteLayerModel.makeAnimationLayer(context: context)
@@ -139,7 +144,8 @@ extension Collection<LayerModel> {
   /// based on the layer's `MatteType` configuration.
   ///  - Assumes the layers are sorted in z-axis order.
   fileprivate func pairedLayersAndMasks() throws
-    -> [(layer: LayerModel, mask: (model: LayerModel, matteType: MatteType)?)] {
+    -> [(layer: LayerModel, mask: (model: LayerModel, matteType: MatteType)?)]
+  {
     var layersAndMasks = [(layer: LayerModel, mask: (model: LayerModel, matteType: MatteType)?)]()
     var unprocessedLayers = reversed()
 
@@ -151,7 +157,9 @@ extension Collection<LayerModel> {
         let maskLayer = unprocessedLayers.popLast()
       {
         layersAndMasks.append((layer: layer, mask: (model: maskLayer, matteType: matteType)))
-      } else {
+      }
+
+      else {
         layersAndMasks.append((layer: layer, mask: nil))
       }
     }
@@ -159,4 +167,3 @@ extension Collection<LayerModel> {
     return layersAndMasks
   }
 }
-// swiftlint:enable all 

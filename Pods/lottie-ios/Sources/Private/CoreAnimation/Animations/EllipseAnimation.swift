@@ -2,7 +2,7 @@
 // Copyright © 2021 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CAShapeLayer {
   /// Adds animations for the given `Ellipse` to this `CALayer`
   @nonobjc
@@ -10,7 +10,8 @@ extension CAShapeLayer {
     for ellipse: Ellipse,
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .path,
       keyframes: ellipse.combinedKeyframes(),
@@ -46,4 +47,3 @@ extension Ellipse {
       makeCombinedResult: Ellipse.Keyframe.init)
   }
 }
-// swiftlint:enable all 

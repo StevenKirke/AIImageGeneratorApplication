@@ -31,10 +31,10 @@ import Foundation
 /// to load some image data in your own way, as long as you can provide the data
 /// representation for the image.
 public protocol ImageDataProvider {
-
+    
     /// The key used in cache.
     var cacheKey: String { get }
-
+    
     /// Provides the data which represents image. Kingfisher uses the data you pass in the
     /// handler to process images and caches it for later use.
     ///
@@ -97,12 +97,12 @@ public struct LocalFileImageDataProvider: ImageDataProvider {
     /// The key used in cache.
     public var cacheKey: String
 
-    public func data(handler: @escaping (Result<Data, Error>) -> Void) {
+    public func data(handler:@escaping (Result<Data, Error>) -> Void) {
         loadingQueue.execute {
             handler(Result(catching: { try Data(contentsOf: fileURL) }))
         }
     }
-
+    
     #if swift(>=5.5)
     #if canImport(_Concurrency)
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -180,7 +180,7 @@ public struct RawImageDataProvider: ImageDataProvider {
     }
 
     // MARK: Protocol Conforming
-
+    
     /// The key used in cache.
     public var cacheKey: String
 

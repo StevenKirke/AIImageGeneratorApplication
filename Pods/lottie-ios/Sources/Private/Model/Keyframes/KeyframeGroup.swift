@@ -6,27 +6,28 @@
 //
 
 // MARK: - KeyframeGroup
-// swiftlint:disable all
+
 /// Used for coding/decoding a group of Keyframes by type.
 ///
 /// Keyframe data is wrapped in a dictionary { "k" : KeyframeData }.
 /// The keyframe data can either be an array of keyframes or, if no animation is present, the raw value.
 /// This helper object is needed to properly decode the json.
-
 final class KeyframeGroup<T> {
 
   // MARK: Lifecycle
 
   init(
     keyframes: ContiguousArray<Keyframe<T>>,
-    unsupportedAfterEffectsExpression: String? = nil) {
+    unsupportedAfterEffectsExpression: String? = nil)
+  {
     self.keyframes = keyframes
     self.unsupportedAfterEffectsExpression = unsupportedAfterEffectsExpression
   }
 
   init(
     _ value: T,
-    unsupportedAfterEffectsExpression: String? = nil) {
+    unsupportedAfterEffectsExpression: String? = nil)
+  {
     keyframes = [Keyframe(value)]
     self.unsupportedAfterEffectsExpression = unsupportedAfterEffectsExpression
   }
@@ -250,4 +251,3 @@ extension KeyframeGroup: AnyKeyframeGroup where T: AnyInterpolatable {
     KeyframeInterpolator(keyframes: keyframes)
   }
 }
-// swiftlint:enable all 

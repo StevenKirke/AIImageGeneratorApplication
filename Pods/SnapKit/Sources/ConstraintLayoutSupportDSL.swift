@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 @available(iOS 8.0, *)
 public struct ConstraintLayoutSupportDSL: ConstraintDSL {
     
@@ -54,4 +54,3 @@ public struct ConstraintLayoutSupportDSL: ConstraintDSL {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.height)
     }
 }
-// swiftlint:enable all 

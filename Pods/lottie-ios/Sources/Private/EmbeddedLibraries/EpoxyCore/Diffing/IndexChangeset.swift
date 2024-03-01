@@ -16,7 +16,8 @@ struct IndexChangeset {
     updates: [(old: Int, new: Int)] = [],
     moves: [(old: Int, new: Int)] = [],
     newIndices: [Int?] = [],
-    duplicates: [[Int]] = []) {
+    duplicates: [[Int]] = [])
+  {
     self.inserts = inserts
     self.deletes = deletes
     self.updates = updates
@@ -75,7 +76,8 @@ struct IndexPathChangeset {
     deletes: [IndexPath] = [],
     updates: [(old: IndexPath, new: IndexPath)] = [],
     moves: [(old: IndexPath, new: IndexPath)] = [],
-    duplicates: [[IndexPath]] = []) {
+    duplicates: [[IndexPath]] = [])
+  {
     self.inserts = inserts
     self.deletes = deletes
     self.updates = updates
@@ -137,7 +139,8 @@ struct IndexSetChangeset {
     updates: [(old: Int, new: Int)] = [],
     moves: [(old: Int, new: Int)] = [],
     newIndices: [Int?] = [],
-    duplicates: [IndexSet] = []) {
+    duplicates: [IndexSet] = [])
+  {
     self.inserts = inserts
     self.deletes = deletes
     self.updates = updates

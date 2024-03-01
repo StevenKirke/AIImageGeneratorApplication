@@ -26,7 +26,8 @@
 #else
     import AppKit
 #endif
-// swiftlint:disable all
+
+
 public protocol ConstraintOffsetTarget: ConstraintConstantTarget {
 }
 
@@ -66,4 +67,3 @@ extension ConstraintOffsetTarget {
     }
     
 }
-// swiftlint:enable all 

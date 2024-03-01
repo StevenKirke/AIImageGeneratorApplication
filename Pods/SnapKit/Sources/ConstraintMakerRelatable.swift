@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public class ConstraintMakerRelatable {
     
     internal let description: ConstraintDescription
@@ -113,4 +113,3 @@ public class ConstraintMakerRelatable {
         return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
 }
-// swiftlint:enable all 

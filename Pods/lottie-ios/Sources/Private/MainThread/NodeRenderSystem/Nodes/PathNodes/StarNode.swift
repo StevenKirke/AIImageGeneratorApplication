@@ -9,7 +9,7 @@ import Foundation
 import QuartzCore
 
 // MARK: - StarNodeProperties
-// swiftlint:disable all
+
 final class StarNodeProperties: NodePropertyMap, KeypathSearchable {
 
   // MARK: Lifecycle
@@ -33,13 +33,13 @@ final class StarNodeProperties: NodePropertyMap, KeypathSearchable {
     rotation = NodeProperty(provider: KeyframeInterpolator(keyframes: star.rotation.keyframes))
     points = NodeProperty(provider: KeyframeInterpolator(keyframes: star.points.keyframes))
     keypathProperties = [
-      PropertyName.position.rawValue: position,
-      "Outer Radius": outerRadius,
-      "Outer Roundedness": outerRoundedness,
-      "Inner Radius": innerRadius,
-      "Inner Roundedness": innerRoundedness,
-      PropertyName.rotation.rawValue: rotation,
-      "Points": points
+      PropertyName.position.rawValue : position,
+      "Outer Radius" : outerRadius,
+      "Outer Roundedness" : outerRoundedness,
+      "Inner Radius" : innerRadius,
+      "Inner Roundedness" : innerRoundedness,
+      PropertyName.rotation.rawValue : rotation,
+      "Points" : points,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -85,7 +85,7 @@ final class StarNode: AnimatorNode, PathNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   // MARK: Animator Node
   var propertyMap: NodePropertyMap & KeypathSearchable {
@@ -125,7 +125,8 @@ extension BezierPath {
     numberOfPoints: CGFloat,
     rotation: CGFloat,
     direction: PathDirection)
-    -> BezierPath {
+    -> BezierPath
+  {
     var currentAngle = (rotation - 90).toRadians()
     let anglePerPoint = (2 * CGFloat.pi) / numberOfPoints
     let halfAnglePerPoint = anglePerPoint / 2.0
@@ -219,4 +220,3 @@ extension BezierPath {
     return path
   }
 }
-// swiftlint:enable all 

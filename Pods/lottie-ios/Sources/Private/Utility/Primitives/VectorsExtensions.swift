@@ -10,7 +10,7 @@ import Foundation
 import QuartzCore
 
 // MARK: - LottieVector1D + Codable
-// swiftlint:disable all
+
 /// Single value container. Needed because lottie sometimes wraps a Double in an array.
 extension LottieVector1D: Codable {
 
@@ -320,7 +320,8 @@ extension CATransform3D {
     rotationZ: CGFloat,
     skew: CGFloat?,
     skewAxis: CGFloat?)
-    -> CATransform3D {
+    -> CATransform3D
+  {
     if let skew, let skewAxis {
       return CATransform3DMakeTranslation(position.x, position.y, 0)
         .rotated(rotationX, axis: .x)
@@ -360,4 +361,3 @@ extension CATransform3D {
   }
 
 }
-// swiftlint:enable all 

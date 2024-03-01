@@ -27,7 +27,7 @@ final class GenerateImageViewController: UIViewController {
 	private lazy var textField = createTextField()
 	private lazy var buttonGetImage = createButton()
 	// Плашка с анимацией.
-	private lazy var animationView = createAnimationView()
+	private lazy var animationView = UIView()
 	// Плашка с ошибкой и возможностью повторить запрос.
 	private lazy var alertView = UIView()
 	private var isTestAlertView = false
@@ -106,7 +106,6 @@ private extension GenerateImageViewController {
 		// Определяем Z позицию для элементов, что бы спрятать блок анимации за textField.
 		textField.layer.zPosition = viewBackground.layer.zPosition + 1
 		buttonGetImage.layer.zPosition = textField.layer.zPosition + 1
-
 		// НАстройка кнопки в TextField.
 		buttonGetImage.addTarget(self, action: #selector(handlerTextField), for: .touchUpInside)
 	}
@@ -157,18 +156,16 @@ private extension GenerateImageViewController {
 		return button
 	}
 
-	func createAnimationView() -> LottieAnimationView {
-		var animationView = LottieAnimationView()
-		animationView = .init(name: "AnimationClock")
-		animationView.frame = CGRect(
+	func createAnimationView() -> UIView {
+		let viewAnimation = AnimationView()
+		viewAnimation.startAnimation()
+		viewAnimation.frame = CGRect(
 			x: view.center.x - (view.bounds.width - 60) / 2,
-			y: view.bounds.height,
+			y:  view.bounds.height,
 			width: view.bounds.width - 60,
-			height: view.bounds.width - 60
+			height: 350
 		)
-		animationView.loopMode = .loop
-		animationView.animationSpeed = 0.5
-		return animationView
+		return viewAnimation
 	}
 
 	func createAlertView(massage: String) -> UIView {
@@ -246,14 +243,13 @@ private extension GenerateImageViewController {
 private extension GenerateImageViewController {
 	// Запускаем и показываем animationView.
 	func showAnimationView() {
+		animationView = createAnimationView()
 		view.addSubview(animationView)
 		startAnimation(viewForAnimation: animationView)
-		animationView.play()
 	}
 	// Отключаем анимацию и прячем animationView.
 	func hideAnimationView() {
 		stopAnimation(viewForAnimation: animationView)
-		animationView.stop()
 		view.willRemoveSubview(animationView)
 	}
 
@@ -276,7 +272,6 @@ private extension GenerateImageViewController {
 	}
 
 	func startAnimation(viewForAnimation: UIView) {
-		let viewFrame = self.view.frame
 		let centerX = self.view.bounds.midX - (self.view.bounds.width) / 2
 		let centerY = self.view.bounds.midY + (viewForAnimation.frame.height)
 		UIView.animate(

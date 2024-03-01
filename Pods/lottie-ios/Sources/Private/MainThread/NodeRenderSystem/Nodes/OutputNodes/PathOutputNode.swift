@@ -6,9 +6,8 @@
 //
 
 import CoreGraphics
-// swiftlint:disable all
-/// A node that has an output of a BezierPath
 
+/// A node that has an output of a BezierPath
 class PathOutputNode: NodeOutput {
 
   // MARK: Lifecycle
@@ -21,10 +20,10 @@ class PathOutputNode: NodeOutput {
 
   let parent: NodeOutput?
 
-  fileprivate(set) var outputPath: CGPath?
+  fileprivate(set) var outputPath: CGPath? = nil
 
-  var lastUpdateFrame: CGFloat?
-  var lastPathBuildFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
+  var lastPathBuildFrame: CGFloat? = nil
   var isEnabled = true
   fileprivate(set) var totalLength: CGFloat = 0
   fileprivate(set) var pathObjects: [CompoundBezierPath] = []
@@ -88,4 +87,3 @@ class PathOutputNode: NodeOutput {
   }
 
 }
-// swiftlint:enable all 

@@ -8,7 +8,7 @@ import AppKit
 #endif
 
 // MARK: - ReducedMotionOption
-// swiftlint:disable all
+
 /// Options for controlling animation behavior in response to user / system "reduced motion" configuration
 public enum ReducedMotionOption {
   /// Always use the specific given `ReducedMotionMode` value.
@@ -112,4 +112,3 @@ public struct SystemReducedMotionOptionProvider: ReducedMotionOptionProvider {
     #endif
   }
 }
-// swiftlint:enable all 

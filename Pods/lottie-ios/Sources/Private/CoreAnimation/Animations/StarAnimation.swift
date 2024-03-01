@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CAShapeLayer {
 
   // MARK: Internal
@@ -13,7 +13,8 @@ extension CAShapeLayer {
     for star: Star,
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier)
-    throws {
+    throws
+  {
     switch star.starType {
     case .star:
       try addStarAnimation(for: star, context: context, pathMultiplier: pathMultiplier)
@@ -31,7 +32,8 @@ extension CAShapeLayer {
     for star: Star,
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .path,
       keyframes: try star.combinedKeyframes(),
@@ -56,7 +58,8 @@ extension CAShapeLayer {
     for star: Star,
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .path,
       keyframes: try star.combinedKeyframes(),
@@ -111,4 +114,3 @@ extension Star {
       makeCombinedResult: Star.Keyframe.init)
   }
 }
-// swiftlint:enable all 

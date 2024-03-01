@@ -6,7 +6,7 @@
 //
 
 // MARK: - ShapeType
-// swiftlint:disable all
+
 enum ShapeType: String, Codable, Sendable {
   case ellipse = "el"
   case fill = "fl"
@@ -94,7 +94,8 @@ class ShapeItem: Codable, DictionaryInitializable {
   init(
     name: String,
     type: ShapeType,
-    hidden: Bool) {
+    hidden: Bool)
+  {
     self.name = name
     self.type = type
     self.hidden = hidden
@@ -168,4 +169,3 @@ extension [ShapeItem] {
 /// All `ShapeItem` subclasses are immutable `Sendable` values.
 // swiftlint:disable:next no_unchecked_sendable
 extension ShapeItem: @unchecked Sendable { }
-// swiftlint:enable all 

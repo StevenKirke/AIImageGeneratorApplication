@@ -10,16 +10,12 @@ import Foundation
 struct GenerateImageDTO: Decodable {
 	let status: StatusDTO
 	let messege: String?
+	let message: String?
 	let output: [String]?
-
-	enum CodingKeys: String, CodingKey {
-		case status
-		case messege
-		case output
-	}
 }
 
 enum StatusDTO: String, Codable {
 	case success
 	case error
 }
+

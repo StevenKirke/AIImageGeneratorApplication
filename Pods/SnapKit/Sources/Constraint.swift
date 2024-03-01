@@ -26,7 +26,7 @@
 #else
     import AppKit
 #endif
-// swiftlint:disable all
+
 public final class Constraint {
 
     internal let sourceLocation: (String, UInt)
@@ -339,4 +339,3 @@ public final class Constraint {
         item.remove(constraints: [self])
     }
 }
-// swiftlint:enable all

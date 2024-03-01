@@ -25,7 +25,7 @@
     import UIKit
 #endif
 
-// swiftlint:disable all
+    
 @available(iOS 8.0, *)
 public extension ConstraintLayoutSupport {
     
@@ -34,4 +34,3 @@ public extension ConstraintLayoutSupport {
     }
     
 }
-// swiftlint:enable all 

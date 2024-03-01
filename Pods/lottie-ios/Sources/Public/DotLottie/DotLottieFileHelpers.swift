@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 extension DotLottieFile {
 
   public enum SynchronouslyBlockingCurrentThread {
@@ -18,7 +18,8 @@ extension DotLottieFile {
     public static func loadedFrom(
       filepath: String,
       dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache)
-      -> Result<DotLottieFile, Error> {
+      -> Result<DotLottieFile, Error>
+    {
       LottieLogger.shared.assert(
         !Thread.isMainThread,
         "`DotLottieFile.SynchronouslyBlockingCurrentThread` methods shouldn't be called on the main thread.")
@@ -56,7 +57,8 @@ extension DotLottieFile {
       bundle: Bundle = Bundle.main,
       subdirectory: String? = nil,
       dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache)
-      -> Result<DotLottieFile, Error> {
+      -> Result<DotLottieFile, Error>
+    {
       LottieLogger.shared.assert(
         !Thread.isMainThread,
         "`DotLottieFile.SynchronouslyBlockingCurrentThread` methods shouldn't be called on the main thread.")
@@ -95,7 +97,8 @@ extension DotLottieFile {
     public static func loadedFrom(
       data: Data,
       filename: String)
-      -> Result<DotLottieFile, Error> {
+      -> Result<DotLottieFile, Error>
+    {
       LottieLogger.shared.assert(
         !Thread.isMainThread,
         "`DotLottieFile.SynchronouslyBlockingCurrentThread` methods shouldn't be called on the main thread.")
@@ -121,7 +124,8 @@ extension DotLottieFile {
     bundle: Bundle = Bundle.main,
     subdirectory: String? = nil,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache)
-    async throws -> DotLottieFile {
+    async throws -> DotLottieFile
+  {
     try await withCheckedThrowingContinuation { continuation in
       DotLottieFile.named(name, bundle: bundle, subdirectory: subdirectory, dotLottieCache: dotLottieCache) { result in
         continuation.resume(with: result)
@@ -143,7 +147,8 @@ extension DotLottieFile {
     subdirectory: String? = nil,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache,
     dispatchQueue: DispatchQueue = .dotLottie,
-    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void) {
+    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void)
+  {
     dispatchQueue.async {
       let result = SynchronouslyBlockingCurrentThread.named(
         name,
@@ -164,7 +169,8 @@ extension DotLottieFile {
   public static func loadedFrom(
     filepath: String,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache)
-    async throws -> DotLottieFile {
+    async throws -> DotLottieFile
+  {
     try await withCheckedThrowingContinuation { continuation in
       DotLottieFile.loadedFrom(filepath: filepath, dotLottieCache: dotLottieCache) { result in
         continuation.resume(with: result)
@@ -181,7 +187,8 @@ extension DotLottieFile {
     filepath: String,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache,
     dispatchQueue: DispatchQueue = .dotLottie,
-    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void) {
+    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void)
+  {
     dispatchQueue.async {
       let result = SynchronouslyBlockingCurrentThread.loadedFrom(
         filepath: filepath,
@@ -202,7 +209,8 @@ extension DotLottieFile {
     named name: String,
     bundle: Bundle = Bundle.main,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache)
-    async throws -> DotLottieFile {
+    async throws -> DotLottieFile
+  {
     try await withCheckedThrowingContinuation { continuation in
       DotLottieFile.asset(named: name, bundle: bundle, dotLottieCache: dotLottieCache) { result in
         continuation.resume(with: result)
@@ -221,7 +229,8 @@ extension DotLottieFile {
     bundle: Bundle = Bundle.main,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache,
     dispatchQueue: DispatchQueue = .dotLottie,
-    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void) {
+    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void)
+  {
     dispatchQueue.async {
       /// Create a cache key for the lottie.
       let cacheKey = bundle.bundlePath + "/" + name
@@ -266,7 +275,8 @@ extension DotLottieFile {
     url: URL,
     session: URLSession = .shared,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache)
-    async throws -> DotLottieFile {
+    async throws -> DotLottieFile
+  {
     try await withCheckedThrowingContinuation { continuation in
       DotLottieFile.loadedFrom(url: url, session: session, dotLottieCache: dotLottieCache) { result in
         continuation.resume(with: result)
@@ -283,7 +293,8 @@ extension DotLottieFile {
     url: URL,
     session: URLSession = .shared,
     dotLottieCache: DotLottieCacheProvider? = DotLottieCache.sharedCache,
-    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void) {
+    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void)
+  {
     if let dotLottieCache, let lottie = dotLottieCache.file(forKey: url.absoluteString) {
       handleResult(.success(lottie))
     } else {
@@ -321,7 +332,8 @@ extension DotLottieFile {
     data: Data,
     filename: String,
     dispatchQueue: DispatchQueue = .dotLottie,
-    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void) {
+    handleResult: @escaping (Result<DotLottieFile, Error>) -> Void)
+  {
     dispatchQueue.async {
       do {
         let dotLottie = try DotLottieFile(data: data, filename: filename)
@@ -347,7 +359,8 @@ extension DotLottieFile {
     data: Data,
     filename: String,
     dispatchQueue: DispatchQueue = .dotLottie)
-    async throws -> DotLottieFile {
+    async throws -> DotLottieFile
+  {
     try await withCheckedThrowingContinuation { continuation in
       loadedFrom(data: data, filename: filename, dispatchQueue: dispatchQueue) { result in
         continuation.resume(with: result)
@@ -363,4 +376,3 @@ extension DispatchQueue {
     label: "com.airbnb.lottie.dot-lottie",
     qos: .userInitiated)
 }
-// swiftlint:enable all

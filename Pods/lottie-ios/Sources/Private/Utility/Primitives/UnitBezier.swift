@@ -23,7 +23,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 /// Defines a cubic-bezier where the endpoints are (0, 0) and (1, 1)
 ///
 /// The main use case is computing the progress of an animation at a given percent completion. For instance,
@@ -33,7 +33,6 @@ import Foundation
 ///   http://svn.webkit.org/repository/webkit/trunk/Source/WebCore/platform/graphics/UnitBezier.h
 /// )
 ///
-
 struct UnitBezier {
 
   // MARK: Lifecycle
@@ -114,4 +113,3 @@ struct UnitBezier {
     return t2
   }
 }
-// swiftlint:enable all 

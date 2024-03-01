@@ -27,10 +27,9 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 #if canImport(UIKit)
     public typealias ConstraintInsets = UIEdgeInsets
 #else
     public typealias ConstraintInsets = NSEdgeInsets
 #endif
-// swiftlint:enable all 

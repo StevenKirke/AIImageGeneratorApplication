@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public extension ConstraintView {
     
     @available(*, deprecated, renamed:"snp.left")
@@ -150,4 +150,3 @@ public extension ConstraintView {
     }
     
 }
-// swiftlint:enable all

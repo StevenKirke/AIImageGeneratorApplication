@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public class LayoutConstraint : NSLayoutConstraint {
     
     public var label: String? {
@@ -59,4 +59,3 @@ internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
     }
     return true
 }
-// swiftlint:enable all 

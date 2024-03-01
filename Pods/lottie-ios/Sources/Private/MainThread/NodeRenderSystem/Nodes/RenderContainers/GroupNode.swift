@@ -6,7 +6,7 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - GroupNodeProperties
 
 final class GroupNodeProperties: NodePropertyMap, KeypathSearchable {
@@ -37,16 +37,16 @@ final class GroupNodeProperties: NodePropertyMap, KeypathSearchable {
       skewAxis = NodeProperty(provider: SingleValueProvider(LottieVector1D(0)))
     }
     keypathProperties = [
-      "Anchor Point": anchor,
-      PropertyName.position.rawValue: position,
-      PropertyName.scale.rawValue: scale,
-      PropertyName.rotation.rawValue: rotationZ,
-      "Rotation X": rotationX,
-      "Rotation Y": rotationY,
-      "Rotation Z": rotationZ,
-      PropertyName.opacity.rawValue: opacity,
-      "Skew": skew,
-      "Skew Axis": skewAxis
+      "Anchor Point" : anchor,
+      PropertyName.position.rawValue : position,
+      PropertyName.scale.rawValue : scale,
+      PropertyName.rotation.rawValue : rotationZ,
+      "Rotation X" : rotationX,
+      "Rotation Y" : rotationY,
+      "Rotation Z" : rotationZ,
+      PropertyName.opacity.rawValue : opacity,
+      "Skew" : skew,
+      "Skew Axis" : skewAxis,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -126,7 +126,7 @@ final class GroupNode: AnimatorNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   var keypathLayer: CALayer? {
     container
@@ -163,4 +163,3 @@ final class GroupNode: AnimatorNode {
   }
 
 }
-// swiftlint:enable all 

@@ -26,7 +26,7 @@
 #else
     import AppKit
 #endif
-// swiftlint:disable all
+
 @available(*, deprecated, message:"Use ConstraintMakerPrioritizable instead.")
 public typealias ConstraintMakerPriortizable = ConstraintMakerPrioritizable
 
@@ -68,4 +68,3 @@ public class ConstraintMakerPrioritizable: ConstraintMakerFinalizable {
         return self.priority(.low)
     }
 }
-// swiftlint:enable all 

@@ -34,9 +34,8 @@ extension GenerateImagePresenter: IGenerateImagePresenter {
 		switch present {
 		case .success(let imageData):
 			// Конвертируем модель для следующего VIP цикла.
-			let modelResponse = ShowPictureModel.Response.ImageData(from: imageData)
 			viewController?.handlerLogic(massageError: "")
-			showPictureDelegate?.showImageScene(model: .success(modelResponse))
+			showPictureDelegate?.showImageScene(model: imageData.data)
 		case .failure(let error):
 			viewController?.handlerLogic(massageError: error.localizedDescription)
 		}

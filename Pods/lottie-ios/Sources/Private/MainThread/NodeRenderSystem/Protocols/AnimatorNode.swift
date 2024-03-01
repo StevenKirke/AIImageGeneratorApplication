@@ -8,10 +8,9 @@
 import QuartzCore
 
 // MARK: - NodeOutput
-// swiftlint:disable all
+
 /// Defines the basic outputs of an animator node.
 ///
-
 protocol NodeOutput {
 
   /// The parent node.
@@ -196,4 +195,3 @@ extension AnimatorNode {
   }
 
 }
-// swiftlint:enable all 

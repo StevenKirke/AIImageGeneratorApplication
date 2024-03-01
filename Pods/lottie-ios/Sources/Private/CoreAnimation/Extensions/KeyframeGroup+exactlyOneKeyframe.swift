@@ -15,7 +15,8 @@ extension KeyframeGroup {
     fileID _: StaticString = #fileID,
     line _: UInt = #line)
     throws
-    -> T {
+    -> T
+  {
     try context.compatibilityAssert(
       keyframes.count == 1,
       """

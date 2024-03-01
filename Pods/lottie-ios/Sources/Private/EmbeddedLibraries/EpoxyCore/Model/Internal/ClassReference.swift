@@ -2,11 +2,10 @@
 // Copyright © 2021 Airbnb Inc. All rights reserved.
 
 // MARK: - ClassReference
-// swiftlint:disable all
+
 /// A `Hashable` value wrapper around an `AnyClass` value
 ///  - Unlike `ObjectIdentifier(class)`, `ClassReference(class)`
 ///    preserves the `AnyClass` value and is more human-readable.
-
 struct ClassReference {
   init(_ class: AnyClass) {
     self.class = `class`
@@ -38,4 +37,3 @@ extension ClassReference: CustomStringConvertible {
     String(describing: `class`)
   }
 }
-// swiftlint:enable all 

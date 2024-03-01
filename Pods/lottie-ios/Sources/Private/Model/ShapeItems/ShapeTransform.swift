@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Withrow on 1/8/19.
 //
-// swiftlint:disable all
+
 final class ShapeTransform: ShapeItem {
 
   // MARK: Lifecycle
@@ -191,4 +191,3 @@ final class ShapeTransform: ShapeItem {
     case skewAxis = "sa"
   }
 }
-// swiftlint:enable all 

@@ -65,7 +65,8 @@ final class CompatibilityTracker {
     _ condition: Bool,
     _ message: @autoclosure () -> String,
     context: @autoclosure () -> String)
-    throws {
+    throws
+  {
     if !condition {
       try logIssue(message: message(), context: context())
     }
@@ -106,7 +107,8 @@ extension CompatibilityTrackerProviding {
   func compatibilityAssert(
     _ condition: Bool,
     _ message: @autoclosure () -> String)
-    throws {
+    throws
+  {
     try compatibilityTracker.assert(condition, message(), context: compatibilityIssueContext)
   }
 }

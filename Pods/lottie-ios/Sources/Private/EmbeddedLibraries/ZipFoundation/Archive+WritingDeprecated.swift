@@ -22,7 +22,8 @@ extension Archive {
     compressionMethod: CompressionMethod = .none,
     bufferSize: UInt32,
     progress: Progress? = nil)
-    throws {
+    throws
+  {
     try addEntry(
       with: path,
       relativeTo: baseURL,
@@ -41,7 +42,8 @@ extension Archive {
     compressionMethod: CompressionMethod = .none,
     bufferSize: UInt32,
     progress: Progress? = nil)
-    throws {
+    throws
+  {
     try addEntry(
       with: path,
       fileURL: fileURL,
@@ -64,7 +66,8 @@ extension Archive {
     bufferSize: Int = defaultWriteChunkSize,
     progress: Progress? = nil,
     provider: (_ position: Int, _ size: Int) throws -> Data)
-    throws {
+    throws
+  {
     let newProvider: Provider = { try provider(Int($0), $1) }
     try addEntry(
       with: path,

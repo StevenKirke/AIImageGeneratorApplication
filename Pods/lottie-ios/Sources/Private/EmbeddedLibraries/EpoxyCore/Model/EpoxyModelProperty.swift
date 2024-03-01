@@ -1,6 +1,6 @@
 // Created by eric_horacek on 11/18/20.
 // Copyright © 2020 Airbnb Inc. All rights reserved.
-// swiftlint:disable all
+
 // MARK: - EpoxyModelProperty
 
 /// A property that can be stored in any concrete `EpoxyModeled` type.
@@ -30,7 +30,6 @@
 ///   }
 /// }
 /// ````
-
 struct EpoxyModelProperty<Value> {
 
   // MARK: Lifecycle
@@ -43,7 +42,8 @@ struct EpoxyModelProperty<Value> {
   init<Model>(
     keyPath: KeyPath<Model, Value>,
     defaultValue: @escaping @autoclosure () -> Value,
-    updateStrategy: UpdateStrategy) {
+    updateStrategy: UpdateStrategy)
+  {
     self.keyPath = keyPath
     self.defaultValue = defaultValue
     self.updateStrategy = updateStrategy
@@ -156,4 +156,3 @@ extension EpoxyModelProperty.UpdateStrategy {
 
   // Add more arities as needed
 }
-// swiftlint:enable all 

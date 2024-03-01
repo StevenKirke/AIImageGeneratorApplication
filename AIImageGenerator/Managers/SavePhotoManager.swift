@@ -7,29 +7,20 @@
 
 import UIKit
 
-// Обработчик данных полученных в результате сохранения изображения в галлерею.
-protocol IReturnResultSavePhotoDelegate: AnyObject {
-	func returnResultSaveImage(result: Result<Bool, Error>)
-}
-
 /// Протокол сохранения данных в галлерею.
 protocol ISavePhotoManager: AnyObject {
 	/// Сохранение изображения в фото-галлерею.
-	func saveImage(image: UIImage)
+	func saveImage(image: UIImage, completion: ((Error?) -> Void)?)
 }
 
 final class SavePhotoManager: NSObject, ISavePhotoManager {
 
 	// MARK: - Public properties
-	var handlerSaveImage: IReturnResultSavePhotoDelegate?
-
-	// MARK: - Initializator
-	internal init(handlerSaveImage: IReturnResultSavePhotoDelegate?) {
-		self.handlerSaveImage = handlerSaveImage
-	}
+	var completion: ((Error?) -> Void)? = nil
 
 	// MARK: - Public methods
-	func saveImage(image: UIImage) {
+	func saveImage(image: UIImage, completion: ((Error?) -> Void)?) {
+		self.completion = completion
 		save(image: image)
 	}
 }
@@ -47,9 +38,7 @@ extension SavePhotoManager {
 	@objc func saveCompleted(
 		_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer
 	) {
-		if let currentError = error {
-			handlerSaveImage?.returnResultSaveImage(result: .failure(currentError))
-		}
-		handlerSaveImage?.returnResultSaveImage(result: .success(true))
+		completion?(error)
+		completion = nil
 	}
 }

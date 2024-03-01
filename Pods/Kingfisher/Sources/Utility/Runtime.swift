@@ -23,7 +23,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-// swiftlint:disable all
+
 import Foundation
 
 func getAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer) -> T? {
@@ -37,4 +37,3 @@ func getAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer) -> T? {
 func setRetainedAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer, _ value: T) {
     objc_setAssociatedObject(object, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 }
-// swiftlint:enable all 

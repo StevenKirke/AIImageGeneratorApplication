@@ -16,7 +16,7 @@ struct AnyEquatable {
 // MARK: Equatable
 
 extension AnyEquatable: Equatable {
-  static func == (lhs: AnyEquatable, rhs: AnyEquatable) -> Bool {
+  static func ==(lhs: AnyEquatable, rhs: AnyEquatable) -> Bool {
     lhs.equals(rhs.value)
   }
 }

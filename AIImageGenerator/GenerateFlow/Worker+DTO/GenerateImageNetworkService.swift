@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IGenerateImageWorker: AnyObject {
+protocol IGenerateImageNetworkService: AnyObject {
 	/**
 	 Запрос, на получение данных.
 	 - Parameters:
@@ -17,10 +17,10 @@ protocol IGenerateImageWorker: AnyObject {
 		prompt: MainSearchViewModel.Response.ImageData, modelDTO: T.Type, request: @escaping (Result<T, Error>) -> Void
 	)
 
-	func getImageData(url: URL, requestImage: @escaping (Result<Data, Error>) -> Void)
+	func getImageData(url: URL, responseImage: @escaping (Result<Data, Error>) -> Void)
 }
 
-final class GenerateImageWorker {
+final class GenerateImageNetworkService {
 	// MARK: - Public properties
 
 	// MARK: - Dependencies
@@ -43,7 +43,7 @@ final class GenerateImageWorker {
 	}
 }
 
-extension GenerateImageWorker: IGenerateImageWorker {
+extension GenerateImageNetworkService: IGenerateImageNetworkService {
 	// Запрос на генерацию изображения.
 	func getData<T: Decodable>(
 		prompt: MainSearchViewModel.Response.ImageData, modelDTO: T.Type, request: @escaping (Result<T, Error>) -> Void
@@ -59,21 +59,21 @@ extension GenerateImageWorker: IGenerateImageWorker {
 		}
 	}
 	// Запрос на загрузку картинки.
-	func getImageData(url: URL, requestImage: @escaping (Result<Data, Error>) -> Void) {
+	func getImageData(url: URL, responseImage: @escaping (Result<Data, Error>) -> Void) {
 		networkKingfisherManager?.getImage(url: url) { request in
 			switch request {
 			case .success(let data):
-				requestImage(.success(data))
+				responseImage(.success(data))
 			case .failure(let error):
 				print("☠️ Ошибка запроса на получение изображения или конвертации в DATA!")
-				requestImage(.failure(error))
+				responseImage(.failure(error))
 			}
 		}
 	}
 }
 
 // MARK: - NetworkManager.
-private extension GenerateImageWorker {
+private extension GenerateImageNetworkService {
 	func fetch<T: Decodable>(
 		prompt: MainSearchViewModel.Response.ImageData, modelDTO: T.Type, request: @escaping (Result<T, Error>) -> Void
 	) {
@@ -100,7 +100,7 @@ private extension GenerateImageWorker {
 }
 
 // MARK: - Decode JSON.
-private extension GenerateImageWorker {
+private extension GenerateImageNetworkService {
 	// Возвращаем декодированную модель или ошибку.
 	func decode<T: Decodable>(data: Data, model: T.Type, request: @escaping (Result<T, Error>) -> Void) {
 		decodeJSONManager?.decodeJSON(data: data, model: model.self) { resultJSON in

@@ -2,7 +2,7 @@
 // Copyright © 2021 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CAShapeLayer {
   /// Adds animations for the given `BezierPath` keyframes to this `CALayer`
   @nonobjc
@@ -12,7 +12,8 @@ extension CAShapeLayer {
     pathMultiplier: PathMultiplier = 1,
     transformPath: (CGPath) -> CGPath = { $0 },
     roundedCorners: RoundedCorners? = nil)
-    throws {
+    throws
+  {
     let combinedKeyframes = try BezierPathKeyframe.combining(
       path: customPath,
       cornerRadius: roundedCorners?.radius)
@@ -61,7 +62,8 @@ struct BezierPathKeyframe: Interpolatable {
   static func combining(
     path: KeyframeGroup<BezierPath>,
     cornerRadius: KeyframeGroup<LottieVector1D>?) throws
-    -> KeyframeGroup<BezierPathKeyframe> {
+    -> KeyframeGroup<BezierPathKeyframe>
+  {
     guard
       let cornerRadius,
       cornerRadius.keyframes.contains(where: { $0.value.cgFloatValue > 0 })
@@ -82,4 +84,3 @@ struct BezierPathKeyframe: Interpolatable {
       cornerRadius: cornerRadius.interpolate(to: to.cornerRadius, amount: amount))
   }
 }
-// swiftlint:enable all 

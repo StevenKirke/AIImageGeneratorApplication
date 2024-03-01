@@ -34,7 +34,8 @@ extension Dictionary {
     for key: KeyType,
     file: StaticString = #file,
     line: UInt = #line)
-    throws -> T where KeyType.RawValue == Key {
+    throws -> T where KeyType.RawValue == Key
+  {
     guard let value = self[key.rawValue] as? T else {
       throw InitializableError.invalidInput(file: file, line: line)
     }
@@ -45,7 +46,8 @@ extension Dictionary {
     for key: KeyType,
     file: StaticString = #file,
     line: UInt = #line)
-    throws -> T where KeyType.RawValue == Key {
+    throws -> T where KeyType.RawValue == Key
+  {
     if let value = self[key.rawValue] as? T {
       return value
     }

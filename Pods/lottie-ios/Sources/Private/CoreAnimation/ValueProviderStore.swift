@@ -1,6 +1,6 @@
 // Created by Cal Stephens on 1/13/22.
 // Copyright © 2022 Airbnb Inc. All rights reserved.
-// swiftlint:disable all
+
 import QuartzCore
 
 // MARK: - ValueProviderStore
@@ -46,7 +46,8 @@ final class ValueProviderStore {
     of customizableProperty: CustomizableProperty<Value>,
     for keypath: AnimationKeypath,
     context: LayerAnimationContext)
-    throws -> KeyframeGroup<Value>? {
+    throws -> KeyframeGroup<Value>?
+  {
     context.recordHierarchyKeypath?(keypath.fullPath)
 
     guard let anyValueProvider = valueProvider(for: keypath) else {
@@ -148,4 +149,3 @@ extension AnimationKeypath {
     return fullPath.range(of: regex, options: .regularExpression) != nil
   }
 }
-// swiftlint:enable all 

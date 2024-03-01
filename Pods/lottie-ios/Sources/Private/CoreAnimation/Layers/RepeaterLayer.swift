@@ -4,9 +4,8 @@
 import QuartzCore
 
 // MARK: - RepeaterLayer
-// swiftlint:disable all
-/// A layer that renders a child layer at some offset using a `Repeater`
 
+/// A layer that renders a child layer at some offset using a `Repeater`
 final class RepeaterLayer: BaseAnimationLayer {
 
   // MARK: Lifecycle
@@ -97,4 +96,3 @@ extension RepeaterTransform: TransformModel {
   var _skew: KeyframeGroup<LottieVector1D>? { nil }
   var _skewAxis: KeyframeGroup<LottieVector1D>? { nil }
 }
-// swiftlint:enable all 

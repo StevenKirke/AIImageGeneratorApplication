@@ -20,8 +20,8 @@ final class FillNodeProperties: NodePropertyMap, KeypathSearchable {
     opacity = NodeProperty(provider: KeyframeInterpolator(keyframes: fill.opacity.keyframes))
     type = fill.fillRule
     keypathProperties = [
-      PropertyName.opacity.rawValue: opacity,
-      PropertyName.color.rawValue: color
+      PropertyName.opacity.rawValue : opacity,
+      PropertyName.color.rawValue : color,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -60,7 +60,7 @@ final class FillNode: AnimatorNode, RenderNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   var renderer: NodeOutput & Renderable {
     fillRender

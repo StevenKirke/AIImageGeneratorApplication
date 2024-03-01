@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 extension ConstraintMakerRelatable {
   
     @discardableResult
@@ -55,4 +55,3 @@ extension ConstraintMakerRelatable {
     }
   
 }
-// swiftlint:enable all 

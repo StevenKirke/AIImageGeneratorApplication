@@ -2,7 +2,7 @@
 // Copyright © 2021 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 extension CALayer {
 
   // MARK: Internal
@@ -15,10 +15,13 @@ extension CALayer {
     keyframes: KeyframeGroup<KeyframeValue>,
     value keyframeValueMapping: (KeyframeValue) throws -> ValueRepresentation,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     if let customAnimation = try customizedAnimation(for: property, context: context) {
       add(customAnimation, timedWith: context)
-    } else if
+    }
+
+    else if
       let defaultAnimation = try defaultAnimation(
         for: property,
         keyframes: keyframes,
@@ -41,7 +44,8 @@ extension CALayer {
     keyframes keyframeGroup: KeyframeGroup<KeyframeValue>,
     value keyframeValueMapping: (KeyframeValue) throws -> ValueRepresentation,
     context: LayerAnimationContext)
-    throws -> CAAnimation? {
+    throws -> CAAnimation?
+  {
     let keyframes = keyframeGroup.keyframes
     guard !keyframes.isEmpty else { return nil }
 
@@ -105,7 +109,8 @@ extension CALayer {
   private func customizedAnimation<ValueRepresentation>(
     for property: LayerProperty<ValueRepresentation>,
     context: LayerAnimationContext)
-    throws -> CAPropertyAnimation? {
+    throws -> CAPropertyAnimation?
+  {
     guard
       let customizableProperty = property.customizableProperty,
       let customKeyframes = try context.valueProviderStore.customKeyframes(
@@ -141,7 +146,8 @@ extension CALayer {
     for property: LayerProperty<ValueRepresentation>,
     keyframeValue: ValueRepresentation,
     writeDirectlyToPropertyIfPossible: Bool)
-    -> CABasicAnimation? {
+    -> CABasicAnimation?
+  {
     if writeDirectlyToPropertyIfPossible {
       // If the keyframe value is the same as the layer's default value for this property,
       // then we can just ignore this set of keyframes.
@@ -175,7 +181,8 @@ extension CALayer {
     animationSegments: [[Keyframe<KeyframeValue>]],
     value keyframeValueMapping: (KeyframeValue) throws -> ValueRepresentation,
     context: LayerAnimationContext)
-    throws -> CAAnimationGroup {
+    throws -> CAAnimationGroup
+  {
     // Build the `CAKeyframeAnimation` for each segment of keyframes
     // with the same `CAAnimationCalculationMode`.
     //  - Here we have a non-zero number of animation segments,
@@ -240,7 +247,8 @@ extension CALayer {
     customKeyTimes: [NSNumber]? = nil,
     context: LayerAnimationContext)
     throws
-    -> CAKeyframeAnimation {
+    -> CAKeyframeAnimation
+  {
     // Convert the list of `Keyframe<T>` into
     // the representation used by `CAKeyframeAnimation`
     var keyTimes = try customKeyTimes ?? keyframes.map { keyframeModel -> NSNumber in
@@ -291,7 +299,8 @@ extension CALayer {
   /// animating the given keyframes
   private func calculationMode<KeyframeValue>(
     for keyframes: [Keyframe<KeyframeValue>])
-    -> CAAnimationCalculationMode {
+    -> CAAnimationCalculationMode
+  {
     // At this point we expect all of the animations to have been split in
     // to segments based on the `CAAnimationCalculationMode`, so we can just
     // check the first keyframe.
@@ -305,12 +314,14 @@ extension CALayer {
   /// `timingFunctions` to apply to a `CAKeyframeAnimation` animating the given keyframes
   private func timingFunctions<KeyframeValue>(
     for keyframes: [Keyframe<KeyframeValue>])
-    -> [CAMediaTimingFunction] {
+    -> [CAMediaTimingFunction]
+  {
     // Compute the timing function between each keyframe and the subsequent keyframe
     var timingFunctions: [CAMediaTimingFunction] = []
 
     for (index, keyframe) in keyframes.enumerated()
-      where index != keyframes.indices.last {
+      where index != keyframes.indices.last
+    {
       let nextKeyframe = keyframes[index + 1]
 
       let controlPoint1 = keyframe.outTangent?.pointValue ?? .zero
@@ -332,7 +343,8 @@ extension CALayer {
   private func path<KeyframeValue>(
     keyframes positionKeyframes: [Keyframe<KeyframeValue>],
     value keyframeValueMapping: (KeyframeValue) throws -> CGPoint) rethrows
-    -> CGPath {
+    -> CGPath
+  {
     let path = CGMutablePath()
 
     for (index, keyframe) in positionKeyframes.enumerated() {
@@ -352,7 +364,9 @@ extension CALayer {
             to: try keyframeValueMapping(nextKeyframe.value),
             control1: try keyframeValueMapping(keyframe.value) + controlPoint1,
             control2: try keyframeValueMapping(nextKeyframe.value) + controlPoint2)
-        } else {
+        }
+
+        else {
           path.addLine(to: try keyframeValueMapping(nextKeyframe.value))
         }
       }
@@ -368,7 +382,8 @@ extension CALayer {
     keyTimes: inout [NSNumber],
     timingFunctions: inout [CAMediaTimingFunction],
     for calculationMode: CAAnimationCalculationMode,
-    context: LayerAnimationContext) {
+    context: LayerAnimationContext)
+  {
     // Validate that we have correct start (0.0) and end (1.0) keyframes.
     // From the documentation of `CAKeyframeAnimation.keyTimes`:
     //  - The first value in the `keyTimes` array must be 0.0 and the last value must be 1.0.
@@ -422,7 +437,8 @@ extension RandomAccessCollection {
   ///    become linear. Each `CAKeyframeAnimation` can only be one or the other, so each
   ///    `calculationModeSegment` becomes its own `CAKeyframeAnimation`.
   func segmentsSplitByCalculationMode<KeyframeValue>() -> [[Element]]
-    where Element == Keyframe<KeyframeValue>, Index == Int {
+    where Element == Keyframe<KeyframeValue>, Index == Int
+  {
     var segments: [[Element]] = []
     var currentSegment: [Element] = []
 
@@ -440,7 +456,9 @@ extension RandomAccessCollection {
         currentSegment.append(keyframe)
         segments.append(currentSegment)
         currentSegment = [keyframe]
-      } else {
+      }
+
+      else {
         currentSegment.append(keyframe)
       }
     }
@@ -449,4 +467,3 @@ extension RandomAccessCollection {
     return segments
   }
 }
-// swiftlint:enable all 

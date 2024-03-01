@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public protocol ConstraintMultiplierTarget {
     
     var constraintMultiplierTargetValue: CGFloat { get }
@@ -73,4 +73,3 @@ extension CGFloat: ConstraintMultiplierTarget {
     }
     
 }
-// swiftlint:enable all 

@@ -8,7 +8,8 @@ extension Keyframes {
   static func manuallyInterpolatedWithTimeRemapping<T: AnyInterpolatable>(
     _ keyframes: KeyframeGroup<T>,
     context: LayerAnimationContext)
-    -> KeyframeGroup<T> {
+    -> KeyframeGroup<T>
+  {
     let minimumTime = context.animation.startFrame
     let maximumTime = context.animation.endFrame
     let animationLocalTimeRange = stride(from: minimumTime, to: maximumTime, by: 1.0)

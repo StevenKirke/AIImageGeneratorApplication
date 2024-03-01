@@ -4,7 +4,7 @@
 import QuartzCore
 
 // MARK: - SolidLayer
-// swiftlint:disable all
+
 final class SolidLayer: BaseCompositionLayer {
 
   // MARK: Lifecycle
@@ -63,4 +63,3 @@ final class SolidLayer: BaseCompositionLayer {
   }
 
 }
-// swiftlint:enable all 

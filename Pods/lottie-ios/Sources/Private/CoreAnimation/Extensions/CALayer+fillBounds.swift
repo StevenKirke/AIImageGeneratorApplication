@@ -14,7 +14,9 @@ extension CALayer {
 
     if let customLayerLayer = self as? CustomLayoutLayer {
       customLayerLayer.layout(superlayerBounds: superlayer.bounds)
-    } else {
+    }
+
+    else {
       // By default the `anchorPoint` of a layer is `CGPoint(x: 0.5, y: 0.5)`.
       // Setting it to `.zero` makes the layer have the same coordinate space
       // as its superlayer, which lets use use `superlayer.bounds` directly.

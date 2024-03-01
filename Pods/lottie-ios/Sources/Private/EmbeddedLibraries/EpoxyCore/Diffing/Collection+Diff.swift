@@ -2,7 +2,7 @@
 //  Copyright © 2016 Airbnb. All rights reserved.
 
 // MARK: - Collection
-// swiftlint:disable all
+
 extension Collection where Element: Diffable, Index == Int {
 
   /// Diffs two collections (e.g. `Array`s) of `Diffable` items, returning an `IndexChangeset`
@@ -126,7 +126,8 @@ extension Collection where Element: Diffable, Index == Int {
     from other: Self,
     fromSection: Int = 0,
     toSection: Int = 0)
-    -> IndexPathChangeset {
+    -> IndexPathChangeset
+  {
     let indexChangeset = makeChangeset(from: other)
 
     return IndexPathChangeset(
@@ -250,7 +251,7 @@ private final class EpoxyEntry {
 /// A bookkeeping type for pairing up an old element with its new index.
 private struct OldRecord {
   var entry: EpoxyEntry?
-  var correspondingNewIndex: Int?
+  var correspondingNewIndex: Int? = nil
 }
 
 // MARK: - NewRecord
@@ -258,6 +259,5 @@ private struct OldRecord {
 /// A bookkeeping type for pairing up a new element with its old index.
 private struct NewRecord {
   var entry: EpoxyEntry
-  var correspondingOldIndex: Int?
+  var correspondingOldIndex: Int? = nil
 }
-// swiftlint:enable all 

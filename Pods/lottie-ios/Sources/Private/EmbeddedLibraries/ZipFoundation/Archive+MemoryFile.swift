@@ -113,7 +113,8 @@ private func readStub(
   _ cookie: UnsafeMutableRawPointer?,
   _ bytePtr: UnsafeMutablePointer<Int8>?,
   _ count: Int32)
-  -> Int32 {
+  -> Int32
+{
   guard let cookie, let bytePtr else { return 0 }
   return Int32(fileFromCookie(cookie: cookie).readData(
     buffer: UnsafeMutableRawBufferPointer(start: bytePtr, count: Int(count))))
@@ -123,7 +124,8 @@ private func writeStub(
   _ cookie: UnsafeMutableRawPointer?,
   _ bytePtr: UnsafePointer<Int8>?,
   _ count: Int32)
-  -> Int32 {
+  -> Int32
+{
   guard let cookie, let bytePtr else { return 0 }
   return Int32(fileFromCookie(cookie: cookie).writeData(
     buffer: UnsafeRawBufferPointer(start: bytePtr, count: Int(count))))
@@ -133,7 +135,8 @@ private func seekStub(
   _ cookie: UnsafeMutableRawPointer?,
   _ offset: fpos_t,
   _ whence: Int32)
-  -> fpos_t {
+  -> fpos_t
+{
   guard let cookie else { return 0 }
   return fpos_t(fileFromCookie(cookie: cookie).seek(offset: Int(offset), whence: whence))
 }
@@ -143,7 +146,8 @@ private func readStub(
   _ cookie: UnsafeMutableRawPointer?,
   _ bytePtr: UnsafeMutablePointer<Int8>?,
   _ count: Int)
-  -> Int {
+  -> Int
+{
   guard let cookie, let bytePtr else { return 0 }
   return fileFromCookie(cookie: cookie).readData(
     buffer: UnsafeMutableRawBufferPointer(start: bytePtr, count: count))
@@ -153,7 +157,8 @@ private func writeStub(
   _ cookie: UnsafeMutableRawPointer?,
   _ bytePtr: UnsafePointer<Int8>?,
   _ count: Int)
-  -> Int {
+  -> Int
+{
   guard let cookie, let bytePtr else { return 0 }
   return fileFromCookie(cookie: cookie).writeData(
     buffer: UnsafeRawBufferPointer(start: bytePtr, count: count))
@@ -163,7 +168,8 @@ private func seekStub(
   _ cookie: UnsafeMutableRawPointer?,
   _ offset: UnsafeMutablePointer<Int>?,
   _ whence: Int32)
-  -> Int32 {
+  -> Int32
+{
   guard let cookie, let offset else { return 0 }
   let result = fileFromCookie(cookie: cookie).seek(offset: Int(offset.pointee), whence: whence)
   if result >= 0 {

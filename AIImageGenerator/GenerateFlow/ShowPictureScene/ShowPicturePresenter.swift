@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IShowPicturePresenter: AnyObject {
-	func present(present: SPRequest)
+	func present(present: SPResponse)
 	/// Назад на предыдущее View.
 	func backToView()
 }
@@ -32,18 +32,23 @@ final class ShowPicturePresenter {
 }
 
 extension ShowPicturePresenter: IShowPicturePresenter {
-	func present(present: SPRequest) {
+	func present(present: SPResponse) {
 		switch present {
-		case .success(let model):
-			// Конвертируем модель для отображения.
-			let modelViewModel = ShowPictureModel.ViewModel.ImageData(from: model)
-			viewController?.renderImage(viewModel: modelViewModel)
-		case .failure(let error):
-			print("☠️ Error \(error)")
+		case .needShowImage(let imageData):
+			let viewModel = ShowPictureModel.ViewModel(imageData: imageData)
+			viewController?.renderImage(viewModel: viewModel)
+		case .successSaveImage:
+			handlerMassage("")
+		case .failureSaveImage(let error):
+			handlerMassage(error.localizedDescription)
 		}
 	}
 
 	func backToView() {
 		backSceneHandler?.backToScene()
+	}
+
+	private func handlerMassage(_ message: String) {
+		viewController?.showSaveImage()
 	}
 }

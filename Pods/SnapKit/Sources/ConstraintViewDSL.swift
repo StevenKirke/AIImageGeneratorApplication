@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public struct ConstraintViewDSL: ConstraintAttributesDSL {
     
     @discardableResult
@@ -99,4 +99,3 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
     }
     
 }
-// swiftlint:enable all 

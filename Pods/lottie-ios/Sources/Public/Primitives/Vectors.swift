@@ -6,7 +6,7 @@
 //
 
 // MARK: - LottieVector1D
-// swiftlint:disable all
+
 public struct LottieVector1D: Hashable, Sendable {
 
   public init(_ value: Double) {
@@ -34,4 +34,3 @@ public struct LottieVector3D: Hashable, Sendable {
   }
 
 }
-// swiftlint:enable all 

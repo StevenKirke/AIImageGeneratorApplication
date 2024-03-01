@@ -10,7 +10,8 @@ extension CAShapeLayer {
     for combinedShapes: CombinedShapeItem,
     context: LayerAnimationContext,
     pathMultiplier: PathMultiplier)
-    throws {
+    throws
+  {
     try addAnimation(
       for: .path,
       keyframes: combinedShapes.shapes,
@@ -56,7 +57,8 @@ extension CombinedShapeItem {
   static func manuallyInterpolating(
     shapes: [KeyframeGroup<BezierPath>],
     name: String)
-    -> CombinedShapeItem {
+    -> CombinedShapeItem
+  {
     let interpolators = shapes.map { shape in
       KeyframeInterpolator(keyframes: shape.keyframes)
     }

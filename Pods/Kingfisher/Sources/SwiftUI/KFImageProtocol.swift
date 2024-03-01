@@ -44,7 +44,7 @@ extension KFImageProtocol {
             ).id(context)
         }
     }
-
+    
     /// Creates a Kingfisher compatible image view to load image from the given `Source`.
     /// - Parameters:
     ///   - source: The image `Source` defining where to load the target image.
@@ -59,7 +59,7 @@ extension KFImageProtocol {
     public init(_ url: URL?) {
         self.init(source: url?.convertToSource())
     }
-
+    
     /// Configures current image with a `block` and return another `Image` to use as the final content.
     ///
     /// This block will be lazily applied when creating the final `Image`.
@@ -107,5 +107,6 @@ extension KFImageProtocol {
 
     public var delegateObserver: AnyObject { context }
 }
+
 
 #endif

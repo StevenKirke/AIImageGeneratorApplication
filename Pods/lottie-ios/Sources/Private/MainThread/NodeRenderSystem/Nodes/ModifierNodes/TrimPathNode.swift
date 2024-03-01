@@ -9,7 +9,7 @@ import Foundation
 import QuartzCore
 
 // MARK: - TrimPathProperties
-// swiftlint:disable all
+
 final class TrimPathProperties: NodePropertyMap, KeypathSearchable {
 
   // MARK: Lifecycle
@@ -21,9 +21,9 @@ final class TrimPathProperties: NodePropertyMap, KeypathSearchable {
     offset = NodeProperty(provider: KeyframeInterpolator(keyframes: trim.offset.keyframes))
     type = trim.trimType
     keypathProperties = [
-      "Start": start,
-      "End": end,
-      "Offset": offset
+      "Start" : start,
+      "End" : end,
+      "Offset" : offset,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -61,7 +61,7 @@ final class TrimPathNode: AnimatorNode {
   let outputNode: NodeOutput
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
   var isEnabled = true
 
   // MARK: Animator Node
@@ -278,4 +278,3 @@ final class TrimPathNode: AnimatorNode {
 
   fileprivate let upstreamPaths: [PathOutputNode]
 }
-// swiftlint:enable all 

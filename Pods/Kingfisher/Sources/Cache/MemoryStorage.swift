@@ -23,7 +23,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-// swiftlint:disable all
+
 import Foundation
 
 /// Represents a set of conception related to storage which stores a certain type of value in memory.
@@ -52,7 +52,7 @@ public enum MemoryStorage {
         // See https://github.com/onevcat/Kingfisher/issues/1233
         var keys = Set<String>()
 
-        private var cleanTimer: Timer?
+        private var cleanTimer: Timer? = nil
         private let lock = NSLock()
 
         /// The config used in this storage. It is a value you can set and
@@ -108,7 +108,8 @@ public enum MemoryStorage {
         public func store(
             value: T,
             forKey key: String,
-            expiration: StorageExpiration? = nil) {
+            expiration: StorageExpiration? = nil)
+        {
             storeNoThrow(value: value, forKey: key, expiration: expiration)
         }
 
@@ -117,13 +118,14 @@ public enum MemoryStorage {
         func storeNoThrow(
             value: T,
             forKey key: String,
-            expiration: StorageExpiration? = nil) {
+            expiration: StorageExpiration? = nil)
+        {
             lock.lock()
             defer { lock.unlock() }
             let expiration = expiration ?? config.expiration
             // The expiration indicates that already expired, no need to store.
             guard !expiration.isExpired else { return }
-
+            
             let object: StorageObject<T>
             if config.keepWhenEnteringBackground {
                 object = BackgroundKeepingStorageObject(value, expiration: expiration)
@@ -133,7 +135,7 @@ public enum MemoryStorage {
             storage.setObject(object, forKey: key as NSString, cost: value.cacheCost)
             keys.insert(key)
         }
-
+        
         /// Gets a value from the storage.
         ///
         /// - Parameters:
@@ -196,7 +198,7 @@ extension MemoryStorage {
 
         /// The time interval between the storage do clean work for swiping expired items.
         public var cleanInterval: TimeInterval
-
+        
         /// Whether the newly added items to memory cache should be purged when the app goes to background.
         ///
         /// By default, the cached items in memory will be purged as soon as the app goes to background to ensure
@@ -225,7 +227,7 @@ extension MemoryStorage {
 }
 
 extension MemoryStorage {
-
+    
     class BackgroundKeepingStorageObject<T>: StorageObject<T>, NSDiscardableContent {
         var accessing = true
         func beginContentAccess() -> Bool {
@@ -236,30 +238,30 @@ extension MemoryStorage {
             }
             return accessing
         }
-
+        
         func endContentAccess() {
             accessing = false
         }
-
+        
         func discardContentIfPossible() {
             value = nil
         }
-
+        
         func isContentDiscarded() -> Bool {
             return value == nil
         }
     }
-
+    
     class StorageObject<T> {
         var value: T?
         let expiration: StorageExpiration
-
+        
         private(set) var estimatedExpiration: Date
-
+        
         init(_ value: T, expiration: StorageExpiration) {
             self.value = value
             self.expiration = expiration
-
+            
             self.estimatedExpiration = expiration.estimatedExpirationSinceNow
         }
 
@@ -273,10 +275,9 @@ extension MemoryStorage {
                 self.estimatedExpiration = expirationTime.estimatedExpirationSinceNow
             }
         }
-
+        
         var isExpired: Bool {
             return estimatedExpiration.isPast
         }
     }
 }
-// swiftlint:enable all 

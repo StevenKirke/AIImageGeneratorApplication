@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public protocol ConstraintDSL {
     
     var target: AnyObject? { get }
@@ -207,4 +207,3 @@ extension ConstraintAttributesDSL {
     }
     
 }
-// swiftlint:enable all 

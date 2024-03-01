@@ -2,11 +2,10 @@
 // Copyright © 2021 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - PreCompLayer
 
 /// The `CALayer` type responsible for rendering `PreCompLayerModel`s
-
 final class PreCompLayer: BaseCompositionLayer {
 
   // MARK: Lifecycle
@@ -104,4 +103,3 @@ extension PreCompLayer: CustomLayoutLayer {
     contentsLayer.masksToBounds = true
   }
 }
-// swiftlint:enable all 

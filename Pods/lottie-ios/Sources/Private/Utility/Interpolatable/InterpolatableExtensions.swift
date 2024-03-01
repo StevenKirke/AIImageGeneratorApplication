@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 extension LottieColor {
 
   // MARK: Lifecycle
@@ -16,7 +16,7 @@ extension LottieColor {
   init(h: Double, s: Double, v: Double, a: Double) {
     let i = floor(h * 6)
     let f = h * 6 - i
-    let p = v * (1 - s)
+    let p = v * (1 - s);
     let q = v * (1 - f * s)
     let t = v * (1 - (1 - f) * s)
 
@@ -71,10 +71,10 @@ extension LottieColor {
     var h: Double, s: Double, v: Double = maxValue
 
     let d = maxValue - minValue
-    s = maxValue == 0 ? 0 : d / maxValue
+    s = maxValue == 0 ? 0 : d / maxValue;
 
     if maxValue == minValue {
-      h = 0 // achromatic
+      h = 0; // achromatic
     } else {
       switch maxValue {
       case r: h = (g - b) / d + (g < b ? 6 : 0)
@@ -132,4 +132,3 @@ extension TextDocument: Interpolatable {
     return self
   }
 }
-// swiftlint:enable all 

@@ -6,14 +6,13 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - MainThreadAnimationLayer
 
 /// The base `CALayer` for the Main Thread rendering engine
 ///
 /// This layer holds a single composition container and allows for animation of
 /// the currentFrame property.
-
 final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
 
   // MARK: Lifecycle
@@ -24,7 +23,8 @@ final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
     textProvider: AnimationKeypathTextProvider,
     fontProvider: AnimationFontProvider,
     maskAnimationToBounds: Bool,
-    logger: LottieLogger) {
+    logger: LottieLogger)
+  {
     layerImageProvider = LayerImageProvider(imageProvider: imageProvider, assets: animation.assetLibrary?.imageAssets)
     layerTextProvider = LayerTextProvider(textProvider: textProvider)
     layerFontProvider = LayerFontProvider(fontProvider: fontProvider)
@@ -45,7 +45,7 @@ final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
     var imageLayers = [ImageCompositionLayer]()
     var textLayers = [TextCompositionLayer]()
 
-    var mattedLayer: CompositionLayer?
+    var mattedLayer: CompositionLayer? = nil
 
     for layer in layers.reversed() {
       layer.bounds = bounds
@@ -310,4 +310,3 @@ private class BlankImageProvider: AnimationImageProvider {
     nil
   }
 }
-// swiftlint:enable all 

@@ -22,7 +22,8 @@ extension Archive {
     bufferSize: UInt32,
     skipCRC32: Bool = false,
     progress: Progress? = nil)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     try extract(entry, to: url, bufferSize: Int(bufferSize), skipCRC32: skipCRC32, progress: progress)
   }
 
@@ -36,7 +37,8 @@ extension Archive {
     skipCRC32: Bool = false,
     progress: Progress? = nil,
     consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     try extract(
       entry,
       bufferSize: Int(bufferSize),

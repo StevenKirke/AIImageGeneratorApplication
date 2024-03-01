@@ -6,7 +6,7 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 /// A rendered for a Path Fill
 final class LegacyGradientFillRenderer: PassThroughOutputNode, Renderable {
 
@@ -150,4 +150,3 @@ final class LegacyGradientFillRenderer: PassThroughOutputNode, Renderable {
     }
   }
 }
-// swiftlint:enable all 

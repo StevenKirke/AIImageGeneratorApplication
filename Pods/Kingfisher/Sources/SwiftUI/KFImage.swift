@@ -27,7 +27,7 @@
 #if canImport(SwiftUI) && canImport(Combine)
 import SwiftUI
 import Combine
-// swiftlint:disable all
+
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct KFImage: KFImageProtocol {
     public var context: Context<Image>
@@ -50,7 +50,8 @@ extension KFImage {
 
     public func resizable(
         capInsets: EdgeInsets = EdgeInsets(),
-        resizingMode: Image.ResizingMode = .stretch) -> KFImage {
+        resizingMode: Image.ResizingMode = .stretch) -> KFImage
+    {
         configure { $0.resizable(capInsets: capInsets, resizingMode: resizingMode) }
     }
 
@@ -65,7 +66,7 @@ extension KFImage {
     public func antialiased(_ isAntialiased: Bool) -> KFImage {
         configure { $0.antialiased(isAntialiased) }
     }
-
+    
     /// Starts the loading process of `self` immediately.
     ///
     /// By default, a `KFImage` will not load its source until the `onAppear` is called. This is a lazily loading
@@ -103,4 +104,3 @@ struct KFImage_Previews: PreviewProvider {
 }
 #endif
 #endif
-// swiftlint:enable all 

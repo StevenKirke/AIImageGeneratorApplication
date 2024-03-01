@@ -24,10 +24,10 @@ final class GradientFillProperties: NodePropertyMap, KeypathSearchable {
     numberOfColors = gradientfill.numberOfColors
     fillRule = gradientfill.fillRule
     keypathProperties = [
-      PropertyName.opacity.rawValue: opacity,
-      "Start Point": startPoint,
-      "End Point": endPoint,
-      PropertyName.gradientColors.rawValue: colors
+      PropertyName.opacity.rawValue : opacity,
+      "Start Point" : startPoint,
+      "End Point" : endPoint,
+      PropertyName.gradientColors.rawValue : colors,
     ]
     properties = Array(keypathProperties.values)
   }
@@ -71,7 +71,7 @@ final class GradientFillNode: AnimatorNode, RenderNode {
   let parentNode: AnimatorNode?
   var hasLocalUpdates = false
   var hasUpstreamUpdates = false
-  var lastUpdateFrame: CGFloat?
+  var lastUpdateFrame: CGFloat? = nil
 
   var renderer: NodeOutput & Renderable {
     fillRender

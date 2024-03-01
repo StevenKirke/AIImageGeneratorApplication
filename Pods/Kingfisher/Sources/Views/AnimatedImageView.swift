@@ -40,7 +40,7 @@ typealias KFCrossPlatformContentMode = UIView.ContentMode
 import AppKit
 typealias KFCrossPlatformContentMode = NSImageScaling
 #endif
-// swiftlint:disable all
+
 /// Protocol of `AnimatedImageView`.
 public protocol AnimatedImageViewDelegate: AnyObject {
 
@@ -76,11 +76,11 @@ open class AnimatedImageView: KFCrossPlatformImageView {
     /// Proxy object for preventing a reference cycle between the `CADDisplayLink` and `AnimatedImageView`.
     class TargetProxy {
         private weak var target: AnimatedImageView?
-
+        
         init(target: AnimatedImageView) {
             self.target = target
         }
-
+        
         @objc func onScreenUpdate() {
             target?.updateFrameIfNeeded()
         }
@@ -109,14 +109,14 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             }
         }
     }
-
+    
     // MARK: - Public property
     /// Whether automatically play the animation when the view become visible. Default is `true`.
     public var autoPlayAnimatedImage = true
-
+    
     /// The count of the frames should be preloaded before shown.
     public var framePreloadCount = 10
-
+    
     /// Specifies whether the GIF frames should be pre-scaled to the image view's size or not.
     /// If the downloaded image is larger than the image view's size, it will help to reduce some memory use.
     /// Default is `true`.
@@ -142,7 +142,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             startAnimating()
         }
     }
-
+    
     /// The repeat count. The animated image will keep animate until it the loop count reaches this value.
     /// Setting this value to another one will reset current animation.
     ///
@@ -173,10 +173,10 @@ open class AnimatedImageView: KFCrossPlatformImageView {
     private lazy var preloadQueue: DispatchQueue = {
         return DispatchQueue(label: "com.onevcat.Kingfisher.Animator.preloadQueue")
     }()
-
+    
     // A flag to avoid invalidating the displayLink on deinit if it was never created, because displayLink is so lazy.
     private var isDisplayLinkInitialized: Bool = false
-
+    
     // A display link that keeps calling the `updateFrame` method on every screen refresh.
     private lazy var displayLink: DisplayLinkCompatible = {
         isDisplayLinkInitialized = true
@@ -185,7 +185,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
         displayLink.isPaused = true
         return displayLink
     }()
-
+    
     // MARK: - Override
     override open var image: KFCrossPlatformImage? {
         didSet {
@@ -201,7 +201,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             #endif
         }
     }
-
+    
     open override var isHighlighted: Bool {
         get {
             super.isHighlighted
@@ -221,38 +221,38 @@ open class AnimatedImageView: KFCrossPlatformImageView {
     public override init(image: UIImage?, highlightedImage: UIImage?) {
         super.init(image: image, highlightedImage: highlightedImage)
     }
-
+    
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     init() {
         super.init(frame: .zero)
     }
 #endif
-
+    
     deinit {
         if isDisplayLinkInitialized {
             displayLink.invalidate()
         }
     }
-
+    
 #if os(macOS)
     public override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         commonInit()
     }
-
+    
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
-
+    
     private func commonInit() {
         super.animates = false
         wantsLayer = true
     }
-
+    
     open override var animates: Bool {
         get {
             if isDisplayLinkInitialized {
@@ -269,24 +269,24 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             }
         }
     }
-
+    
     open func startAnimating() {
         guard let animator = animator else { return }
         guard !animator.isReachMaxRepeatCount else { return }
 
         displayLink.isPaused = false
     }
-
+    
     open func stopAnimating() {
         if isDisplayLinkInitialized {
             displayLink.isPaused = true
         }
     }
-
+    
     open override var wantsUpdateLayer: Bool {
         return true
     }
-
+    
     open override func updateLayer() {
         if let frame = animator?.currentFrameImage ?? currentFrame, let layer = layer {
             layer.contents = frame.kf.cgImage
@@ -295,7 +295,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             currentFrame = frame
         }
     }
-
+    
     private func determineContentsGravity(for image: NSImage) -> CALayerContentsGravity {
         switch imageScaling {
             case .scaleProportionallyDown:
@@ -314,12 +314,12 @@ open class AnimatedImageView: KFCrossPlatformImageView {
                 return .resizeAspect
         }
     }
-
+    
     open override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         didMove()
     }
-
+    
     open override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         didMove()
@@ -332,7 +332,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             return super.isAnimating
         }
     }
-
+    
     /// Starts the animation.
     override open func startAnimating() {
         guard !isAnimating else { return }
@@ -341,7 +341,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
 
         displayLink.isPaused = false
     }
-
+    
     /// Stops the animation.
     override open func stopAnimating() {
         super.stopAnimating()
@@ -349,16 +349,16 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             displayLink.isPaused = true
         }
     }
-
+    
     override open func display(_ layer: CALayer) {
         layer.contents = animator?.currentFrameImage?.cgImage ?? image?.cgImage
     }
-
+    
     override open func didMoveToWindow() {
         super.didMoveToWindow()
         didMove()
     }
-
+    
     override open func didMoveToSuperview() {
         super.didMoveToSuperview()
         didMove()
@@ -406,7 +406,7 @@ open class AnimatedImageView: KFCrossPlatformImageView {
         }
         didMove()
     }
-
+    
     private func didMove() {
         if autoPlayAnimatedImage && animator != nil {
             if let _ = superview, let _ = window {
@@ -416,12 +416,12 @@ open class AnimatedImageView: KFCrossPlatformImageView {
             }
         }
     }
-
+    
     /// If the Animator cannot prepare the next frame in time, `animator.currentFrameImage` will return nil.
     /// To prevent unexpected blinking in the ImageView, we maintain a cache of the currently displayed frame
     /// to use as a fallback in such scenarios.
     private var currentFrame: KFCrossPlatformImage?
-
+    
     /// Update the current frame with the displayLink duration.
     private func updateFrameIfNeeded() {
         guard let animator = animator else {
@@ -619,7 +619,7 @@ extension AnimatedImageView {
                       repeatCount: repeatCount,
                       preloadQueue: preloadQueue)
         }
-
+        
         /// Creates an animator with a custom image frame source.
         ///
         /// - Parameters:
@@ -648,7 +648,7 @@ extension AnimatedImageView {
             self.maxRepeatCount = repeatCount
             self.preloadQueue = preloadQueue
         }
-
+        
         deinit {
             resetAnimatedFrames()
         }
@@ -711,7 +711,7 @@ extension AnimatedImageView {
             guard let cgImage = frameSource.frame(at: index, maxSize: maxSize) else {
                 return nil
             }
-
+            
             #if os(macOS)
             return KFCrossPlatformImage(cgImage: cgImage, size: .zero)
             #else
@@ -725,14 +725,14 @@ extension AnimatedImageView {
                 guard let unretainedImage = CGImage.create(ref: cgImage) else {
                     return KFCrossPlatformImage(cgImage: cgImage)
                 }
-
+                
                 return KFCrossPlatformImage(cgImage: unretainedImage)
             } else {
                 return KFCrossPlatformImage(cgImage: cgImage)
             }
             #endif
         }
-
+        
         private func updatePreloadedFrames() {
             guard preloadingIsNeeded else {
                 return
@@ -800,16 +800,16 @@ extension AnimatedImageView {
 }
 
 class SafeArray<Element> {
-    private var array: [Element] = []
+    private var array: Array<Element> = []
     private let lock = NSLock()
-
+    
     subscript(index: Int) -> Element? {
         get {
             lock.lock()
             defer { lock.unlock() }
             return array.indices ~= index ? array[index] : nil
         }
-
+        
         set {
             lock.lock()
             defer { lock.unlock() }
@@ -818,25 +818,25 @@ class SafeArray<Element> {
             }
         }
     }
-
-    var count: Int {
+    
+    var count : Int {
         lock.lock()
         defer { lock.unlock() }
         return array.count
     }
-
+    
     func reserveCapacity(_ count: Int) {
         lock.lock()
         defer { lock.unlock() }
         array.reserveCapacity(count)
     }
-
+    
     func append(_ element: Element) {
         lock.lock()
         defer { lock.unlock() }
         array += [element]
     }
-
+    
     func removeAll() {
         lock.lock()
         defer { lock.unlock() }
@@ -844,4 +844,3 @@ class SafeArray<Element> {
     }
 }
 #endif
-// swiftlint:enable all 

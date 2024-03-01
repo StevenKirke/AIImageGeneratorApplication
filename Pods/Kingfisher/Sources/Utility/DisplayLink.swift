@@ -23,7 +23,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-// swiftlint:disable all
+
 #if !os(watchOS)
 #if canImport(UIKit)
 import UIKit
@@ -34,14 +34,14 @@ import CoreVideo
 
 protocol DisplayLinkCompatible: AnyObject {
     var isPaused: Bool { get set }
-
+    
     var preferredFramesPerSecond: NSInteger { get }
     var timestamp: CFTimeInterval { get }
     var duration: CFTimeInterval { get }
-
+    
     func add(to runLoop: RunLoop, forMode mode: RunLoop.Mode)
     func remove(from runLoop: RunLoop, forMode mode: RunLoop.Mode)
-
+    
     func invalidate()
 }
 
@@ -80,9 +80,9 @@ class DisplayLink: DisplayLinkCompatible {
     private var link: CVDisplayLink?
     private var target: Any?
     private var selector: Selector?
-
+    
     private var schedulers: [RunLoop: [RunLoop.Mode]] = [:]
-
+    
     init(target: Any, selector: Selector) {
         self.target = target
         self.selector = selector
@@ -91,16 +91,17 @@ class DisplayLink: DisplayLinkCompatible {
             CVDisplayLinkSetOutputHandler(link, displayLinkCallback(_:inNow:inOutputTime:flagsIn:flagsOut:))
         }
     }
-
+    
     deinit {
         self.invalidate()
     }
-
+    
     private func displayLinkCallback(_ link: CVDisplayLink,
                                      inNow: UnsafePointer<CVTimeStamp>,
                                      inOutputTime: UnsafePointer<CVTimeStamp>,
                                      flagsIn: CVOptionFlags,
-                                     flagsOut: UnsafeMutablePointer<CVOptionFlags>) -> CVReturn {
+                                     flagsOut: UnsafeMutablePointer<CVOptionFlags>) -> CVReturn
+    {
         let outputTime = inOutputTime.pointee
         DispatchQueue.main.async {
             guard let selector = self.selector, let target = self.target else { return }
@@ -116,7 +117,7 @@ class DisplayLink: DisplayLinkCompatible {
         }
         return kCVReturnSuccess
     }
-
+    
     var isPaused: Bool = true {
         didSet {
             guard let link = link else { return }
@@ -131,23 +132,23 @@ class DisplayLink: DisplayLinkCompatible {
             }
         }
     }
-
+    
     var preferredFramesPerSecond: NSInteger = 0
     var timestamp: CFTimeInterval = 0
     var duration: CFTimeInterval = 0
-
+    
     func add(to runLoop: RunLoop, forMode mode: RunLoop.Mode) {
         assert(runLoop == .main)
         schedulers[runLoop, default: []].append(mode)
     }
-
+    
     func remove(from runLoop: RunLoop, forMode mode: RunLoop.Mode) {
         schedulers[runLoop]?.removeAll { $0 == mode }
         if let modes = schedulers[runLoop], modes.isEmpty {
             schedulers.removeValue(forKey: runLoop)
         }
     }
-
+    
     func invalidate() {
         schedulers = [:]
         isPaused = true
@@ -160,4 +161,3 @@ class DisplayLink: DisplayLinkCompatible {
 }
 #endif
 #endif
-// swiftlint:enable all 

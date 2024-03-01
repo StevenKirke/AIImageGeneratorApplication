@@ -8,7 +8,7 @@
 import QuartzCore
 
 // MARK: - CompositionLayer
-// swiftlint:disable all
+
 /// The base class for a child layer of CompositionContainer
 class CompositionLayer: CALayer, KeypathSearchable {
 
@@ -31,22 +31,22 @@ class CompositionLayer: CALayer, KeypathSearchable {
     super.init()
     anchorPoint = .zero
     actions = [
-      "opacity": NSNull(),
-      "transform": NSNull(),
-      "bounds": NSNull(),
-      "anchorPoint": NSNull(),
-      "sublayerTransform": NSNull()
+      "opacity" : NSNull(),
+      "transform" : NSNull(),
+      "bounds" : NSNull(),
+      "anchorPoint" : NSNull(),
+      "sublayerTransform" : NSNull(),
     ]
 
     contentsLayer.anchorPoint = .zero
     contentsLayer.bounds = CGRect(origin: .zero, size: size)
     contentsLayer.actions = [
-      "opacity": NSNull(),
-      "transform": NSNull(),
-      "bounds": NSNull(),
-      "anchorPoint": NSNull(),
-      "sublayerTransform": NSNull(),
-      "hidden": NSNull()
+      "opacity" : NSNull(),
+      "transform" : NSNull(),
+      "bounds" : NSNull(),
+      "anchorPoint" : NSNull(),
+      "sublayerTransform" : NSNull(),
+      "hidden" : NSNull(),
     ]
     compositingFilter = layer.blendMode.filterName
     addSublayer(contentsLayer)
@@ -158,4 +158,3 @@ class CompositionLayer: CALayer, KeypathSearchable {
 protocol CompositionLayerDelegate: AnyObject {
   func frameUpdated(frame: CGFloat)
 }
-// swiftlint:enable all 

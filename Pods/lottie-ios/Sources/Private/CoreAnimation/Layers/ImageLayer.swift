@@ -12,7 +12,8 @@ final class ImageLayer: BaseCompositionLayer {
 
   init(
     imageLayer: ImageLayerModel,
-    context: LayerContext) {
+    context: LayerContext)
+  {
     self.imageLayer = imageLayer
     super.init(layerModel: imageLayer)
     setupImage(context: context)

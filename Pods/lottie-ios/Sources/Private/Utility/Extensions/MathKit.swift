@@ -8,7 +8,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 extension Int {
   var cgFloat: CGFloat {
     CGFloat(self)
@@ -317,7 +317,8 @@ extension CGPoint {
     maxIterations: Int = 3,
     samples: Int = 20,
     accuracy: CGFloat = 1)
-    -> CGPoint {
+    -> CGPoint
+  {
     if amount == 0 {
       return self
     }
@@ -425,7 +426,7 @@ extension CGPoint {
   }
 
   func colinear(_ a: CGPoint, _ b: CGPoint) -> Bool {
-    let area = x * (a.y - b.y) + a.x * (b.y - y) + b.x * (y - a.y)
+    let area = x * (a.y - b.y) + a.x * (b.y - y) + b.x * (y - a.y);
     let accuracy: CGFloat = 0.05
     if area < accuracy, area > -accuracy {
       return true
@@ -447,4 +448,3 @@ extension CGPoint {
       y: y + point.y)
   }
 }
-// swiftlint:enable all 

@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -131,4 +131,3 @@ extension ImageAsset {
     #endif
   }
 }
-// swiftlint:enable all 

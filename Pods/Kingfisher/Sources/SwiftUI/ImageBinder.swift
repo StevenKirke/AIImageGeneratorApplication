@@ -23,7 +23,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-// swiftlint:disable all
+
 #if canImport(SwiftUI) && canImport(Combine)
 import SwiftUI
 import Combine
@@ -34,7 +34,7 @@ extension KFImage {
     /// Represents a binder for `KFImage`. It takes responsibility as an `ObjectBinding` and performs
     /// image downloading and progress reporting based on `KingfisherManager`.
     class ImageBinder: ObservableObject {
-
+        
         init() {}
 
         var downloadTask: DownloadTask?
@@ -50,7 +50,7 @@ extension KFImage {
 
         private(set) var animating = false
 
-        var loadedImage: KFCrossPlatformImage? { willSet { objectWillChange.send() } }
+        var loadedImage: KFCrossPlatformImage? = nil { willSet { objectWillChange.send() } }
         var progress: Progress = .init()
 
         func markLoading() {
@@ -78,7 +78,7 @@ extension KFImage {
             }
 
             loading = true
-
+            
             progress = .init()
             downloadTask = KingfisherManager.shared
                 .retrieveImage(
@@ -96,7 +96,7 @@ extension KFImage {
                             self.downloadTask = nil
                             self.loading = false
                         }
-
+                        
                         switch result {
                         case .success(let value):
                             CallbackQueue.mainCurrentOrAsync.execute {
@@ -124,14 +124,14 @@ extension KFImage {
                                 }
                                 self.markLoaded(sendChangeEvent: false)
                             }
-
+                            
                             CallbackQueue.mainAsync.execute {
                                 context.onFailureDelegate.call(error)
                             }
                         }
                 })
         }
-
+        
         private func updateProgress(downloaded: Int64, total: Int64) {
             progress.totalUnitCount = total
             progress.completedUnitCount = downloaded
@@ -147,4 +147,3 @@ extension KFImage {
     }
 }
 #endif
-// swiftlint:enable all 

@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 internal enum ConstraintRelation : Int {
     case equal = 1
     case lessThanOrEqual
@@ -46,4 +46,3 @@ internal enum ConstraintRelation : Int {
         }
     }
 }
-// swiftlint:enable all 

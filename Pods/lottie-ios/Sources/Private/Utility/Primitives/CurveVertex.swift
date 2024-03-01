@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 /// A single vertex with an in and out tangent
 struct CurveVertex {
 
@@ -76,7 +76,8 @@ struct CurveVertex {
   /// NO and NI are the new tangents for the startPoint and endPoints
   /// S==NO=========TI==T==TO=======NI==E
   func splitCurve(toVertex: CurveVertex, position: CGFloat) ->
-    (start: CurveVertex, trimPoint: CurveVertex, end: CurveVertex) {
+    (start: CurveVertex, trimPoint: CurveVertex, end: CurveVertex)
+  {
     /// If position is less than or equal to 0, trim at start.
     if position <= 0 {
       return (
@@ -135,7 +136,8 @@ struct CurveVertex {
   /// This function should probably live in PathElement, since it deals with curve
   /// lengths.
   func trimCurve(toVertex: CurveVertex, atLength: CGFloat, curveLength: CGFloat, maxSamples: Int, accuracy: CGFloat = 1) ->
-    (start: CurveVertex, trimPoint: CurveVertex, end: CurveVertex) {
+    (start: CurveVertex, trimPoint: CurveVertex, end: CurveVertex)
+  {
     var currentPosition = atLength / curveLength
     var results = splitCurve(toVertex: toVertex, position: currentPosition)
 
@@ -180,4 +182,3 @@ struct CurveVertex {
     return distance
   }
 }
-// swiftlint:enable all 

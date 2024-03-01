@@ -29,10 +29,9 @@
     public typealias ConstraintInterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 #endif
 
-// swiftlint:disable all
+
 public struct ConstraintConfig {
     
     public static var interfaceLayoutDirection: ConstraintInterfaceLayoutDirection = .leftToRight
     
 }
-// swiftlint:enable all

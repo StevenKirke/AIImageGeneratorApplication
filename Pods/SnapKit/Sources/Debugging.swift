@@ -26,7 +26,7 @@
 #else
     import AppKit
 #endif
-// swiftlint:disable all
+
 public extension LayoutConstraint {
     
     override var description: String {
@@ -167,4 +167,3 @@ private func descriptionForObject(_ object: AnyObject) -> String {
     desc += ""
     return desc
 }
-// swiftlint:enable all

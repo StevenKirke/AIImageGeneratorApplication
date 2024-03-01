@@ -8,7 +8,7 @@
 import QuartzCore
 
 // MARK: - LayerDebugStyle
-// swiftlint:disable all
+
 struct LayerDebugStyle {
   let anchorColor: CGColor
   let boundsColor: CGColor
@@ -220,4 +220,3 @@ extension [LayerModel] {
   }
 
 }
-// swiftlint:enable all 

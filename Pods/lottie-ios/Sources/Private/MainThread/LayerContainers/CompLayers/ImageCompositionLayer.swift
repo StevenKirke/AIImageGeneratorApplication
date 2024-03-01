@@ -6,7 +6,7 @@
 //
 
 import QuartzCore
-// swiftlint:disable all
+
 final class ImageCompositionLayer: CompositionLayer {
 
   // MARK: Lifecycle
@@ -36,7 +36,7 @@ final class ImageCompositionLayer: CompositionLayer {
 
   let imageReferenceID: String
 
-  var image: CGImage? {
+  var image: CGImage? = nil {
     didSet {
       if let image {
         contentsLayer.contents = image
@@ -52,4 +52,3 @@ final class ImageCompositionLayer: CompositionLayer {
     }
   }
 }
-// swiftlint:enable all 

@@ -6,7 +6,7 @@
 //
 
 // MARK: - ColorFormatDenominator
-// swiftlint:disable all
+
 public enum ColorFormatDenominator: Hashable {
   case One
   case OneHundred
@@ -41,4 +41,3 @@ public struct LottieColor: Hashable {
   }
 
 }
-// swiftlint:enable all 

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 // MARK: - DotLottieUtils
 
 enum DotLottieUtils {
@@ -66,4 +66,3 @@ public enum DotLottieError: Error {
   @available(*, deprecated, message: "Unused")
   case animationNotAvailable
 }
-// swiftlint:enable all 

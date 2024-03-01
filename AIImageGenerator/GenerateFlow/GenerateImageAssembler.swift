@@ -16,17 +16,16 @@ final class GenerateImageAssembler {
 		let networkManager = NetworkManager()
 		let decodeJSONManager = DecodeJsonManager()
 		let networkKingfisherManager = NetworkKingfisherManager()
-		// Подключение конверторов.
-		let converterDTO = ConvertGenerateImageDTO()
 
-		// Подключение Worker, запросы к данным, декодирование.
-		let worker = GenerateImageWorker(
+		let networkImageService = GenerateImageNetworkService(
 			assemblerURL: assemblerURL,
 			networkManager: networkManager,
 			decodeJSONManager: decodeJSONManager,
 			networkKingfisherManager: networkKingfisherManager
 		)
 
+		// Подключение Worker, запросы к данным, декодирование.
+		let worker = GenerateImageWorker(generateImageNetwork: networkImageService)
 		// Подключение VIP цикла.
 		let viewController = GenerateImageViewController()
 		let presenter = GenerateImagePresenter(
@@ -35,8 +34,7 @@ final class GenerateImageAssembler {
 		)
 		let iterator = GenerateImageIterator(
 			worker: worker,
-			presenter: presenter,
-			converterDTO: converterDTO
+			presenter: presenter
 		)
 
 		viewController.iterator = iterator

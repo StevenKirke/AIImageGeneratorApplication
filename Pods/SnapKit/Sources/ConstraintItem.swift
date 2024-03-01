@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-// swiftlint:disable all
+
 public final class ConstraintItem {
     
     internal weak var target: AnyObject?
@@ -59,4 +59,3 @@ public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
     
     return true
 }
-// swiftlint:enable all 

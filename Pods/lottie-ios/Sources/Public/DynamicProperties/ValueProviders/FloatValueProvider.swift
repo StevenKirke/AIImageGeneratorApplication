@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import Foundation
-// swiftlint:disable all
+
 // MARK: - FloatValueProvider
 
 /// A `ValueProvider` that returns a CGFloat Value
@@ -81,4 +81,3 @@ extension FloatValueProvider: Equatable {
     lhs.identity == rhs.identity
   }
 }
-// swiftlint:enable all 

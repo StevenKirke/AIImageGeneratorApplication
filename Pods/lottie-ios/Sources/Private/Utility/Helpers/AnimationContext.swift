@@ -20,7 +20,8 @@ struct AnimationContext {
   init(
     playFrom: AnimationFrameTime,
     playTo: AnimationFrameTime,
-    closure: LottieCompletionBlock?) {
+    closure: LottieCompletionBlock?)
+  {
     self.playTo = playTo
     self.playFrom = playFrom
     self.closure = AnimationCompletionDelegate(completionBlock: closure)
@@ -54,7 +55,7 @@ enum AnimationContextState {
 }
 
 // MARK: - AnimationCompletionDelegate
-// swiftlint:disable all
+
 class AnimationCompletionDelegate: NSObject, CAAnimationDelegate {
 
   // MARK: Lifecycle
@@ -89,4 +90,3 @@ class AnimationCompletionDelegate: NSObject, CAAnimationDelegate {
 
   let completionBlock: LottieCompletionBlock?
 }
-// swiftlint:enable all 

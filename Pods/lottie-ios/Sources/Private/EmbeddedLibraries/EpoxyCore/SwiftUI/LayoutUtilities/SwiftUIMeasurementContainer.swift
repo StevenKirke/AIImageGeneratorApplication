@@ -3,7 +3,7 @@
 
 #if canImport(SwiftUI)
 import SwiftUI
-// swiftlint:disable all
+
 // MARK: - SwiftUIMeasurementContainer
 
 /// A view that has an `intrinsicContentSize` of the `uiView`'s `systemLayoutSizeFitting(…)` and
@@ -202,7 +202,7 @@ final class SwiftUIMeasurementContainer<Content: ViewType>: ViewType {
     let trailing = content.trailingAnchor.constraint(equalTo: trailingAnchor)
     let bottom = content.bottomAnchor.constraint(equalTo: bottomAnchor)
     let newConstraints: [NSLayoutConstraint.Attribute: NSLayoutConstraint] = [
-      .leading: leading, .top: top, .trailing: trailing, .bottom: bottom
+      .leading: leading, .top: top, .trailing: trailing, .bottom: bottom,
     ]
     // Start with the lowest priority constraints so we aren't measuring the view too early, the
     // priorities will be updated later on.
@@ -216,7 +216,8 @@ final class SwiftUIMeasurementContainer<Content: ViewType>: ViewType {
   /// Prioritizes the given constraints based on the provided resolved strategy.
   private func prioritizeConstraints(
     _ constraints: [NSLayoutConstraint.Attribute: NSLayoutConstraint],
-    strategy: ResolvedSwiftUIMeasurementContainerStrategy) {
+    strategy: ResolvedSwiftUIMeasurementContainerStrategy)
+  {
     // Give a required constraint in the dimensions that are fixed to the bounds, otherwise almost
     // required.
     switch strategy {
@@ -380,7 +381,8 @@ extension ViewType {
   fileprivate func systemLayoutFittingIntrinsicHeightFixedWidth(
     _ width: CGFloat,
     priority: LayoutPriorityType = .almostRequired)
-    -> CGSize {
+    -> CGSize
+  {
     #if os(macOS)
     return CGSize(width: width, height: intrinsicContentSize.height)
     #else
@@ -399,7 +401,8 @@ extension ViewType {
   fileprivate func systemLayoutFittingIntrinsicWidthFixedHeight(
     _ height: CGFloat,
     priority: LayoutPriorityType = .almostRequired)
-    -> CGSize {
+    -> CGSize
+  {
     #if os(macOS)
     return CGSize(width: intrinsicContentSize.width, height: height)
     #else
@@ -449,4 +452,3 @@ extension CGSize {
   }
 }
 #endif
-// swiftlint:enable all 

@@ -2,7 +2,7 @@
 // Copyright © 2023 Airbnb Inc. All rights reserved.
 
 // MARK: - EffectValueType
-// swiftlint:disable all
+
 /// https://lottiefiles.github.io/lottie-docs/schema/#/$defs/effect-values
 enum EffectValueType: Int, Codable, Sendable {
   case slider = 0
@@ -95,4 +95,3 @@ extension [EffectValue] {
 /// All `EffectValue` subclasses are immutable `Sendable` values.
 // swiftlint:disable:next no_unchecked_sendable
 extension EffectValue: @unchecked Sendable { }
-// swiftlint:enable all 

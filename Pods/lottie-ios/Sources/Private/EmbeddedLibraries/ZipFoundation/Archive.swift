@@ -224,7 +224,8 @@ final class Archive: Sequence {
   // MARK: - Helpers
 
   static func scanForEndOfCentralDirectoryRecord(in file: FILEPointer)
-    -> EndOfCentralDirectoryStructure? {
+    -> EndOfCentralDirectoryStructure?
+  {
     var eocdOffset: UInt64 = 0
     var index = minEndOfCentralDirectoryOffset
     fseeko(file, 0, SEEK_END)
@@ -313,7 +314,8 @@ final class Archive: Sequence {
   // MARK: Private
 
   private static func scanForZIP64EndOfCentralDirectory(in file: FILEPointer, eocdOffset: UInt64)
-    -> ZIP64EndOfCentralDirectory? {
+    -> ZIP64EndOfCentralDirectory?
+  {
     guard UInt64(ZIP64EndOfCentralDirectoryLocator.size) < eocdOffset else {
       return nil
     }
@@ -357,7 +359,8 @@ extension Archive.EndOfCentralDirectoryRecord {
     numberOfEntriesOnDisk: UInt16,
     numberOfEntriesInCentralDirectory: UInt16,
     updatedSizeOfCentralDirectory: UInt32,
-    startOfCentralDirectory: UInt32) {
+    startOfCentralDirectory: UInt32)
+  {
     numberOfDisk = record.numberOfDisk
     numberOfDiskStart = record.numberOfDiskStart
     totalNumberOfEntriesOnDisk = numberOfEntriesOnDisk

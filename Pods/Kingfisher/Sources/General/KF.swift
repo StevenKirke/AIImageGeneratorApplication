@@ -43,7 +43,7 @@ import WatchKit
 #if canImport(TVUIKit)
 import TVUIKit
 #endif
-// swiftlint:disable all
+
 /// A helper type to create image setting tasks in a builder pattern.
 /// Use methods in this type to create a `KF.Builder` instance and configure image tasks there.
 public enum KF {
@@ -97,6 +97,7 @@ public enum KF {
         }
     }
 }
+
 
 extension KF {
 
@@ -214,9 +215,9 @@ extension KF.Builder {
         )
     }
     #endif // end of canImport(UIKit)
-
+    
     #if canImport(CarPlay) && !targetEnvironment(macCatalyst)
-
+    
     /// Builds the image task request and sets it to the image for a list item.
     /// - Parameters:
     ///   - listItem: The list item which loads the task and should be set with the image.
@@ -233,9 +234,9 @@ extension KF.Builder {
             progressBlock: progressBlock,
             completionHandler: resultHandler
         )
-
+        
     }
-
+    
     #endif
 
     #if canImport(AppKit) && !targetEnvironment(macCatalyst)
@@ -439,4 +440,3 @@ extension KF {
         public let completionHandler: (URLRequest?) -> Void
     }
 }
-// swiftlint:enable all 

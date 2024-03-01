@@ -2,7 +2,7 @@
 // Copyright © 2022 Airbnb Inc. All rights reserved.
 
 import QuartzCore
-// swiftlint:disable all
+
 // MARK: - GradientShapeItem
 
 /// A `ShapeItem` that represents a gradient
@@ -35,7 +35,8 @@ extension GradientRenderLayer {
     for gradient: GradientShapeItem,
     type: GradientContentType,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     // We have to set `colors` and `locations` to non-nil values
     // for the animations below to actually take effect
     locations = []
@@ -87,7 +88,8 @@ extension GradientRenderLayer {
   private func addLinearGradientAnimations(
     for gradient: GradientShapeItem,
     context: LayerAnimationContext)
-    throws {
+    throws
+  {
     type = .axial
 
     try addAnimation(
@@ -198,7 +200,8 @@ extension GradientShapeItem {
   fileprivate func colorConfiguration(
     from colorComponents: [Double],
     type: GradientContentType)
-    -> GradientColorConfiguration {
+    -> GradientColorConfiguration
+  {
     switch type {
     case .rgb:
       precondition(
@@ -239,4 +242,3 @@ extension GradientShapeItem {
     }
   }
 }
-// swiftlint:enable all 

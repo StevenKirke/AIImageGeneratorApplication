@@ -12,7 +12,7 @@ protocol INetworkManager {
 	func getDataPOST(url: String, returnModel: @escaping (Result<Data, ErrorResponse>) -> Void)
 }
 
-enum ErrorResponse: Error {
+enum ErrorResponse: LocalizedError {
 	/// Ошибка, конвертации URL.
 	case errorConvertURL
 	/// Ошибка, состояния ответа HTTP.
@@ -22,7 +22,7 @@ enum ErrorResponse: Error {
 	/// Пустая Data.
 	case errorEmptyData
 
-	var title: String {
+	var errorDescription: String? {
 		var textError = ""
 		switch self {
 		case .errorConvertURL:

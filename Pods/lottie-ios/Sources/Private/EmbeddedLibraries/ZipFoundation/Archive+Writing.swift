@@ -9,7 +9,7 @@
 //
 
 import Foundation
-// swiftlint:disable all
+
 extension Archive {
   enum ModifyOperation: Int {
     case remove = -1
@@ -35,7 +35,8 @@ extension Archive {
     compressionMethod: CompressionMethod = .none,
     bufferSize: Int = defaultWriteChunkSize,
     progress: Progress? = nil)
-    throws {
+    throws
+  {
     let fileURL = baseURL.appendingPathComponent(path)
 
     try addEntry(
@@ -62,7 +63,8 @@ extension Archive {
     compressionMethod: CompressionMethod = .none,
     bufferSize: Int = defaultWriteChunkSize,
     progress: Progress? = nil)
-    throws {
+    throws
+  {
     let fileManager = FileManager()
     guard fileManager.itemExists(at: fileURL) else {
       throw CocoaError(.fileReadNoSuchFile, userInfo: [NSFilePathErrorKey: fileURL.path])
@@ -153,7 +155,8 @@ extension Archive {
     bufferSize: Int = defaultWriteChunkSize,
     progress: Progress? = nil,
     provider: Provider)
-    throws {
+    throws
+  {
     guard accessMode != .read else { throw ArchiveError.unwritableArchive }
     // Directories and symlinks cannot be compressed
     let compressionMethod = type == .file ? compressionMethod : .none
@@ -314,7 +317,8 @@ extension Archive {
   private func updateOffsetInCentralDirectory(
     centralDirectoryStructure: CentralDirectoryStructure,
     updatedOffset: UInt64)
-    -> CentralDirectoryStructure {
+    -> CentralDirectoryStructure
+  {
     let zip64ExtendedInformation = Entry.ZIP64ExtendedInformation(
       zip64ExtendedInformation: centralDirectoryStructure.zip64ExtendedInformation, offset: updatedOffset)
     let offsetInCD = updatedOffset < maxOffsetOfLocalFileHeader ? UInt32(updatedOffset) : UInt32.max
@@ -330,7 +334,8 @@ extension Archive {
     _ bufferSize: Int,
     _ endOfCentralDirRecord: EndOfCentralDirectoryRecord,
     _ zip64EndOfCentralDirectory: ZIP64EndOfCentralDirectory?)
-    throws {
+    throws
+  {
     fflush(archiveFile)
     ftruncate(fileno(archiveFile), off_t(localFileHeaderStart))
     fseeko(archiveFile, off_t(localFileHeaderStart), SEEK_SET)
@@ -378,4 +383,3 @@ extension Archive {
     return (archive, url)
   }
 }
-// swiftlint:enable all 

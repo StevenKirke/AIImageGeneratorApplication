@@ -11,7 +11,7 @@ protocol IShowPictureDelegate: AnyObject {
 	/// Отображение второй сцены.
 	/// - Parameters:
 	///		- model: Тип ShowPictureModel.Request.Передаем URL изображения.
-	func showImageScene(model: SPResponse)
+	func showImageScene(model: Data)
 }
 
 protocol IBackShowPictureDelegate: AnyObject {
@@ -49,9 +49,9 @@ final class GenerateImageCoordinator: NSObject, ICoordinator {
 }
 
 extension GenerateImageCoordinator: IShowPictureDelegate {
-	func showImageScene(model: SPResponse) {
+	func showImageScene(model: Data) {
 		let assembler = ShowPictureAssembler()
-		let showPictureVC = assembler.configurator(model: model, backSceneDelegate: self)
+		let showPictureVC = assembler.configurator(imageData: model, backSceneDelegate: self)
 		showPictureVC.modalPresentationStyle = .fullScreen
 		navigateController.present(showPictureVC, animated: true)
 	}
@@ -61,8 +61,7 @@ extension GenerateImageCoordinator: IShowPictureDelegate {
 		let assembler = ShowPictureAssembler()
 		let image = UIImage(named: "Images/itching")
 		if let imageData = image?.pngData() {
-			let model = ShowPictureModel.Response.success(ShowPictureModel.Response.ImageData(data: imageData))
-			let showPictureVC = assembler.configurator(model: model, backSceneDelegate: self)
+			let showPictureVC = assembler.configurator(imageData: imageData, backSceneDelegate: self)
 			showPictureVC.modalPresentationStyle = .fullScreen
 			navigateController.present(showPictureVC, animated: true)
 		}

@@ -6,7 +6,7 @@
 //
 
 // MARK: - Asset
-// swiftlint:disable all
+
 public class Asset: Codable, DictionaryInitializable {
 
   // MARK: Lifecycle
@@ -48,4 +48,3 @@ public class Asset: Codable, DictionaryInitializable {
 /// All `Asset` subclasses are immutable `Sendable` values.
 // swiftlint:disable:next no_unchecked_sendable
 extension Asset: @unchecked Sendable { }
-// swiftlint:enable all 

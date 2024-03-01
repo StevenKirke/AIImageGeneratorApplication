@@ -4,7 +4,7 @@
 import QuartzCore
 
 // MARK: - RootAnimationLayer
-// swiftlint:disable all
+
 /// A root `CALayer` responsible for playing a Lottie animation
 protocol RootAnimationLayer: CALayer {
   var lottieAnimationLayer: LottieAnimationLayer? { get set }
@@ -51,4 +51,3 @@ enum AnimationKey {
   /// The primary animation always uses the given key
   case specific(String)
 }
-// swiftlint:enable all 

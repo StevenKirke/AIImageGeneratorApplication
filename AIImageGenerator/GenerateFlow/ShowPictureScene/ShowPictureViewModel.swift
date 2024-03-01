@@ -7,10 +7,12 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
+import EasyTipView
+import AudioToolbox
 
 protocol IShowPictureLogic: AnyObject {
-	func renderImage(viewModel: SPViewModel.ImageData)
+	func renderImage(viewModel: SPViewModel)
+	func showSaveImage()
 }
 
 final class ShowPictureViewController: UIViewController {
@@ -21,11 +23,18 @@ final class ShowPictureViewController: UIViewController {
 	var iterator: IShowPictureIterator?
 
 	// MARK: - Private properties
+	// Создание UI элементов.
 	private lazy var imageBackground = createImage()
 	private lazy var imageLockScreen = createImage()
 	private lazy var buttonBack = createButton(systemName: "chevron.left")
 	private lazy var buttonShowScreen = createButton(systemName: "eye")
 	private lazy var buttonSaveImage = createButton(systemName: "arrow.down")
+	// Создание жеста.
+	private var pinchGesture = UIPinchGestureRecognizer()
+	private var identity = CGAffineTransform.identity
+	/// Создание EasyTipView элемента.
+	var preferences = EasyTipView.Preferences()
+	private lazy var tipViewForButtonSave = EasyTipView(text: "Save in photo.", preferences: preferences)
 
 	// MARK: - Initializator
 	init() {
@@ -80,6 +89,25 @@ private extension ShowPictureViewController {
 		buttonBack.addTarget(self, action: #selector(backToView), for: .touchUpInside)
 
 		buttonShowScreen.addTarget(self, action: #selector(showLockScreen), for: .touchUpInside)
+
+		// Добавляем метод для зуммирования.
+		imageBackground.isUserInteractionEnabled = true
+		pinchGesture.addTarget(self, action: #selector(zoomingImage))
+		imageBackground.addGestureRecognizer(pinchGesture)
+		// Настройки EasyTipView.
+		configureTipView()
+	}
+
+	func configureTipView() {
+		preferences.drawing.font = FontsStyle.semiboldSF(18).font
+		preferences.drawing.foregroundColor = UIColor.white
+		preferences.drawing.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+		preferences.drawing.arrowHeight = 10
+		preferences.drawing.arrowWidth = 15
+		preferences.drawing.cornerRadius = 13
+		preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
+		EasyTipView.globalPreferences = preferences
+		tipViewForButtonSave.translatesAutoresizingMaskIntoConstraints = false
 	}
 }
 
@@ -89,6 +117,8 @@ private extension ShowPictureViewController {
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
 		imageBackground.snp.makeConstraints { image in
+			image.centerX.equalToSuperview()
+			image.center.equalToSuperview()
 			image.top.bottom.equalToSuperview()
 			image.left.right.equalToSuperview()
 		}
@@ -103,12 +133,12 @@ private extension ShowPictureViewController {
 			back.width.height.equalTo(50)
 		}
 		buttonShowScreen.snp.makeConstraints { show in
-			show.bottom.equalToSuperview().inset(50)
+			show.bottom.equalToSuperview().inset(100)
 			show.left.equalToSuperview().inset(20)
 			show.width.height.equalTo(50)
 		}
 		buttonSaveImage.snp.makeConstraints { save in
-			save.bottom.equalToSuperview().inset(50)
+			save.bottom.equalToSuperview().inset(100)
 			save.right.equalToSuperview().inset(20)
 			save.width.height.equalTo(50)
 		}
@@ -146,24 +176,62 @@ private extension ShowPictureViewController {
 
 // MARK: - UI Action.
 extension ShowPictureViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+	// Метод зуммирования изображения.
+	@objc private func zoomingImage(_ gesture: UIPinchGestureRecognizer) {
+		switch gesture.state {
+		case .began:
+			identity = imageBackground.transform
+		case .changed, .ended:
+			imageBackground.transform = identity.scaledBy(x: gesture.scale, y: gesture.scale)
+		case .cancelled, .possible, .failed:
+			break
+		@unknown default:
+			break
+		}
+		imageBackground.center = view.center
+	}
+
+	// Метод для сохранения изображения.
 	@objc func saveImageInLibrary() {
 		if let currentImage = imageBackground.image {
+			buttonSaveImage.isEnabled = false
+			AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 			iterator?.saveImage(image: currentImage)
 		}
 	}
-
+	// Метод выхода из данного экрана.
 	@objc func backToView() {
 		iterator?.backToView()
 	}
-
+	// Метод отображения изображения заблокированного экрана.
 	@objc func showLockScreen() {
 		imageLockScreen.isHidden.toggle()
 	}
 }
 
+// MARK: - Animation.
+private extension ShowPictureViewController {
+	func showTipView() {
+		DispatchQueue.main.async {
+			self.tipViewForButtonSave.show(forView: self.buttonSaveImage, withinSuperview: self.view)
+			self.hideTipView()
+		}
+	}
+
+	func hideTipView() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+			self.tipViewForButtonSave.dismiss()
+			self.buttonSaveImage.isEnabled = true
+		}
+	}
+}
+
 // MARK: - Render logic.
 extension ShowPictureViewController: IShowPictureLogic {
-	func renderImage(viewModel: SPViewModel.ImageData) {
-		self.imageBackground.image = UIImage(data: viewModel.data)
+	func renderImage(viewModel: SPViewModel) {
+		self.imageBackground.image = UIImage(data: viewModel.imageData)
+	}
+	func showSaveImage() {
+		showTipView()
 	}
 }

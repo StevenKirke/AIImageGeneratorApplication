@@ -20,7 +20,8 @@ extension Archive {
     skipCRC32: Bool,
     progress: Progress? = nil,
     with consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     let size = entry.centralDirectoryStructure.effectiveUncompressedSize
     guard size <= .max else { throw ArchiveError.invalidEntrySize }
     return try Data.consumePart(
@@ -43,7 +44,8 @@ extension Archive {
     skipCRC32: Bool,
     progress: Progress? = nil,
     with consumer: Consumer)
-    throws -> CRC32 {
+    throws -> CRC32
+  {
     let size = entry.centralDirectoryStructure.effectiveCompressedSize
     guard size <= .max else { throw ArchiveError.invalidEntrySize }
     return try Data.decompress(
@@ -68,7 +70,8 @@ extension Archive {
     compressionMethod: CompressionMethod,
     bufferSize: Int,
     progress: Progress? = nil,
-    provider: Provider) throws -> (sizeWritten: Int64, crc32: CRC32) {
+    provider: Provider) throws -> (sizeWritten: Int64, crc32: CRC32)
+  {
     var checksum = CRC32(0)
     var sizeWritten = Int64(0)
     switch type {
@@ -106,7 +109,8 @@ extension Archive {
     size: (uncompressed: UInt64, compressed: UInt64),
     checksum: CRC32,
     modificationDateTime: (UInt16, UInt16))
-    throws -> LocalFileHeader {
+    throws -> LocalFileHeader
+  {
     // We always set Bit 11 in generalPurposeBitFlag, which indicates an UTF-8 encoded path.
     guard let fileNameData = path.data(using: .utf8) else { throw ArchiveError.invalidEntryPath }
 
@@ -153,7 +157,8 @@ extension Archive {
     localFileHeader: LocalFileHeader,
     relativeOffset: UInt64,
     externalFileAttributes: UInt32)
-    throws -> CentralDirectoryStructure {
+    throws -> CentralDirectoryStructure
+  {
     var extraUncompressedSize: UInt64?
     var extraCompressedSize: UInt64?
     var extraOffset: UInt64?
@@ -201,7 +206,8 @@ extension Archive {
     startOfCentralDirectory: UInt64,
     startOfEndOfCentralDirectory: UInt64,
     operation: ModifyOperation)
-    throws -> EndOfCentralDirectoryStructure {
+    throws -> EndOfCentralDirectoryStructure
+  {
     var record = endOfCentralDirectoryRecord
     let sizeOfCD = sizeOfCentralDirectory
     let numberOfTotalEntries = totalNumberOfEntriesInCentralDirectory
@@ -256,7 +262,8 @@ extension Archive {
     size: Int64,
     bufferSize: Int,
     progress: Progress? = nil,
-    provider: Provider) throws -> (sizeWritten: Int64, checksum: CRC32) {
+    provider: Provider) throws -> (sizeWritten: Int64, checksum: CRC32)
+  {
     var position: Int64 = 0
     var sizeWritten: Int64 = 0
     var checksum = CRC32(0)
@@ -276,7 +283,8 @@ extension Archive {
     size: Int64,
     bufferSize: Int,
     progress: Progress? = nil,
-    provider: Provider) throws -> (sizeWritten: Int64, checksum: CRC32) {
+    provider: Provider) throws -> (sizeWritten: Int64, checksum: CRC32)
+  {
     var sizeWritten: Int64 = 0
     let consumer: Consumer = { data in sizeWritten += Int64(try Data.write(chunk: data, to: self.archiveFile)) }
     let checksum = try Data.compress(
@@ -305,7 +313,8 @@ extension Archive {
     sizeOfCentralDirectory: UInt64,
     offsetOfCentralDirectory: UInt64,
     offsetOfEndOfCentralDirectory: UInt64)
-    throws -> ZIP64EndOfCentralDirectory {
+    throws -> ZIP64EndOfCentralDirectory
+  {
     var zip64EOCD: ZIP64EndOfCentralDirectory = zip64EndOfCentralDirectory ?? {
       // Shouldn't include the leading 12 bytes: (size - 12 = 44)
       let record = ZIP64EndOfCentralDirectoryRecord(

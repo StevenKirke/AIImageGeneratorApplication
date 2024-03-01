@@ -3,7 +3,7 @@
 
 #if canImport(SwiftUI)
 import SwiftUI
-// swiftlint:disable all
+
 // MARK: - MeasuringViewRepresentable
 
 /// A `UIViewRepresentable` that uses a `SwiftUIMeasurementContainer` wrapping its represented
@@ -16,7 +16,8 @@ import SwiftUI
 @available(iOS 13.0, tvOS 13.0, macOS 10.15, *)
 protocol MeasuringViewRepresentable: ViewRepresentableType
   where
-  RepresentableViewType == SwiftUIMeasurementContainer<Content> {
+  RepresentableViewType == SwiftUIMeasurementContainer<Content>
+{
   /// The `UIView` content that's being measured by the enclosing `SwiftUIMeasurementContainer`.
   associatedtype Content: ViewType
 
@@ -49,7 +50,8 @@ extension MeasuringViewRepresentable {
   func _overrideSizeThatFits(
     _ size: inout CGSize,
     in proposedSize: _ProposedSize,
-    uiView: UIViewType) {
+    uiView: UIViewType)
+  {
     uiView.strategy = sizing
 
     // Note: this method is not double-called on iOS 16, so we don't need to do anything to prevent
@@ -70,7 +72,8 @@ extension MeasuringViewRepresentable {
     _ proposal: ProposedViewSize,
     uiView: UIViewType,
     context _: Context)
-    -> CGSize? {
+    -> CGSize?
+  {
     uiView.strategy = sizing
 
     // Creates a size by replacing `nil`s with `UIView.noIntrinsicMetric`
@@ -89,7 +92,8 @@ extension MeasuringViewRepresentable {
   func _overrideSizeThatFits(
     _ size: inout CGSize,
     in proposedSize: _ProposedSize,
-    nsView: NSViewType) {
+    nsView: NSViewType)
+  {
     nsView.strategy = sizing
 
     let children = Mirror(reflecting: proposedSize).children
@@ -109,7 +113,8 @@ extension MeasuringViewRepresentable {
     _ proposal: ProposedViewSize,
     nsView: NSViewType,
     context _: Context)
-    -> CGSize? {
+    -> CGSize?
+  {
     nsView.strategy = sizing
 
     // Creates a size by replacing `nil`s with `UIView.noIntrinsicMetric`
@@ -123,4 +128,3 @@ extension MeasuringViewRepresentable {
 }
 #endif
 #endif
-// swiftlint:enable all 
