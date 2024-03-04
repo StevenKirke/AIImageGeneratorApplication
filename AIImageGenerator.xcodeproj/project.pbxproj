@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3214B1002B9204BD00DF156D /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214B0FF2B9204BD00DF156D /* AnimationView.swift */; };
 		3214B1022B920F1D00DF156D /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214B1012B920F1D00DF156D /* TimerManager.swift */; };
+		3215E6092B95C68300832773 /* AnimationClock.json in Resources */ = {isa = PBXBuildFile; fileRef = 3215E6082B95C68300832773 /* AnimationClock.json */; };
 		324CA2A02B8CBC0800F423C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA29F2B8CBC0800F423C3 /* AppDelegate.swift */; };
 		324CA2A22B8CBC0800F423C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2A12B8CBC0800F423C3 /* SceneDelegate.swift */; };
 		324CA2A92B8CBC0A00F423C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324CA2A82B8CBC0A00F423C3 /* Assets.xcassets */; };
@@ -38,7 +39,6 @@
 		324CA2F72B8E3E3000F423C3 /* ShowPictureIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2F62B8E3E3000F423C3 /* ShowPictureIterator.swift */; };
 		324CA2F92B8E3E8100F423C3 /* ShowPicturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2F82B8E3E8100F423C3 /* ShowPicturePresenter.swift */; };
 		324CA2FB2B8E496900F423C3 /* ShowPictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA2FA2B8E496900F423C3 /* ShowPictureModel.swift */; };
-		324CA2FD2B8E841B00F423C3 /* AnimationClock.json in Resources */ = {isa = PBXBuildFile; fileRef = 324CA2FC2B8E841A00F423C3 /* AnimationClock.json */; };
 		324CA3012B8F2F9800F423C3 /* NetworkKingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */; };
 		324CA3032B8F48B100F423C3 /* SavePhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */; };
 		324CA3052B8F99AF00F423C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 324CA3042B8F99AF00F423C3 /* README.md */; };
@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		3214B0FF2B9204BD00DF156D /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
 		3214B1012B920F1D00DF156D /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		3215E6082B95C68300832773 /* AnimationClock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AnimationClock.json; sourceTree = SOURCE_ROOT; };
 		324CA29C2B8CBC0800F423C3 /* AIImageGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIImageGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		324CA29F2B8CBC0800F423C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		324CA2A12B8CBC0800F423C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		324CA2F62B8E3E3000F423C3 /* ShowPictureIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPictureIterator.swift; sourceTree = "<group>"; };
 		324CA2F82B8E3E8100F423C3 /* ShowPicturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicturePresenter.swift; sourceTree = "<group>"; };
 		324CA2FA2B8E496900F423C3 /* ShowPictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPictureModel.swift; sourceTree = "<group>"; };
-		324CA2FC2B8E841A00F423C3 /* AnimationClock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AnimationClock.json; path = ../../Example/AnimationClock.json; sourceTree = "<group>"; };
 		324CA3002B8F2F9800F423C3 /* NetworkKingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKingfisherManager.swift; sourceTree = "<group>"; };
 		324CA3022B8F48B100F423C3 /* SavePhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoManager.swift; sourceTree = "<group>"; };
 		324CA3042B8F99AF00F423C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		324CA2B32B8CBD0300F423C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				324CA2FC2B8E841A00F423C3 /* AnimationClock.json */,
+				3215E6082B95C68300832773 /* AnimationClock.json */,
 				324CA2BC2B8CBDE800F423C3 /* Fonts */,
 				324CA2AA2B8CBC0A00F423C3 /* LaunchScreen.storyboard */,
 				324CA2A82B8CBC0A00F423C3 /* Assets.xcassets */,
@@ -375,9 +375,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				324CA3052B8F99AF00F423C3 /* README.md in Resources */,
-				324CA2FD2B8E841B00F423C3 /* AnimationClock.json in Resources */,
 				324CA2AC2B8CBC0A00F423C3 /* LaunchScreen.storyboard in Resources */,
 				324CA2B52B8CBD8B00F423C3 /* swiftlint.yml in Resources */,
+				3215E6092B95C68300832773 /* AnimationClock.json in Resources */,
 				324CA2D92B8CE4BF00F423C3 /* SFProDisplaySemibold.otf in Resources */,
 				324CA2A92B8CBC0A00F423C3 /* Assets.xcassets in Resources */,
 			);
